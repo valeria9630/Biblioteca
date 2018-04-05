@@ -9,7 +9,7 @@ package cr.ac.ucr.if3000.biblioteca.domain;
  *
  * @author daniela
  */
-public abstract class Usuario {
+public abstract class Personas {
     
     private String nombreUnico;
     private String contraseña;
@@ -17,10 +17,10 @@ public abstract class Usuario {
     private String tipoIdentificacion;
     private String identificacion;
 
-    public Usuario() {
+    public Personas() {
     }
 
-    public Usuario(String nombreUnico, String contraseña, String nombreCompleto, String tipoIdentificacion, String identificacion) {
+    public Personas(String nombreUnico, String contraseña, String nombreCompleto, String tipoIdentificacion, String identificacion) {
         this.nombreUnico = nombreUnico;
         this.contraseña = contraseña;
         this.nombreCompleto = nombreCompleto;

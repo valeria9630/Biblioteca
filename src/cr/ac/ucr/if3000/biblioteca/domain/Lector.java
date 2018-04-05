@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author daniela
  */
-public class Lector extends Usuario{
+public class Lector extends Personas{
     
     private ArrayList<Catalogo> listaObrasPrestadas;
 
