@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author daniela
  */
-public class Bibliotecario extends Personas {
+public class Bibliotecario extends Persona {
     
   
 

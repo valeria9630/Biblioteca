@@ -12,14 +12,14 @@ import java.util.ArrayList;
  *
  * @author daniela
  */
-public class Lector extends Personas{
+public class Usuario extends Persona{
     
     private ArrayList<Catalogo> listaObrasPrestadas;
 
-    public Lector() {
+    public Usuario() {
     }
     
-       public Lector(ArrayList<Catalogo> listaObrasPrestadas, String nombreUnico, String contraseña, String nombreCompleto, String tipoIdentificacion, String identificacion) {
+       public Usuario(ArrayList<Catalogo> listaObrasPrestadas, String nombreUnico, String contraseña, String nombreCompleto, String tipoIdentificacion, String identificacion) {
         super(nombreUnico, contraseña, nombreCompleto, tipoIdentificacion, identificacion);
         this.listaObrasPrestadas = listaObrasPrestadas;
     }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author daniela
  */
-public class Autor extends Personas{
+public class Autor extends Persona{
     
     private ArrayList<Catalogo> listaObrasEscritas;
 

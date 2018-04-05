@@ -14,6 +14,39 @@ import java.util.ArrayList;
 public class Biblioteca {
   
     
-    private ArrayList<Personas> personas;
+    private ArrayList<Persona> personas;
+    private ArrayList<Catalogo> catalogo;
+
+    public Biblioteca() {
+    }
+
+    public Biblioteca(ArrayList<Persona> personas, ArrayList<Catalogo> catalogo) {
+        this.personas = personas;
+        this.catalogo = catalogo;
+    }
+
+    public ArrayList<Persona> getPersonas() {
+        return personas;
+    }
+
+    public void setPersonas(ArrayList<Persona> personas) {
+        this.personas = personas;
+    }
+
+    public ArrayList<Catalogo> getCatalogo() {
+        return catalogo;
+    }
+
+    public void setCatalogo(ArrayList<Catalogo> catalogo) {
+        this.catalogo = catalogo;
+    }
+
+    @Override
+    public String toString() {
+        return "Biblioteca{" + "personas=" + personas + ", catalogo=" + catalogo + '}';
+    }
+    
+    
+    
     
 }
