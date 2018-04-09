@@ -46,4 +46,15 @@ public class Biblioteca {
         }
     }
 
+    public void modificarPersona(Persona persona, Persona personaModificada) {
+        personas.set(personas.indexOf(persona), personaModificada);
+
+    }
+
+    public void borrarPersona(Persona persona) {
+
+        personas.remove(persona);
+
+    }
+
 }
