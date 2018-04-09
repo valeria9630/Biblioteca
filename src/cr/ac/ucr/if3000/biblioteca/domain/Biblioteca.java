@@ -12,8 +12,7 @@ import java.util.ArrayList;
  * @author ValeriaLeivaQuirós
  */
 public class Biblioteca {
-  
-    
+
     private ArrayList<Persona> personas;
     private ArrayList<Catalogo> catalogo;
 
@@ -41,12 +40,10 @@ public class Biblioteca {
         this.catalogo = catalogo;
     }
 
-    @Override
-    public String toString() {
-        return "Biblioteca{" + "personas=" + personas + ", catalogo=" + catalogo + '}';
+    public void agregarPersona(Persona persona) {
+        if (personas.indexOf(persona) != -1) {
+            personas.add(persona);
+        }
     }
-    
-    
-    
-    
+
 }
