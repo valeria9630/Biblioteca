@@ -13,19 +13,19 @@ import java.util.ArrayList;
  */
 public class Biblioteca {
 
-
     private static ArrayList<Persona> personas = new ArrayList<Persona>();
     private static ArrayList<Catalogo> catalogos = new ArrayList<Catalogo>();
 
     public Biblioteca() {
+        this.personas = new ArrayList<>();
+        this.catalogos = new ArrayList<>();
 
     }
-  
+
     public Biblioteca(ArrayList<Persona> personas, ArrayList<Catalogo> catalogos) {
         this.personas = personas;
         this.catalogos = catalogos;
     }
-    
 
     public ArrayList<Persona> getPersonas() {
         return personas;
@@ -39,14 +39,15 @@ public class Biblioteca {
         return catalogos;
     }
 
-
     public void setCatalogos(ArrayList<Catalogo> catalogos) {
         this.catalogos = catalogos;
     }
 
     public void agregarPersona(Persona persona) {
+        if (personas.indexOf(persona) == -1) {
+            personas.add(persona);
 
-        personas.add(persona);
+        }
 
     }
 
@@ -59,7 +60,6 @@ public class Biblioteca {
         personas.remove(persona);
 
     }
-
 
     public void agregarCatalogo(Catalogo catalogo) {
         if (!existeCatalogo(catalogo)) {
@@ -80,25 +80,34 @@ public class Biblioteca {
     }
 
     public void suprimirCatalogo(int codigo) {
-       
+
         for (int i = 0; i < catalogos.size(); i++) {
             Catalogo catalogoTemp = catalogos.get(i);
-            if(catalogoTemp.getCodigoCatalogo()==codigo){
+            if (catalogoTemp.getCodigoCatalogo() == codigo) {
                 catalogos.remove(i);
             }
         }
     }
-    
+
     public Autor buscaAutorPorNombreUnico(String nombreUnico) {
-        
+
         for (int i = 0; i < personas.size(); i++) {
-         Persona persona = personas.get(i);
+            Persona persona = personas.get(i);
             if (nombreUnico.equalsIgnoreCase(persona.getNombreUnico())) {
                 return (Autor) persona;
             }
         }
         return null;
+    }
 
+    public Persona buscarPersona(Object persona) {
+        Persona persona1 = new Persona() {
+        };
 
-}
+        persona1 = personas.get(personas.indexOf(persona));
+
+        return persona1;
+
+    }
+
 }

@@ -207,8 +207,9 @@ public class AgregarUsuario extends javax.swing.JFrame {
         };
         
         biblioteca.agregarPersona((Persona) persona);
-      
         dispose();
+      
+   
         
 
     }//GEN-LAST:event_jButtonAgregarActionPerformed
