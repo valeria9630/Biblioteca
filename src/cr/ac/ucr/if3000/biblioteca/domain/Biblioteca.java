@@ -13,7 +13,8 @@ import java.util.ArrayList;
  */
 public class Biblioteca {
 
-    private static ArrayList<Persona> personas;
+    private static ArrayList<Persona> personas = new ArrayList<>();
+    ;
     private static ArrayList<Catalogo> catalogo;
 
     public Biblioteca() {

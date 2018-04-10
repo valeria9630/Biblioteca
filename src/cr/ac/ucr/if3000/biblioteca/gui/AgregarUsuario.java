@@ -13,7 +13,7 @@ import cr.ac.ucr.if3000.biblioteca.domain.Persona;
  * @author ValeriaLeivaQuirós
  */
 public class AgregarUsuario extends javax.swing.JFrame {
-
+    
     Biblioteca biblioteca;
 
     /**
@@ -189,7 +189,7 @@ public class AgregarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-
+        
         dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
@@ -205,11 +205,11 @@ public class AgregarUsuario extends javax.swing.JFrame {
         String numeroIdentificacion = (String) jTextFieldNumeroIdentificacion.getText();
         Persona persona = new Persona(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion) {
         };
-
+        
         biblioteca.agregarPersona((Persona) persona);
-
+      
         dispose();
-
+        
 
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 

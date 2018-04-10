@@ -10,7 +10,6 @@ import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
 import cr.ac.ucr.if3000.biblioteca.domain.Persona;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import jdk.nashorn.internal.runtime.regexp.joni.EncodingHelper;
 
 /**
  *
@@ -18,15 +17,16 @@ import jdk.nashorn.internal.runtime.regexp.joni.EncodingHelper;
  */
 public class MantenimentoAutores extends javax.swing.JFrame {
 
-    Biblioteca biblioteca  = new Biblioteca();;
-    DefaultTableModel tablaAutores = new DefaultTableModel();
+    DefaultTableModel tablaAutores;
+    Biblioteca biblioteca;
 
     public MantenimentoAutores() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        tablaAutores = new DefaultTableModel();
 
-      
+        biblioteca = new Biblioteca();
 
         tablaAutores.addColumn("Usuario");
         tablaAutores.addColumn("Contraseña");
@@ -36,11 +36,12 @@ public class MantenimentoAutores extends javax.swing.JFrame {
 
         for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
 
-            Autor persona = (Autor) biblioteca.getPersonas().get(i);
-            System.out.println(persona.toString());
+            Persona persona = (Autor) biblioteca.getPersonas().get(i);
 
             tablaAutores.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
+
             this.jTableListaAutores.setModel(tablaAutores);
+
         }
     }
 
@@ -107,7 +108,7 @@ public class MantenimentoAutores extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Usuario", "Contraseña", "Nombre", "Tipo Identificación", "N° Identificación"
+
             }
         ));
         jScrollPane1.setViewportView(jTableListaAutores);
@@ -156,7 +157,7 @@ public class MantenimentoAutores extends javax.swing.JFrame {
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         AgregarUsuario agregarUsuario = new AgregarUsuario();
         agregarUsuario.setVisible(true);
-
+        dispose();
 
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
@@ -176,7 +177,7 @@ public class MantenimentoAutores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
- 
+
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     /**
@@ -193,16 +194,24 @@ public class MantenimentoAutores extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MantenimentoAutores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenimentoAutores.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MantenimentoAutores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenimentoAutores.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MantenimentoAutores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenimentoAutores.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MantenimentoAutores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenimentoAutores.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

@@ -18,12 +18,14 @@ public class PruebasVale {
         Autor autor1 = new Autor("a", "b", "b", "a", "a") {
         };
 
-        System.out.println(autor.toString());
 
         biblioteca.agregarPersona(autor);
-        biblioteca.modificarPersona(autor, autor1);
+        biblioteca.agregarPersona(autor1);
 
-        System.out.println(biblioteca.getPersonas().get(0));
+        for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
+            System.out.println(biblioteca.getPersonas().get(i).toString());
+
+        }
     }
 
 }

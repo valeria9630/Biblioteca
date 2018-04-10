@@ -3,7 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/daniela/Documents/Programacion2/Tarea2ProgramacionP/Biblioteca/src/cr/ac/ucr/if3000/biblioteca/domain/Biblioteca.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/gui/MantenimentoUsuarios.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/gui/AgregarUsuario.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/gui/Cátalogo.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/domain/PruebasVale.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/gui/LibrosPrestados.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/domain/Autor.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/domain/Persona.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/domain/Bibliotecario.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/gui/MantenimentoBibliotecologos.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/domain/Biblioteca.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/gui/ModificarUsuario.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/domain/Usuario.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/domain/Memoria.java</file>
+            <file>file:/C:/Users/ValeriaLeivaQuirós/Desktop/Progra2/Proyecto1/BibliotecaLasLupitas/src/cr/ac/ucr/if3000/biblioteca/gui/MantenimentoAutores.java</file>
         </group>
     </open-files>
 </project-private>
