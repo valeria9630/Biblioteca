@@ -34,5 +34,11 @@ public class Autor extends Persona {
     public void setListaObrasEscritas(ArrayList<Catalogo> listaObrasEscritas) {
         this.listaObrasEscritas = listaObrasEscritas;
     }
+    
+    @Override
+    public String toString() {
+        return getNombreUnico();
+    }
+
 
 }

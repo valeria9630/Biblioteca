@@ -17,8 +17,6 @@ public class Biblioteca {
     private static ArrayList<Catalogo> catalogos = new ArrayList<Catalogo>();
 
     public Biblioteca() {
-        this.personas = new ArrayList<>();
-        this.catalogos = new ArrayList<>();
 
     }
 
