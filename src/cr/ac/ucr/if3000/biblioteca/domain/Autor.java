@@ -11,8 +11,8 @@ import java.util.ArrayList;
  *
  * @author daniela
  */
-public class Autor extends Persona{
-    
+public class Autor extends Persona {
+
     private ArrayList<Catalogo> listaObrasEscritas;
 
     public Autor() {
@@ -21,19 +21,12 @@ public class Autor extends Persona{
     public Autor(String nombreUnico, String contraseña, String nombreCompleto, String tipoIdentificacion, String identificacion) {
         super(nombreUnico, contraseña, nombreCompleto, tipoIdentificacion, identificacion);
     }
-    
 
     public Autor(ArrayList<Catalogo> listaObrasEscritas, String nombreUnico, String contraseña, String nombreCompleto, String tipoIdentificacion, String identificacion) {
         super(nombreUnico, contraseña, nombreCompleto, tipoIdentificacion, identificacion);
         this.listaObrasEscritas = listaObrasEscritas;
     }
 
-    public Autor(String nombreUnico, String contraseña, String nombreCompleto, String tipoIdentificacion, String identificacion) {
-        super(nombreUnico, contraseña, nombreCompleto, tipoIdentificacion, identificacion);
-    }
-
-    
-    
     public ArrayList<Catalogo> getListaObrasEscritas() {
         return listaObrasEscritas;
     }
@@ -42,17 +35,4 @@ public class Autor extends Persona{
         this.listaObrasEscritas = listaObrasEscritas;
     }
 
-<<<<<<< HEAD
-    @Override
-    public String toString() {
-        return getNombreUnico();
-    }
-
-    
-=======
- 
->>>>>>> 943eda06b1273246ab6bd5567856c76943688b0b
-    
-    
-    
 }

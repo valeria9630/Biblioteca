@@ -28,21 +28,24 @@ public class MantenimentoAutores extends javax.swing.JFrame {
 
         biblioteca = new Biblioteca();
 
-        tablaAutores.addColumn("Usuario");
-        tablaAutores.addColumn("Contraseña");
-        tablaAutores.addColumn("Nombre");
-        tablaAutores.addColumn("Tipo Identificacion");
-        tablaAutores.addColumn("N° Identificación");
+//        tablaAutores.addColumn("Usuario");
+//        tablaAutores.addColumn("Contraseña");
+//        tablaAutores.addColumn("Nombre");
+//        tablaAutores.addColumn("Tipo Identificacion");
+//        tablaAutores.addColumn("N° Identificación");
+//
+//      
+//        for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
+//
+//            Persona persona = (Persona) biblioteca.getPersonas().get(i);
+//
+//            tablaAutores.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
+//
+//        }
+//
+//        this.jTableListaAutores.setModel(tablaAutores);
+        llenar();
 
-        for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
-
-            Persona persona = (Autor) biblioteca.getPersonas().get(i);
-
-            tablaAutores.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
-
-            this.jTableListaAutores.setModel(tablaAutores);
-
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -157,7 +160,7 @@ public class MantenimentoAutores extends javax.swing.JFrame {
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         AgregarUsuario agregarUsuario = new AgregarUsuario();
         agregarUsuario.setVisible(true);
-        dispose();
+
 
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
@@ -177,7 +180,7 @@ public class MantenimentoAutores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
-
+        llenar();
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     /**
@@ -234,4 +237,22 @@ public class MantenimentoAutores extends javax.swing.JFrame {
     private javax.swing.JTable jTableListaAutores;
     // End of variables declaration//GEN-END:variables
 
+    public void llenar() {
+         tablaAutores.addColumn("Usuario");
+        tablaAutores.addColumn("Contraseña");
+        tablaAutores.addColumn("Nombre");
+        tablaAutores.addColumn("Tipo Identificacion");
+        tablaAutores.addColumn("N° Identificación");
+
+        for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
+
+            Persona persona = (Persona) biblioteca.getPersonas().get(i);
+
+            tablaAutores.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
+
+        }
+
+        this.jTableListaAutores.setModel(tablaAutores);
+
+    }
 }
