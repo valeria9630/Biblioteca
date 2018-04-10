@@ -13,11 +13,21 @@ import java.util.ArrayList;
  */
 public class Biblioteca {
 
+<<<<<<< HEAD
     private static ArrayList<Persona> personas = new ArrayList<Persona>();
     private static ArrayList<Catalogo> catalogos = new ArrayList<Catalogo>();
 
     public Biblioteca() {
 
+=======
+    private static ArrayList<Persona> personas = new ArrayList<>();
+    ;
+    private static ArrayList<Catalogo> catalogo;
+
+    public Biblioteca() {
+        this.personas = new ArrayList<>();
+        this.catalogo = new ArrayList<>();
+>>>>>>> 943eda06b1273246ab6bd5567856c76943688b0b
     }
 
     public Biblioteca(ArrayList<Persona> personas, ArrayList<Catalogo> catalogos) {
@@ -30,13 +40,14 @@ public class Biblioteca {
     }
 
     public void setPersonas(ArrayList<Persona> personas) {
-        this.personas = personas;
+        Biblioteca.personas = personas;
     }
 
     public ArrayList<Catalogo> getCatalogos() {
         return catalogos;
     }
 
+<<<<<<< HEAD
     public void setCatalogos(ArrayList<Catalogo> catalogos) {
         this.catalogos = catalogos;
     }
@@ -44,12 +55,22 @@ public class Biblioteca {
     public void agregarPersona(Persona persona) {
 
         personas.add(persona);
+=======
+    public void setCatalogo(ArrayList<Catalogo> catalogo) {
+        Biblioteca.catalogo = catalogo;
+    }
+
+    public void agregarPersona(Persona persona) {
+        if (personas.indexOf(persona) == -1) {
+            personas.add(persona);
+
+        }
+>>>>>>> 943eda06b1273246ab6bd5567856c76943688b0b
 
     }
 
     public void modificarPersona(Persona persona, Persona personaModificada) {
         personas.set(personas.indexOf(persona), personaModificada);
-
     }
 
     public void borrarPersona(Persona persona) {
@@ -58,6 +79,7 @@ public class Biblioteca {
 
     }
 
+<<<<<<< HEAD
     public void agregarCatalogo(Catalogo catalogo) {
         if (!existeCatalogo(catalogo)) {
             catalogos.add(catalogo);
@@ -95,6 +117,15 @@ public class Biblioteca {
             }
         }
         return null;
+=======
+    public Persona buscarPersona(Object persona) {
+        Persona persona1 = new Persona() {
+        };
+
+        persona1 = personas.get(personas.indexOf(persona));
+
+        return persona1;
+>>>>>>> 943eda06b1273246ab6bd5567856c76943688b0b
     }
 
 }

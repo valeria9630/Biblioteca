@@ -27,14 +27,9 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Component id="jLabelContraseña" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabelNombreUsuario" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                  <Component id="jLabelContraseña" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                  <Component id="jLabelNombreUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jTextFieldNumeroIdentificacion" min="-2" pref="155" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
@@ -50,13 +45,15 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jTextFieldContrasena" min="-2" pref="155" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jTextFieldNombreCompleto" pref="155" max="32767" attributes="0"/>
-                                          <Component id="jComboBoxTipoIdentificacion" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jTextFieldTipoIdentificacion" max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jComboBoxTipoIdentificacion" min="-2" pref="80" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jTextFieldTitulo" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldContrasena" min="-2" pref="155" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldNombreCompleto" min="-2" pref="155" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldNombreUsuario" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -80,7 +77,7 @@
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabelNombreUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldNombreUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -96,6 +93,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jComboBoxTipoIdentificacion" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelTipoIdentificacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldTipoIdentificacion" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -214,6 +212,9 @@
           <Border info="null"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModificarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonCancelar">
       <Properties>
@@ -229,7 +230,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldTitulo">
+    <Component class="javax.swing.JTextField" name="jTextFieldNombreUsuario">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Yu Gothic" size="12" style="0"/>
@@ -272,6 +273,20 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNumeroIdentificacion">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Yu Gothic" size="12" style="0"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder>
+              <Color PropertyName="color" blue="ff" green="33" red="0" type="rgb"/>
+            </LineBorder>
+          </Border>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextFieldTipoIdentificacion">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Yu Gothic" size="12" style="0"/>

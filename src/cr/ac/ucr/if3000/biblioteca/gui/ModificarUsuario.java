@@ -5,19 +5,33 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+
 /**
  *
  * @author ValeriaLeivaQuirós
  */
 public class ModificarUsuario extends javax.swing.JFrame {
 
+    Biblioteca biblioteca;
+    Persona personaModificar;
+
     /**
      * Creates new form AgregarUsuario
      */
-    public ModificarUsuario() {
+    public ModificarUsuario(Persona persona) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        biblioteca = new Biblioteca();
+        personaModificar = biblioteca.buscarPersona(persona);
+        jTextFieldNombreUsuario.setText(personaModificar.getNombreUnico());
+        jTextFieldContrasena.setText(personaModificar.getContraseña());
+        jTextFieldNombreCompleto.setText(personaModificar.getNombreCompleto());
+        jTextFieldTipoIdentificacion.setText(personaModificar.getTipoIdentificacion());
+        jTextFieldNumeroIdentificacion.setText(personaModificar.getIdentificacion());
+
     }
 
     /**
@@ -38,10 +52,11 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jLabelNumeroIdentificacion = new javax.swing.JLabel();
         jButtonModificar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jTextFieldTitulo = new javax.swing.JTextField();
+        jTextFieldNombreUsuario = new javax.swing.JTextField();
         jTextFieldContrasena = new javax.swing.JTextField();
         jTextFieldNombreCompleto = new javax.swing.JTextField();
         jTextFieldNumeroIdentificacion = new javax.swing.JTextField();
+        jTextFieldTipoIdentificacion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Modificar Datos Personales");
@@ -83,6 +98,11 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jButtonModificar.setForeground(new java.awt.Color(0, 51, 255));
         jButtonModificar.setText("Modificar");
         jButtonModificar.setBorder(null);
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonCancelar.setForeground(new java.awt.Color(0, 51, 255));
@@ -93,8 +113,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldTitulo.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jTextFieldTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTextFieldNombreUsuario.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jTextFieldNombreUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
         jTextFieldContrasena.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jTextFieldContrasena.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
@@ -105,6 +125,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jTextFieldNumeroIdentificacion.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jTextFieldNumeroIdentificacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
+        jTextFieldTipoIdentificacion.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jTextFieldTipoIdentificacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,11 +135,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabelContraseña, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabelNombreUsuario)
-                            .addGap(182, 182, 182)))
+                    .addComponent(jLabelContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombreUsuario)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jTextFieldNumeroIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
@@ -131,12 +151,14 @@ public class ModificarUsuario extends javax.swing.JFrame {
                                     .addComponent(jButtonCancelar))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(41, 41, 41)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jTextFieldTipoIdentificacion)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jComboBoxTipoIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jTextFieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextFieldNombreCompleto, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                            .addComponent(jComboBoxTipoIdentificacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(jTextFieldNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(64, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -151,7 +173,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNombreUsuario)
-                    .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelContraseña)
@@ -163,7 +185,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxTipoIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTipoIdentificacion))
+                    .addComponent(jLabelTipoIdentificacion)
+                    .addComponent(jTextFieldTipoIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNumeroIdentificacion)
@@ -187,6 +210,19 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private void jComboBoxTipoIdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoIdentificacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxTipoIdentificacionActionPerformed
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        String nombreUsuario = jTextFieldNombreUsuario.getText();
+        String contraseña = jTextFieldContrasena.getText();
+        String nombreCompleto = jTextFieldNombreCompleto.getText();
+        String tipoIdentificación = (String) jComboBoxTipoIdentificacion.getSelectedItem();
+        String numeroIdentificación = jLabelNumeroIdentificacion.getText();
+        Persona personaNuevaModificada = new Persona(nombreUsuario, contraseña, nombreCompleto, tipoIdentificación, numeroIdentificación) {
+        };
+        biblioteca.modificarPersona(personaModificar, personaNuevaModificada);
+dispose();
+
+    }//GEN-LAST:event_jButtonModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,11 +253,11 @@ public class ModificarUsuario extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ModificarUsuario().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ModificarUsuario().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -236,7 +272,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JTextField jTextFieldContrasena;
     private javax.swing.JTextField jTextFieldNombreCompleto;
+    private javax.swing.JTextField jTextFieldNombreUsuario;
     private javax.swing.JTextField jTextFieldNumeroIdentificacion;
-    private javax.swing.JTextField jTextFieldTitulo;
+    private javax.swing.JTextField jTextFieldTipoIdentificacion;
     // End of variables declaration//GEN-END:variables
 }

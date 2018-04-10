@@ -5,20 +5,46 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
-import jdk.nashorn.internal.runtime.regexp.joni.EncodingHelper;
+import cr.ac.ucr.if3000.biblioteca.domain.Autor;
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ValeriaLeivaQuirós
  */
 public class MantenimentoAutores extends javax.swing.JFrame {
-    
+
+    DefaultTableModel tablaAutores;
+    Biblioteca biblioteca;
+
     public MantenimentoAutores() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        tablaAutores = new DefaultTableModel();
+
+        biblioteca = new Biblioteca();
+
+        tablaAutores.addColumn("Usuario");
+        tablaAutores.addColumn("Contraseña");
+        tablaAutores.addColumn("Nombre");
+        tablaAutores.addColumn("Tipo Identificacion");
+        tablaAutores.addColumn("N° Identificación");
+
+        for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
+
+            Persona persona = (Autor) biblioteca.getPersonas().get(i);
+
+            tablaAutores.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
+
+            this.jTableListaAutores.setModel(tablaAutores);
+
+        }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -59,6 +85,11 @@ public class MantenimentoAutores extends javax.swing.JFrame {
         jButtonEliminar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonEliminar.setForeground(new java.awt.Color(0, 51, 255));
         jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
 
         jButtonVerObrasEscritas.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonVerObrasEscritas.setForeground(new java.awt.Color(0, 51, 255));
@@ -74,10 +105,10 @@ public class MantenimentoAutores extends javax.swing.JFrame {
         jTableListaAutores.setForeground(new java.awt.Color(0, 51, 255));
         jTableListaAutores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Usuario", "Contraseña", "Nombre", "Tipo Identificación", "N° Identificación"
+
             }
         ));
         jScrollPane1.setViewportView(jTableListaAutores);
@@ -86,23 +117,23 @@ public class MantenimentoAutores extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(141, 141, 141)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonRegistrar)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButtonVerObrasEscritas)
-                        .addGap(39, 39, 39)
-                        .addComponent(jButtonModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonEliminar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(157, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelMantenimientoAutores)
                 .addGap(302, 302, 302))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonRegistrar)
+                        .addGap(42, 42, 42)
+                        .addComponent(jButtonVerObrasEscritas)
+                        .addGap(32, 32, 32)
+                        .addComponent(jButtonModificar)
+                        .addGap(44, 44, 44)
+                        .addComponent(jButtonEliminar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,19 +157,28 @@ public class MantenimentoAutores extends javax.swing.JFrame {
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         AgregarUsuario agregarUsuario = new AgregarUsuario();
         agregarUsuario.setVisible(true);
-      
+        dispose();
+
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     private void jButtonVerObrasEscritasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerObrasEscritasActionPerformed
         BuscarObra buscarObra = new BuscarObra();
         buscarObra.setVisible(true);
-        
+
     }//GEN-LAST:event_jButtonVerObrasEscritasActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-        ModificarUsuario modificarUsuario = new ModificarUsuario();
+        Persona personaModificar = null;
+        personaModificar = biblioteca.buscarPersona(tablaAutores.getValueAt(jTableListaAutores.getSelectedRow(), 0));
+        ModificarUsuario modificarUsuario = new ModificarUsuario(personaModificar);
         modificarUsuario.setVisible(true);
+
+
     }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,16 +194,24 @@ public class MantenimentoAutores extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MantenimentoAutores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenimentoAutores.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MantenimentoAutores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenimentoAutores.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MantenimentoAutores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenimentoAutores.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MantenimentoAutores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenimentoAutores.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -173,6 +221,7 @@ public class MantenimentoAutores extends javax.swing.JFrame {
                 new MantenimentoAutores().setVisible(true);
             }
         });
+//    }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -184,4 +233,5 @@ public class MantenimentoAutores extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableListaAutores;
     // End of variables declaration//GEN-END:variables
+
 }

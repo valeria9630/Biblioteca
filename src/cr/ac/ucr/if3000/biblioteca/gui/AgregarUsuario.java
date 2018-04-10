@@ -5,11 +5,16 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+
 /**
  *
  * @author ValeriaLeivaQuirós
  */
 public class AgregarUsuario extends javax.swing.JFrame {
+    
+    Biblioteca biblioteca;
 
     /**
      * Creates new form AgregarUsuario
@@ -18,6 +23,7 @@ public class AgregarUsuario extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        biblioteca = new Biblioteca();
     }
 
     /**
@@ -76,6 +82,11 @@ public class AgregarUsuario extends javax.swing.JFrame {
         jButtonAgregar.setForeground(new java.awt.Color(0, 51, 255));
         jButtonAgregar.setText("Agregar");
         jButtonAgregar.setBorder(null);
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonCancelar.setForeground(new java.awt.Color(0, 51, 255));
@@ -88,6 +99,11 @@ public class AgregarUsuario extends javax.swing.JFrame {
 
         jTextFieldNombreUsuario.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jTextFieldNombreUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTextFieldNombreUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNombreUsuarioActionPerformed(evt);
+            }
+        });
 
         jTextFieldContrasena.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jTextFieldContrasena.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
@@ -173,9 +189,29 @@ public class AgregarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-       
+        
         dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jTextFieldNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNombreUsuarioActionPerformed
+
+    private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
+        String nombreUsuario = jTextFieldNombreUsuario.getText();
+        String contraseña = jTextFieldContrasena.getText();
+        String nombreCompleto = jTextFieldNombreCompleto.getText();
+        String tipoIdentificacion = (String) jComboBoxTipoIdentificacion.getSelectedItem();
+        String numeroIdentificacion = (String) jTextFieldNumeroIdentificacion.getText();
+        Persona persona = new Persona(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion) {
+        };
+        
+        biblioteca.agregarPersona((Persona) persona);
+      
+        dispose();
+        
+
+    }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     /**
      * @param args the command line arguments
