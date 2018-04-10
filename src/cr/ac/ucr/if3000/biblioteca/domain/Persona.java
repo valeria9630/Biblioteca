@@ -18,6 +18,11 @@ public abstract class Persona {
     private String identificacion;
 
     public Persona() {
+        this.nombreUnico = "";
+        this.contraseña = "";
+        this.nombreCompleto = "";
+        this.tipoIdentificacion = "";
+        this.identificacion = "";
     }
 
     public Persona(String nombreUnico, String contraseña, String nombreCompleto, String tipoIdentificacion, String identificacion) {

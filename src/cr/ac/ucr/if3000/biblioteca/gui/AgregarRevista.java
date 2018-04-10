@@ -5,16 +5,22 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Autor;
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Revista;
+import java.util.Calendar;
+
 /**
  *
  * @author daniela
  */
 public class AgregarRevista extends javax.swing.JFrame {
-
+    Biblioteca biblioteca;
     /**
      * Creates new form AgregarRevista
      */
     public AgregarRevista() {
+        biblioteca = new Biblioteca();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -74,6 +80,11 @@ public class AgregarRevista extends javax.swing.JFrame {
         jButtonAgregar.setForeground(new java.awt.Color(0, 51, 255));
         jButtonAgregar.setText("Agregar");
         jButtonAgregar.setBorder(null);
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonCancelar.setForeground(new java.awt.Color(0, 51, 255));
@@ -172,6 +183,26 @@ public class AgregarRevista extends javax.swing.JFrame {
 
         dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
+        Autor autor1 = new Autor("andres Calamaro", "opp", "ppo", "njsvn", "hsbdvj");
+        Autor autor2 = new Autor("rocio", "jdbv", "bvj", "djkb", "jk");
+        String titulo =jTextFieldTitulo.getText();
+        String dia = Integer.toString(jDateChooserFechaDeIngreso.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jDateChooserFechaDeIngreso.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(jDateChooserFechaDeIngreso.getCalendar().get(Calendar.YEAR));
+        String fecha = (dia+"-"+mes+"-"+año);
+        String nombreAutor = jTextFieldAutor.getText();
+        String issn = jTextFieldISSN.getText();
+        String edicion = jTextFieldEdicion.getText();
+        Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreAutor);
+        
+        Revista revista= new Revista(issn, edicion, titulo, fecha, autor);
+        biblioteca.agregarCatalogo(revista);
+        dispose();
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
+        catalogo.setVisible(true);
+    }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     /**
      * @param args the command line arguments

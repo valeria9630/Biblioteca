@@ -42,7 +42,7 @@
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Component id="jLabelTema" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jTextFieldTituloTema" min="-2" pref="155" max="-2" attributes="0"/>
+                      <Component id="jTextFieldTema" min="-2" pref="155" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
@@ -58,8 +58,8 @@
                       </Group>
                       <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextFieldTituloISBN" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
-                          <Component id="jTextFieldTituloAutor" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
+                          <Component id="jTextFieldIsbn" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
+                          <Component id="jTextFieldAutor" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -74,7 +74,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabelSubtema" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextFieldTituloSubtema" min="-2" pref="155" max="-2" attributes="0"/>
+                              <Component id="jTextFieldSubtema" min="-2" pref="155" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -100,23 +100,23 @@
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextFieldTituloAutor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldAutor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelAutor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabelIsbn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldTituloISBN" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldIsbn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabelTema" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldTituloTema" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldTema" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabelSubtema" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldTituloSubtema" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldSubtema" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="58" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -219,6 +219,9 @@
           <Border info="null"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAgregarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonCancelar">
       <Properties>
@@ -259,7 +262,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldTituloAutor">
+    <Component class="javax.swing.JTextField" name="jTextFieldAutor">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Yu Gothic" size="12" style="0"/>
@@ -273,7 +276,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldTituloISBN">
+    <Component class="javax.swing.JTextField" name="jTextFieldIsbn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Yu Gothic" size="12" style="0"/>
@@ -287,7 +290,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldTituloTema">
+    <Component class="javax.swing.JTextField" name="jTextFieldTema">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Yu Gothic" size="12" style="0"/>
@@ -301,7 +304,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldTituloSubtema">
+    <Component class="javax.swing.JTextField" name="jTextFieldSubtema">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Yu Gothic" size="12" style="0"/>

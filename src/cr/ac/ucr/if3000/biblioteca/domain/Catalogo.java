@@ -13,11 +13,16 @@ public abstract class Catalogo {
     private String titulo;
     private String fechaIngreso;
     private Autor autor;
+    private int codigoCatalogo;
+    private static int contador;
 
     public Catalogo() {
+        this.codigoCatalogo = contador++;
+
     }
 
     public Catalogo(String titulo, String fechaIngreso, Autor autor) {
+        this.codigoCatalogo = contador++;
         this.titulo = titulo;
         this.fechaIngreso = fechaIngreso;
         this.autor = autor;
@@ -47,6 +52,16 @@ public abstract class Catalogo {
         this.autor = autor;
     }
 
+    public int getCodigoCatalogo() {
+        return codigoCatalogo;
+    }
+
+    public void setCodigoCatalogo(int codigoCatalogo) {
+        this.codigoCatalogo = codigoCatalogo;
+    }
+
+   
+    
     @Override
     public String toString() {
         return "Catalogo{" + "titulo=" + titulo + ", fechaIngreso=" + fechaIngreso + ", autor=" + autor + '}';

@@ -13,15 +13,16 @@ import java.util.ArrayList;
  */
 public class Biblioteca {
 
-    private ArrayList<Persona> personas;
-    private ArrayList<Catalogo> catalogo;
+    private static ArrayList<Persona> personas = new ArrayList<Persona>();
+    private static ArrayList<Catalogo> catalogos = new ArrayList<Catalogo>();
 
     public Biblioteca() {
+
     }
 
-    public Biblioteca(ArrayList<Persona> personas, ArrayList<Catalogo> catalogo) {
+    public Biblioteca(ArrayList<Persona> personas, ArrayList<Catalogo> catalogos) {
         this.personas = personas;
-        this.catalogo = catalogo;
+        this.catalogos = catalogos;
     }
 
     public ArrayList<Persona> getPersonas() {
@@ -32,18 +33,18 @@ public class Biblioteca {
         this.personas = personas;
     }
 
-    public ArrayList<Catalogo> getCatalogo() {
-        return catalogo;
+    public ArrayList<Catalogo> getCatalogos() {
+        return catalogos;
     }
 
-    public void setCatalogo(ArrayList<Catalogo> catalogo) {
-        this.catalogo = catalogo;
+    public void setCatalogos(ArrayList<Catalogo> catalogos) {
+        this.catalogos = catalogos;
     }
 
     public void agregarPersona(Persona persona) {
-        if (personas.indexOf(persona) != -1) {
-            personas.add(persona);
-        }
+
+        personas.add(persona);
+
     }
 
     public void modificarPersona(Persona persona, Persona personaModificada) {
@@ -55,6 +56,45 @@ public class Biblioteca {
 
         personas.remove(persona);
 
+    }
+
+    public void agregarCatalogo(Catalogo catalogo) {
+        if (!existeCatalogo(catalogo)) {
+            catalogos.add(catalogo);
+        }
+    }
+
+    public boolean existeCatalogo(Catalogo catalogo) {
+        boolean existe = false;
+        for (int i = 0; i < catalogos.size(); i++) {
+            Catalogo catalogoTemp = catalogos.get(i);
+            if (catalogoTemp.getCodigoCatalogo() == (catalogo.getCodigoCatalogo())) {
+                existe = true;
+            }
+
+        }
+        return existe;
+    }
+
+    public void suprimirCatalogo(int codigo) {
+       
+        for (int i = 0; i < catalogos.size(); i++) {
+            Catalogo catalogoTemp = catalogos.get(i);
+            if(catalogoTemp.getCodigoCatalogo()==codigo){
+                catalogos.remove(i);
+            }
+        }
+    }
+    
+    public Autor buscaAutorPorNombreUnico(String nombreUnico) {
+        
+        for (int i = 0; i < personas.size(); i++) {
+         Persona persona = personas.get(i);
+            if (nombreUnico.equalsIgnoreCase(persona.getNombreUnico())) {
+                return (Autor) persona;
+            }
+        }
+        return null;
     }
 
 }

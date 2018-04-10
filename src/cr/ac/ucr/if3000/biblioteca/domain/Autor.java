@@ -23,6 +23,12 @@ public class Autor extends Persona{
         this.listaObrasEscritas = listaObrasEscritas;
     }
 
+    public Autor(String nombreUnico, String contraseña, String nombreCompleto, String tipoIdentificacion, String identificacion) {
+        super(nombreUnico, contraseña, nombreCompleto, tipoIdentificacion, identificacion);
+    }
+
+    
+    
     public ArrayList<Catalogo> getListaObrasEscritas() {
         return listaObrasEscritas;
     }
@@ -31,9 +37,12 @@ public class Autor extends Persona{
         this.listaObrasEscritas = listaObrasEscritas;
     }
 
+    @Override
     public String toString() {
-        return "Autor{" + "listaObrasEscritas=" + listaObrasEscritas + '}';
+        return getNombreUnico();
     }
+
+    
     
     
     

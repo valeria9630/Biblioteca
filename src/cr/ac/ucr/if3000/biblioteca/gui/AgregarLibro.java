@@ -5,16 +5,26 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Autor;
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Catalogo;
+import cr.ac.ucr.if3000.biblioteca.domain.Libro;
+import java.util.Calendar;
+
 /**
  *
  * @author daniela
  */
 public class AgregarLibro extends javax.swing.JFrame {
+    Biblioteca biblioteca;
+ 
 
     /**
      * Creates new form agregarLibro
      */
     public AgregarLibro() {
+        biblioteca = new Biblioteca();
+        
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -40,10 +50,10 @@ public class AgregarLibro extends javax.swing.JFrame {
         jButtonCancelar = new javax.swing.JButton();
         jTextFieldTitulo = new javax.swing.JTextField();
         jDateChooserFechaIngreso = new com.toedter.calendar.JDateChooser();
-        jTextFieldTituloAutor = new javax.swing.JTextField();
-        jTextFieldTituloISBN = new javax.swing.JTextField();
-        jTextFieldTituloTema = new javax.swing.JTextField();
-        jTextFieldTituloSubtema = new javax.swing.JTextField();
+        jTextFieldAutor = new javax.swing.JTextField();
+        jTextFieldIsbn = new javax.swing.JTextField();
+        jTextFieldTema = new javax.swing.JTextField();
+        jTextFieldSubtema = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agregar Libro");
@@ -80,6 +90,11 @@ public class AgregarLibro extends javax.swing.JFrame {
         jButtonAgregar.setForeground(new java.awt.Color(0, 51, 255));
         jButtonAgregar.setText("Agregar");
         jButtonAgregar.setBorder(null);
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonCancelar.setForeground(new java.awt.Color(0, 51, 255));
@@ -95,17 +110,17 @@ public class AgregarLibro extends javax.swing.JFrame {
 
         jDateChooserFechaIngreso.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
-        jTextFieldTituloAutor.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jTextFieldTituloAutor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTextFieldAutor.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jTextFieldAutor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
-        jTextFieldTituloISBN.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jTextFieldTituloISBN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTextFieldIsbn.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jTextFieldIsbn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
-        jTextFieldTituloTema.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jTextFieldTituloTema.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTextFieldTema.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jTextFieldTema.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
-        jTextFieldTituloSubtema.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jTextFieldTituloSubtema.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTextFieldSubtema.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jTextFieldSubtema.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,7 +142,7 @@ public class AgregarLibro extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addComponent(jLabelTema)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldTituloTema, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldTema, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,8 +155,8 @@ public class AgregarLibro extends javax.swing.JFrame {
                             .addComponent(jLabelIsbn))
                         .addGap(102, 102, 102)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldTituloISBN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldTituloAutor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextFieldIsbn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldAutor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +168,7 @@ public class AgregarLibro extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelSubtema)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextFieldTituloSubtema, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jTextFieldSubtema, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(98, 98, 98))
         );
         layout.setVerticalGroup(
@@ -171,20 +186,20 @@ public class AgregarLibro extends javax.swing.JFrame {
                     .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldTituloAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelAutor))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelIsbn)
-                    .addComponent(jTextFieldTituloISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelTema)
-                    .addComponent(jTextFieldTituloTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelSubtema)
-                    .addComponent(jTextFieldTituloSubtema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldSubtema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,6 +213,33 @@ public class AgregarLibro extends javax.swing.JFrame {
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
+        Autor autor1 = new Autor("andres Calamaro", "opp", "ppo", "njsvn", "hsbdvj");
+        Autor autor2 = new Autor("rocio", "jdbv", "bvj", "djkb", "jk");
+        biblioteca.agregarPersona(autor1);
+        biblioteca.agregarPersona(autor2);
+        
+        String titulo = jTextFieldTitulo.getText();
+        String dia = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.YEAR));
+        String fecha = (dia+"-"+mes+"-"+año);
+        String nombreAutor = jTextFieldAutor.getText();
+        String isbn = jTextFieldIsbn.getText();
+        String tema= jTextFieldTema.getText();
+        String subtema = jTextFieldSubtema.getText();
+        Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreAutor);
+        
+        System.out.println(autor.toString());
+        Libro libro = new Libro(isbn, tema, subtema, titulo, fecha, autor);
+        
+        biblioteca.agregarCatalogo(libro);
+        dispose();
+     
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
+        catalogo.setVisible(true);
+    }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,10 +288,10 @@ public class AgregarLibro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSubtema;
     private javax.swing.JLabel jLabelTema;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JTextField jTextFieldAutor;
+    private javax.swing.JTextField jTextFieldIsbn;
+    private javax.swing.JTextField jTextFieldSubtema;
+    private javax.swing.JTextField jTextFieldTema;
     private javax.swing.JTextField jTextFieldTitulo;
-    private javax.swing.JTextField jTextFieldTituloAutor;
-    private javax.swing.JTextField jTextFieldTituloISBN;
-    private javax.swing.JTextField jTextFieldTituloSubtema;
-    private javax.swing.JTextField jTextFieldTituloTema;
     // End of variables declaration//GEN-END:variables
 }

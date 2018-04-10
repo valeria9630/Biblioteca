@@ -50,7 +50,7 @@ public class AgregarPeriodico extends javax.swing.JFrame {
 
         jLabelAgregarPeriodico.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabelAgregarPeriodico.setForeground(new java.awt.Color(0, 51, 255));
-        jLabelAgregarPeriodico.setText("Agregar Periodico");
+        jLabelAgregarPeriodico.setText("Agregar Periódico");
 
         jLabelTitulo.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(0, 51, 255));

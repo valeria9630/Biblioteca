@@ -385,7 +385,7 @@ public class MenuBibliotecologo extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemRegistrarUsuarioActionPerformed
 
     private void jMenuItemMantenimientoCtalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMantenimientoCtalogoActionPerformed
-        Cátalogo catalogo = new Cátalogo();
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);
         
 
