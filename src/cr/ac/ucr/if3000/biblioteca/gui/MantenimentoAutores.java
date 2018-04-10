@@ -238,6 +238,7 @@ public class MantenimentoAutores extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void llenar() {
+        
          tablaAutores.addColumn("Usuario");
         tablaAutores.addColumn("Contraseña");
         tablaAutores.addColumn("Nombre");
