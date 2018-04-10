@@ -11,10 +11,16 @@ package cr.ac.ucr.if3000.biblioteca.domain;
  */
 public class PruebasVale {
 
-Biblioteca bliBibliotec= new Biblioteca();
-    
+    public static void main(String[] args) {
+        Biblioteca biblioteca = new Biblioteca();
+     Autor autor = new Autor("a", "a", "a", "a", "a"){};
+        System.out.println(autor.toString());
+        
+        
+        biblioteca.agregarPersona(autor);
+          
+       
+       
+    }
 
-    
-    
-    
 }

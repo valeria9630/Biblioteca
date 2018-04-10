@@ -5,12 +5,14 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+
 /**
  *
  * @author ValeriaLeivaQuirós
  */
 public class ModificarUsuario extends javax.swing.JFrame {
-
+    Biblioteca biblioteca;
     /**
      * Creates new form AgregarUsuario
      */
@@ -18,6 +20,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        biblioteca= new Biblioteca();
     }
 
     /**
@@ -83,6 +86,11 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jButtonModificar.setForeground(new java.awt.Color(0, 51, 255));
         jButtonModificar.setText("Modificar");
         jButtonModificar.setBorder(null);
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonCancelar.setForeground(new java.awt.Color(0, 51, 255));
@@ -187,6 +195,14 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private void jComboBoxTipoIdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoIdentificacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxTipoIdentificacionActionPerformed
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+  
+        biblioteca.
+        
+        
+        
+    }//GEN-LAST:event_jButtonModificarActionPerformed
 
     /**
      * @param args the command line arguments

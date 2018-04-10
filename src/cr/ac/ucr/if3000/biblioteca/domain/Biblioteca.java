@@ -17,6 +17,8 @@ public class Biblioteca {
     private ArrayList<Catalogo> catalogo;
 
     public Biblioteca() {
+        this.personas = new ArrayList<>();
+        this.catalogo = new ArrayList<>();
     }
 
     public Biblioteca(ArrayList<Persona> personas, ArrayList<Catalogo> catalogo) {
@@ -41,9 +43,11 @@ public class Biblioteca {
     }
 
     public void agregarPersona(Persona persona) {
-        if (personas.indexOf(persona) != -1) {
+        if (personas.indexOf(persona) == -1) {
             personas.add(persona);
+
         }
+
     }
 
     public void modificarPersona(Persona persona, Persona personaModificada) {
@@ -55,6 +59,15 @@ public class Biblioteca {
 
         personas.remove(persona);
 
+    }
+
+    public Persona buscarPersona(Object persona) {
+        Persona persona1 = new Persona() {
+        };
+
+        persona1 = personas.get(personas.indexOf(persona));
+
+        return persona1;
     }
 
 }
