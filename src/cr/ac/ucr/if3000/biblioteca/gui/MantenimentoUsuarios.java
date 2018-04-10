@@ -16,13 +16,28 @@ import javax.swing.table.DefaultTableModel;
 public class MantenimentoUsuarios extends javax.swing.JFrame {
 
     Biblioteca biblioteca;
-    DefaultTableModel tablaUsuarios = new DefaultTableModel();
+   
 
     public MantenimentoUsuarios() {
+        DefaultTableModel tablaUsuarios = new DefaultTableModel();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         biblioteca = new Biblioteca();
+        
+        tablaUsuarios.addColumn("NombreUnico");
+        tablaUsuarios.addColumn("Contraseña");
+        tablaUsuarios.addColumn("Nombre Completo");
+        tablaUsuarios.addColumn("Tipo de identificacion");
+        tablaUsuarios.addColumn("Identificacion");
+      
+        
+        for (int i = 0; i <biblioteca.getPersonas().size(); i++) {
+          Persona persona = biblioteca.getPersonas().get(i);
+            tablaUsuarios.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(),persona.getNombreCompleto(),persona.getTipoIdentificacion(),persona.getIdentificacion()});
+            this.jTableListaUsuarios.setModel(tablaUsuarios);
+        
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -140,10 +155,10 @@ public class MantenimentoUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-        Persona personaModificar = null;
-        personaModificar = biblioteca.buscarPersona(tablaUsuarios.getValueAt(jTableListaUsuarios.getSelectedRow(), 0));
-        ModificarUsuario modificarUsuario = new ModificarUsuario(personaModificar);
-        modificarUsuario.setVisible(true);
+//        Persona personaModificar = null;
+//        personaModificar = biblioteca.buscarPersona(tablaUsuarios.getValueAt(jTableListaUsuarios.getSelectedRow(), 0));
+//        ModificarUsuario modificarUsuario = new ModificarUsuario(personaModificar);
+//        modificarUsuario.setVisible(true);
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     /**

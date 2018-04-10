@@ -209,7 +209,8 @@ public class AgregarUsuario extends javax.swing.JFrame {
         biblioteca.agregarPersona((Persona) persona);
         dispose();
       
-   
+        MantenimentoUsuarios mantenimientoUsuarios = new MantenimentoUsuarios();
+        mantenimientoUsuarios.setVisible(true);
         
 
     }//GEN-LAST:event_jButtonAgregarActionPerformed
