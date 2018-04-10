@@ -211,7 +211,8 @@ public class AgregarLibro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        dispose();
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
+        catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed

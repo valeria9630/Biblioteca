@@ -5,16 +5,25 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Autor;
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Libro;
+import cr.ac.ucr.if3000.biblioteca.domain.Tesis;
+import java.util.Calendar;
+
 /**
  *
  * @author daniela
  */
 public class AgregarTesis extends javax.swing.JFrame {
-
+ Biblioteca biblioteca;
     /**
      * Creates new form AgregarTesis
      */
     public AgregarTesis() {
+        
+        biblioteca = new Biblioteca();
+        
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -74,6 +83,11 @@ public class AgregarTesis extends javax.swing.JFrame {
         jButtonAgregar.setForeground(new java.awt.Color(0, 51, 255));
         jButtonAgregar.setText("Agregar");
         jButtonAgregar.setBorder(null);
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonCancelar.setForeground(new java.awt.Color(0, 51, 255));
@@ -170,8 +184,35 @@ public class AgregarTesis extends javax.swing.JFrame {
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
  
-        dispose();
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
+        catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
+        Autor autor1 = new Autor("andres Calamaro", "opp", "ppo", "njsvn", "hsbdvj");
+        Autor autor2 = new Autor("rocio", "jdbv", "bvj", "djkb", "jk");
+        biblioteca.agregarPersona(autor1);
+        biblioteca.agregarPersona(autor2);
+        
+        String titulo = jTextFieldTitulo.getText();
+        String dia = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.YEAR));
+        String fecha = (dia+"-"+mes+"-"+año);
+        String nombreAutor = jTextFieldAutor.getText();
+        String resumen = jTextFieldResumen.getText();
+        String abstracto = jTextFieldAbstract.getText();
+        Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreAutor);
+        
+       
+        Tesis tesis = new Tesis(resumen, abstracto, titulo, fecha, autor);
+        
+            biblioteca.agregarCatalogo(tesis);
+        dispose();
+     
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
+        catalogo.setVisible(true);
+    }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,16 +5,23 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Autor;
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Libro;
+import cr.ac.ucr.if3000.biblioteca.domain.Memoria;
+import java.util.Calendar;
+
 /**
  *
  * @author daniela
  */
 public class AgregarMemoria extends javax.swing.JFrame {
-
+Biblioteca biblioteca;
     /**
      * Creates new form AgregarMemoria
      */
     public AgregarMemoria() {
+        biblioteca = new Biblioteca();
         initComponents();
        setLocationRelativeTo(null);
         setResizable(false);
@@ -98,6 +105,11 @@ public class AgregarMemoria extends javax.swing.JFrame {
         jButtonAgregar.setForeground(new java.awt.Color(0, 51, 255));
         jButtonAgregar.setText("Agregar");
         jButtonAgregar.setBorder(null);
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonCancelar.setForeground(new java.awt.Color(0, 51, 255));
@@ -196,9 +208,36 @@ public class AgregarMemoria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-      
-        dispose();
+      OpcionesCatalogo catalogo = new OpcionesCatalogo();
+        catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
+        Autor autor1 = new Autor("andres Calamaro", "opp", "ppo", "njsvn", "hsbdvj");
+        Autor autor2 = new Autor("rocio", "jdbv", "bvj", "djkb", "jk");
+        biblioteca.agregarPersona(autor1);
+        biblioteca.agregarPersona(autor2);
+        
+        String titulo = jTextFieldTitulo.getText();
+        String dia = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.YEAR));
+        String fecha = (dia+"-"+mes+"-"+año);
+        String nombreAutor = jTextFieldAutor.getText();
+        String resumen = jTextFieldTituloResumen.getText();
+        String abstracto = jTextFieldTituloAbstract.getText();
+        String nombreConderencia = jTextFieldNombreConferencia.getText();
+        Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreAutor);
+        
+        System.out.println(autor.toString());
+        Memoria memoria = new Memoria(resumen, abstracto, nombreConderencia, titulo, fecha, autor);
+        
+        biblioteca.agregarCatalogo(memoria);
+        dispose();
+     
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
+        catalogo.setVisible(true);
+    }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     /**
      * @param args the command line arguments
