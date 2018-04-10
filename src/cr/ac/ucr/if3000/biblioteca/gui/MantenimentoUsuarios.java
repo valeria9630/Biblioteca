@@ -5,18 +5,26 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ValeriaLeivaQuirós
  */
 public class MantenimentoUsuarios extends javax.swing.JFrame {
-    
+
+    Biblioteca biblioteca;
+    DefaultTableModel tablaUsuarios = new DefaultTableModel();
+
     public MantenimentoUsuarios() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        biblioteca = new Biblioteca();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -132,8 +140,10 @@ public class MantenimentoUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-       ModificarUsuario modificarUsuario= new ModificarUsuario();
-       modificarUsuario.setVisible(true);
+        Persona personaModificar = null;
+        personaModificar = biblioteca.buscarPersona(tablaUsuarios.getValueAt(jTableListaUsuarios.getSelectedRow(), 0));
+        ModificarUsuario modificarUsuario = new ModificarUsuario(personaModificar);
+        modificarUsuario.setVisible(true);
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     /**

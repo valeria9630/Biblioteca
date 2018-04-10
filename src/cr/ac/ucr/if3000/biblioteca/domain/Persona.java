@@ -10,7 +10,7 @@ package cr.ac.ucr.if3000.biblioteca.domain;
  * @author daniela
  */
 public abstract class Persona {
-    
+
     private String nombreUnico;
     private String contraseña;
     private String nombreCompleto;
@@ -18,6 +18,11 @@ public abstract class Persona {
     private String identificacion;
 
     public Persona() {
+        this.nombreUnico = "";
+        this.contraseña = "";
+        this.nombreCompleto = "";
+        this.tipoIdentificacion = "";
+        this.identificacion = "";
     }
 
     public Persona(String nombreUnico, String contraseña, String nombreCompleto, String tipoIdentificacion, String identificacion) {
@@ -72,7 +77,5 @@ public abstract class Persona {
     public String toString() {
         return "Usuario{" + "nombreUnico=" + nombreUnico + ", contrase\u00f1a=" + contraseña + ", nombreCompleto=" + nombreCompleto + ", tipoIdentificacion=" + tipoIdentificacion + ", identificacion=" + identificacion + '}';
     }
-    
-    
-    
+
 }

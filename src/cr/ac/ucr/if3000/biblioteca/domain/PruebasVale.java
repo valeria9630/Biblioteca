@@ -13,14 +13,17 @@ public class PruebasVale {
 
     public static void main(String[] args) {
         Biblioteca biblioteca = new Biblioteca();
-     Autor autor = new Autor("a", "a", "a", "a", "a"){};
+        Autor autor = new Autor("a", "a", "a", "a", "a") {
+        };
+        Autor autor1 = new Autor("a", "b", "b", "a", "a") {
+        };
+
         System.out.println(autor.toString());
-        
-        
+
         biblioteca.agregarPersona(autor);
-          
-       
-       
+        biblioteca.modificarPersona(autor, autor1);
+
+        System.out.println(biblioteca.getPersonas().get(0));
     }
 
 }

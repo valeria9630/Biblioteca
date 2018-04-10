@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class Biblioteca {
 
-    private ArrayList<Persona> personas;
-    private ArrayList<Catalogo> catalogo;
+    private static ArrayList<Persona> personas;
+    private static ArrayList<Catalogo> catalogo;
 
     public Biblioteca() {
         this.personas = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Biblioteca {
     }
 
     public void setPersonas(ArrayList<Persona> personas) {
-        this.personas = personas;
+        Biblioteca.personas = personas;
     }
 
     public ArrayList<Catalogo> getCatalogo() {
@@ -39,7 +39,7 @@ public class Biblioteca {
     }
 
     public void setCatalogo(ArrayList<Catalogo> catalogo) {
-        this.catalogo = catalogo;
+        Biblioteca.catalogo = catalogo;
     }
 
     public void agregarPersona(Persona persona) {
@@ -52,7 +52,6 @@ public class Biblioteca {
 
     public void modificarPersona(Persona persona, Persona personaModificada) {
         personas.set(personas.indexOf(persona), personaModificada);
-
     }
 
     public void borrarPersona(Persona persona) {

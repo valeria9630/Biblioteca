@@ -206,9 +206,10 @@ public class AgregarUsuario extends javax.swing.JFrame {
         Persona persona = new Persona(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion) {
         };
 
-        System.out.println(persona);
         biblioteca.agregarPersona((Persona) persona);
+
         dispose();
+
 
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 
