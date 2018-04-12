@@ -20,6 +20,10 @@ public class Biblioteca {
 
     private static ArrayList<Persona> personas = new ArrayList<Persona>();
     private static ArrayList<Catalogo> catalogos = new ArrayList<Catalogo>();
+<<<<<<< HEAD
+
+    private static String identificacionPersonaActiva;
+=======
 
 
     private static String identificacionPersonaActiva;
@@ -27,6 +31,7 @@ public class Biblioteca {
     private static String identificacion;
  
 
+>>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
 
     public Biblioteca() {
 
@@ -39,6 +44,8 @@ public class Biblioteca {
 
     }
 
+<<<<<<< HEAD
+=======
     public static String getIdentificacion() {
         return identificacion;
     }
@@ -49,6 +56,7 @@ public class Biblioteca {
 
     }
 
+>>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
     public static String getIdentificacionPersonaActiva() {
         return identificacionPersonaActiva;
     }
@@ -93,6 +101,8 @@ public class Biblioteca {
 
     }
 
+<<<<<<< HEAD
+=======
 
 //    public boolean validarContraseña(String contraseña) {
 //        boolean validarContraseña = false;
@@ -109,6 +119,7 @@ public class Biblioteca {
 //         String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
 //         System.out.println(contraseñaEncriptada);
 
+>>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
     public boolean validarContraseña(String contraseña) {
         boolean validarContraseña = false;
         String contraseñaTemp = contraseña;
@@ -138,7 +149,10 @@ public class Biblioteca {
 
     }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
     public void agregarCatalogo(Catalogo catalogo) {
         if (!existeCatalogo(catalogo)) {
             catalogos.add(catalogo);
@@ -300,7 +314,6 @@ public class Biblioteca {
         return ultimoCodigo;
     }
 
-
     public int getUltimoCodigoCatalogo() {
         int ultimoCodigo = 1;
         ultimoCodigo = catalogos.size() + 1;
@@ -308,8 +321,11 @@ public class Biblioteca {
         return ultimoCodigo;
     }
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
     public void devolverCatalogo(Catalogo catalogo) {
         Prestamo prestamo = null;
 
@@ -326,18 +342,20 @@ public class Biblioteca {
         int fechaFinalMes;
         int fechaInicialAño;
         int fechaFinalAño;
-        System.out.println("pasa");
-        for (int i = 0; i < catalogos.size(); i++) {
-            fechaInicialDía = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(0, 1));
-            fechaFinalDía = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaDevoluciónInicial().substring(0, 1));
-            fechaInicialMes = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(3, 4));
-            fechaFinalMes = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaDevoluciónInicial().substring(3, 4));
-            fechaInicialAño = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(5, 6));
-            fechaFinalAño = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaDevoluciónInicial().substring(5, 6));
 
-            System.out.println(fechaFinalDía);
-            System.out.println(fechaFinalMes);
-            System.out.println(fechaFinalMes);
+        for (int i = 0; i < catalogos.size(); i++) {
+            fechaInicialDía = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(0, 2));
+            fechaInicialMes = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(3, 4));
+            fechaInicialAño = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(5, 9));
+
+            fechaFinalDía = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(0, 2));
+            fechaFinalMes = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(3, 4));
+            fechaFinalAño = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(5, 9));
+
+            if (fechaInicialDía <= fechaFinalDía && fechaInicialMes <= fechaFinalMes) {
+                listaUsuariosMorosos.add(catalogos.get(i).getPrestamo().getPersona());
+
+            }
 
         }
         return listaUsuariosMorosos;
@@ -366,6 +384,8 @@ public class Biblioteca {
         }
         return listaObrasEscritas;
     }
+<<<<<<< HEAD
+=======
 
 
 //    public Persona buscarPersonaPorNombreUnico(String nombreUnico) {
@@ -380,5 +400,6 @@ public class Biblioteca {
 //        return personaEncontrada;
 //    }
 
+>>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
 
 }

@@ -31,6 +31,7 @@ public class ModificarMemoria extends javax.swing.JFrame {
         setResizable(false);
         jTextFieldTitulo.setText(this.memoriaVieja.getTitulo());
         jTextFieldFechaIngesoActual.setText(memoriaVieja.getFechaIngreso());
+           jTextFieldAutor.setEnabled(false);
         jTextFieldAutor.setText(this.memoriaVieja.getAutor().getNombreUnico());
         jTextFieldResumen.setText(this.memoriaVieja.getResumen());
         jTextFieldAbstract.setText(this.memoriaVieja.getAbstracto());

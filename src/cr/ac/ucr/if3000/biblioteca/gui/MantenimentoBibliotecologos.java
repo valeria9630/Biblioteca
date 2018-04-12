@@ -114,9 +114,8 @@ public class MantenimentoBibliotecologos extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117)
+                .addGap(127, 127, 127)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonRegistrar)
@@ -141,7 +140,7 @@ public class MantenimentoBibliotecologos extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
+                        .addGap(150, 150, 150)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -163,12 +162,18 @@ public class MantenimentoBibliotecologos extends javax.swing.JFrame {
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         Persona personaModificar = null;
         personaModificar = biblioteca.buscarPersonaPorIdentificacion((String) tablaBibliotecarios.getValueAt(jTableListaBibliotecologos.getSelectedRow(), 4));
-        System.out.println(personaModificar.toString());
 
-        ModificarUsuario modificarUsuario = new ModificarUsuario(personaModificar, "Bibliotecologo");
-        modificarUsuario.setVisible(true);
+        if (biblioteca.getIdentificacionPersonaActiva() != personaModificar.getIdentificacion()) {
+            personaModificar = biblioteca.buscarPersonaPorIdentificacion((String) tablaBibliotecarios.getValueAt(jTableListaBibliotecologos.getSelectedRow(), 4));
+            ModificarUsuario modificarUsuario = new ModificarUsuario(personaModificar, "Bibliotecologo");
+            modificarUsuario.setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "No se puede eliminar a usted mismo");
 
-        dispose();
+        }
+       
+
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -188,6 +193,7 @@ public class MantenimentoBibliotecologos extends javax.swing.JFrame {
         }
         MantenimentoBibliotecologos mantenimentoBibliotecologos = new MantenimentoBibliotecologos();
         mantenimentoBibliotecologos.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 

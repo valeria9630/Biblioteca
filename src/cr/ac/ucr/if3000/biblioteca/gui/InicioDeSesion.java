@@ -21,6 +21,7 @@ public class InicioDeSesion extends javax.swing.JFrame {
 
     Biblioteca biblioteca;
     Bibliotecario bibliotecario;
+    Autor autor;
 
     /**
      * Creates new form DatosParaIngresar
@@ -32,6 +33,7 @@ public class InicioDeSesion extends javax.swing.JFrame {
         biblioteca = new Biblioteca();
         bibliotecario = new Bibliotecario("Lupe", DigestUtils.md5Hex("Lupe"), "Guadalupe Goméz Gonzalez", "Extrangera", "M-123");
         biblioteca.agregarPersona(bibliotecario);
+
     }
 
     /**
@@ -130,7 +132,6 @@ public class InicioDeSesion extends javax.swing.JFrame {
             if (biblioteca.validarContraseña(contraseña)) {
 
                 Persona persona = biblioteca.buscarPersonaPorIdentificacion(usuarioUnico);
-              
 
                 if (biblioteca.buscarPersonaPorIdentificacion(usuarioUnico) instanceof Autor) {
                     biblioteca.setIdentificacionPersonaActiva(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());

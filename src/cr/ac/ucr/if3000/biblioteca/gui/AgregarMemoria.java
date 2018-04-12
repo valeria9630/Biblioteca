@@ -16,15 +16,36 @@ import java.util.Calendar;
  * @author daniela
  */
 public class AgregarMemoria extends javax.swing.JFrame {
-Biblioteca biblioteca;
+
+    Biblioteca biblioteca;
+    Autor autor;
+
     /**
      * Creates new form AgregarMemoria
      */
     public AgregarMemoria() {
         biblioteca = new Biblioteca();
         initComponents();
-       setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         setResizable(false);
+        jTextFieldAutor.setEnabled(false);
+        jTextFieldTitulo.setEnabled(false);
+        jDateChooserFechaIngreso.setEnabled(false);
+        jTextFieldAbstract.setEnabled(false);
+        jTextFieldNombreDeConferencia.setEnabled(false);
+        jTextFieldResumen.setEnabled(false);
+
+    }
+
+    public AgregarMemoria(Autor persona) {
+        biblioteca = new Biblioteca();
+        autor = persona;
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+
+        jTextFieldAutor.setText(persona.getNombreUnico());
+
     }
 
     /**
@@ -51,6 +72,7 @@ Biblioteca biblioteca;
         jTextFieldNombreDeConferencia = new javax.swing.JTextField();
         jButtonAgregar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jButtonUsuario1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agregar Memoria");
@@ -119,39 +141,52 @@ Biblioteca biblioteca;
             }
         });
 
+        jButtonUsuario1.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jButtonUsuario1.setForeground(new java.awt.Color(0, 51, 255));
+        jButtonUsuario1.setText("Buscar Usuario");
+        jButtonUsuario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUsuario1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelAbstract)
-                    .addComponent(jLabelNombreConferencia)
-                    .addComponent(jLabelResumen)
-                    .addComponent(jLabelAutor)
-                    .addComponent(jLabelFechaIngreso)
-                    .addComponent(jLabelTitulo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jTextFieldNombreDeConferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jTextFieldAbstract, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jTextFieldResumen, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jTextFieldAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(62, 62, 62))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(40, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelAbstract)
+                            .addComponent(jLabelNombreConferencia)
+                            .addComponent(jLabelResumen)
+                            .addComponent(jLabelAutor)
+                            .addComponent(jLabelFechaIngreso)
+                            .addComponent(jLabelTitulo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(jTextFieldNombreDeConferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(jTextFieldAbstract, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(jTextFieldResumen, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(jTextFieldAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(jButtonCancelar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jLabelAgregarMemoria)))
-                .addContainerGap(144, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(55, 55, 55)
+                                .addComponent(jButtonCancelar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(133, 133, 133)
+                                .addComponent(jLabelAgregarMemoria)))
+                        .addGap(0, 134, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +195,7 @@ Biblioteca biblioteca;
                     .addGroup(layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addComponent(jLabelTitulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabelAgregarMemoria)
@@ -173,8 +208,9 @@ Biblioteca biblioteca;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelAutor))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                            .addComponent(jLabelAutor)
+                            .addComponent(jButtonUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,36 +240,39 @@ Biblioteca biblioteca;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-      OpcionesCatalogo catalogo = new OpcionesCatalogo();
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
-        Autor autor1 = new Autor("andres Calamaro", "opp", "ppo", "njsvn", "hsbdvj");
-        Autor autor2 = new Autor("rocio", "jdbv", "bvj", "djkb", "jk");
-        biblioteca.agregarPersona(autor1);
-        biblioteca.agregarPersona(autor2);
-        
+
         String titulo = jTextFieldTitulo.getText();
         String dia = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.MONTH) + 1);
         String año = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.YEAR));
-        String fecha = (dia+"-"+mes+"-"+año);
+        String fecha = (dia + "-" + mes + "-" + año);
         String nombreAutor = jTextFieldAutor.getText();
         String resumen = jTextFieldResumen.getText();
         String abstracto = jTextFieldAbstract.getText();
         String nombreConderencia = jTextFieldNombreDeConferencia.getText();
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreAutor);
-        
+
         System.out.println(autor.toString());
         Memoria memoria = new Memoria(resumen, abstracto, nombreConderencia, titulo, fecha, autor);
-        
+
         biblioteca.agregarCatalogo(memoria);
         dispose();
-     
+
         OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonAgregarActionPerformed
+
+    private void jButtonUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsuario1ActionPerformed
+        BuscarUsuario buscarUsuario = new BuscarUsuario("Memoria", "buscar");
+        buscarUsuario.setVisible(true);
+
+        dispose();
+    }//GEN-LAST:event_jButtonUsuario1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,6 +313,7 @@ Biblioteca biblioteca;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregar;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonUsuario1;
     private com.toedter.calendar.JDateChooser jDateChooserFechaIngreso;
     private javax.swing.JLabel jLabelAbstract;
     private javax.swing.JLabel jLabelAgregarMemoria;

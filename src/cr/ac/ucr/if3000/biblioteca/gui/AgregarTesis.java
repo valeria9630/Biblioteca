@@ -16,17 +16,34 @@ import java.util.Calendar;
  * @author daniela
  */
 public class AgregarTesis extends javax.swing.JFrame {
- Biblioteca biblioteca;
+
+    Biblioteca biblioteca;
+    Autor autor;
+
     /**
      * Creates new form AgregarTesis
      */
     public AgregarTesis() {
-        
         biblioteca = new Biblioteca();
-        
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        jTextFieldAutor.setEnabled(false);
+        jTextFieldAbstract.setEnabled(false);
+        jTextFieldResumen.setEnabled(false);
+        jTextFieldTitulo.setEnabled(false);
+
+    }
+
+    public AgregarTesis(Autor persona) {
+        biblioteca = new Biblioteca();
+        autor = persona;
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+
+        jTextFieldAutor.setText(persona.getNombreUnico());
+
     }
 
     /**
@@ -51,6 +68,7 @@ public class AgregarTesis extends javax.swing.JFrame {
         jTextFieldResumen = new javax.swing.JTextField();
         jTextFieldAbstract = new javax.swing.JTextField();
         jDateChooserFechaIngreso = new com.toedter.calendar.JDateChooser();
+        jButtonUsuario1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agregar Tesis");
@@ -112,6 +130,15 @@ public class AgregarTesis extends javax.swing.JFrame {
 
         jDateChooserFechaIngreso.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
+        jButtonUsuario1.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jButtonUsuario1.setForeground(new java.awt.Color(0, 51, 255));
+        jButtonUsuario1.setText("Buscar Usuario");
+        jButtonUsuario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUsuario1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,13 +163,15 @@ public class AgregarTesis extends javax.swing.JFrame {
                             .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldResumen, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldAbstract, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(84, 84, 84)
                         .addComponent(jButtonCancelar)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,14 +186,12 @@ public class AgregarTesis extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelFechaIngreso)
                     .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabelAutor))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelAutor)
+                    .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelResumen)
                     .addComponent(jTextFieldResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -183,7 +210,7 @@ public class AgregarTesis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
- 
+
         OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -193,26 +220,32 @@ public class AgregarTesis extends javax.swing.JFrame {
         Autor autor2 = new Autor("rocio", "jdbv", "bvj", "djkb", "jk");
         biblioteca.agregarPersona(autor1);
         biblioteca.agregarPersona(autor2);
-        
+
         String titulo = jTextFieldTitulo.getText();
         String dia = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.MONTH) + 1);
         String año = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.YEAR));
-        String fecha = (dia+"-"+mes+"-"+año);
+        String fecha = (dia + "-" + mes + "-" + año);
         String nombreAutor = jTextFieldAutor.getText();
         String resumen = jTextFieldResumen.getText();
         String abstracto = jTextFieldAbstract.getText();
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreAutor);
-        
-       
+
         Tesis tesis = new Tesis(resumen, abstracto, titulo, fecha, autor);
-        
-            biblioteca.agregarCatalogo(tesis);
+
+        biblioteca.agregarCatalogo(tesis);
         dispose();
-     
+
         OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonAgregarActionPerformed
+
+    private void jButtonUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsuario1ActionPerformed
+        BuscarUsuario buscarUsuario = new BuscarUsuario("Tesis", "buscar");
+        buscarUsuario.setVisible(true);
+
+        dispose();
+    }//GEN-LAST:event_jButtonUsuario1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,6 +285,7 @@ public class AgregarTesis extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregar;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonUsuario1;
     private com.toedter.calendar.JDateChooser jDateChooserFechaIngreso;
     private javax.swing.JLabel jLabelAbtract;
     private javax.swing.JLabel jLabelAgregarTesis;

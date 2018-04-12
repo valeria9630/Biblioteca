@@ -31,6 +31,7 @@ public class ModificarPeriodico extends javax.swing.JFrame {
         setResizable(false);
         jTextFieldTitulo.setText(this.periodicoViejo.getTitulo());
         jTextFieldFechaIngresoActual.setText(this.periodicoViejo.getFechaIngreso());
+        jTextFieldAutor.setEnabled(false);
         jTextFieldAutor.setText(this.periodicoViejo.getAutor().getNombreUnico());
         jTextFieldTituloISSN.setText(this.periodicoViejo.getIssb());
         jTextFieldEdicion.setText(this.periodicoViejo.getEdicion());

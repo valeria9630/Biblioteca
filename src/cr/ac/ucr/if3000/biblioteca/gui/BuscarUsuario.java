@@ -5,8 +5,12 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Autor;
 import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Catalogo;
+import cr.ac.ucr.if3000.biblioteca.domain.Libro;
 import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+import cr.ac.ucr.if3000.biblioteca.domain.Usuario;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.RowFilter;
@@ -24,6 +28,8 @@ public class BuscarUsuario extends javax.swing.JFrame {
     Biblioteca biblioteca;
     int codigoLibro;
     String tipoInterfaz;
+    String indicacion;
+    Catalogo catalogo;
 
     public BuscarUsuario() {
         tablaPersonas = new DefaultTableModel();
@@ -32,6 +38,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
         setResizable(false);
         biblioteca = new Biblioteca();
         tipoInterfaz = "";
+        jButtonDevolverse.setVisible(false);
 
         tablaPersonas.addColumn("NombreUnico");
         tablaPersonas.addColumn("Contraseña");
@@ -57,6 +64,34 @@ public class BuscarUsuario extends javax.swing.JFrame {
         biblioteca = new Biblioteca();
         codigoLibro = codigoCatalogo;
         tipoInterfaz = "";
+        jButtonDevolverse.setVisible(false);
+
+        tablaPersonas.addColumn("NombreUnico");
+        tablaPersonas.addColumn("Contraseña");
+        tablaPersonas.addColumn("Nombre Completo");
+        tablaPersonas.addColumn("Tipo de identificacion");
+        tablaPersonas.addColumn("Identificacion");
+
+        for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
+            Persona persona = biblioteca.getPersonas().get(i);
+            if (persona instanceof Usuario) {
+
+                tablaPersonas.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
+            }
+//            this.jTableListaUsuarios.setModel(tablaPersonas);
+
+        }
+        this.jTableListaUsuarios.setModel(tablaPersonas);
+    }
+
+    BuscarUsuario(String tipo) {
+        tablaPersonas = new DefaultTableModel();
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        biblioteca = new Biblioteca();
+        tipoInterfaz = tipo;
+        jButtonSeleccionar.setVisible(false);
 
         tablaPersonas.addColumn("NombreUnico");
         tablaPersonas.addColumn("Contraseña");
@@ -73,13 +108,14 @@ public class BuscarUsuario extends javax.swing.JFrame {
         }
     }
 
-    BuscarUsuario(String tipo) {
+    BuscarUsuario(String tipo, String buscar) {
         tablaPersonas = new DefaultTableModel();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         biblioteca = new Biblioteca();
         tipoInterfaz = tipo;
+        indicacion = buscar;
 
         tablaPersonas.addColumn("NombreUnico");
         tablaPersonas.addColumn("Contraseña");
@@ -89,8 +125,9 @@ public class BuscarUsuario extends javax.swing.JFrame {
 
         for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
             Persona persona = biblioteca.getPersonas().get(i);
-
-            tablaPersonas.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
+            if (persona instanceof Autor) {
+                tablaPersonas.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
+            }
             this.jTableListaUsuarios.setModel(tablaPersonas);
 
         }
@@ -111,6 +148,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
         jLabelNumeroIdentificacion = new javax.swing.JLabel();
         jTextFieldNumeroIdentificacionBuscar = new javax.swing.JTextField();
         jButtonSeleccionar = new javax.swing.JButton();
+        jButtonDevolverse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Buscar Usuario");
@@ -152,32 +190,45 @@ public class BuscarUsuario extends javax.swing.JFrame {
             }
         });
 
+        jButtonDevolverse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/ucr/if3000/biblioteca/Imagenes/sign-out.png"))); // NOI18N
+        jButtonDevolverse.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jButtonDevolverse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDevolverseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(78, 78, 78)
-                                .addComponent(jLabelNumeroIdentificacion)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldNumeroIdentificacionBuscar)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jButtonSeleccionar)
-                        .addContainerGap(112, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelBuscarUsuario)
                 .addGap(333, 333, 333))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonDevolverse, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(78, 78, 78)
+                                        .addComponent(jLabelNumeroIdentificacion)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldNumeroIdentificacionBuscar)))
+                                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(79, 79, 79)
+                                .addComponent(jButtonSeleccionar)
+                                .addContainerGap(112, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +241,9 @@ public class BuscarUsuario extends javax.swing.JFrame {
                 .addComponent(jButtonSeleccionar)
                 .addGap(170, 170, 170))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap()
+                .addComponent(jButtonDevolverse, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addComponent(jLabelBuscarUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,14 +278,48 @@ public class BuscarUsuario extends javax.swing.JFrame {
             RegistrarPrestamo registrarPrestamo = new RegistrarPrestamo(codigoLibro, identificacion);
             registrarPrestamo.setVisible(true);
         }
+        if (tipoInterfaz.equalsIgnoreCase("MenuBibliotecologo")) {
+            MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
+            menuBibliotecologo.setVisible(true);
+        }
 
         if (tipoInterfaz.equalsIgnoreCase("LibrosPrestados")) {
             LibrosPrestados librosPrestados = new LibrosPrestados(biblioteca.buscarPersonaPorIdentificacion(identificacion));
             librosPrestados.setVisible(true);
         }
+        if (tipoInterfaz.equalsIgnoreCase("Libro")) {
+            AgregarLibro agregarLibro = new AgregarLibro((Autor) biblioteca.buscarPersonaPorIdentificacion(identificacion));
+            agregarLibro.setVisible(true);
+        }
+        if (tipoInterfaz.equalsIgnoreCase("Memoria")) {
+            AgregarMemoria agregarMemoria = new AgregarMemoria((Autor) biblioteca.buscarPersonaPorIdentificacion(identificacion));
+            agregarMemoria.setVisible(true);
+        }
+        if (tipoInterfaz.equalsIgnoreCase("Otro")) {
+            AgregarOtro agregarOtro = new AgregarOtro((Autor) biblioteca.buscarPersonaPorIdentificacion(identificacion));
+            agregarOtro.setVisible(true);
+        }
+        if (tipoInterfaz.equalsIgnoreCase("Periodico")) {
+            AgregarPeriodico agregarPeriodico = new AgregarPeriodico((Autor) biblioteca.buscarPersonaPorIdentificacion(identificacion));
+            agregarPeriodico.setVisible(true);
+        }
+        if (tipoInterfaz.equalsIgnoreCase("Revista")) {
+            AgregarRevista agregarRevista = new AgregarRevista((Autor) biblioteca.buscarPersonaPorIdentificacion(identificacion));
+            agregarRevista.setVisible(true);
+        }
+        if (tipoInterfaz.equalsIgnoreCase("Tesis")) {
+            AgregarRevista agregarRevista = new AgregarRevista((Autor) biblioteca.buscarPersonaPorIdentificacion(identificacion));
+            agregarRevista.setVisible(true);
+        }
 
         dispose();
     }//GEN-LAST:event_jButtonSeleccionarActionPerformed
+
+    private void jButtonDevolverseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevolverseActionPerformed
+        MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
+        menuBibliotecologo.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonDevolverseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,6 +358,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonDevolverse;
     private javax.swing.JButton jButtonSeleccionar;
     private javax.swing.JLabel jLabelBuscarUsuario;
     private javax.swing.JLabel jLabelNumeroIdentificacion;

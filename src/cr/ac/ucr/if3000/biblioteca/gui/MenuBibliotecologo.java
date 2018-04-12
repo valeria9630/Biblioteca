@@ -57,7 +57,6 @@ public class MenuBibliotecologo extends javax.swing.JFrame {
         jMenuItemUsuariosMorosos = new javax.swing.JMenuItem();
         jMenuPrestamos = new javax.swing.JMenu();
         jMenuItemRegistrarPrestamo = new javax.swing.JMenuItem();
-        jMenuItemDevolucionObras = new javax.swing.JMenuItem();
         jMenuItemMostrarLibrosPrestados = new javax.swing.JMenuItem();
         jMenuBuscar = new javax.swing.JMenu();
         jMenuItemBuscarUsuario = new javax.swing.JMenuItem();
@@ -265,16 +264,6 @@ public class MenuBibliotecologo extends javax.swing.JFrame {
         });
         jMenuPrestamos.add(jMenuItemRegistrarPrestamo);
 
-        jMenuItemDevolucionObras.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jMenuItemDevolucionObras.setForeground(new java.awt.Color(0, 51, 255));
-        jMenuItemDevolucionObras.setText("Devolución de Obras");
-        jMenuItemDevolucionObras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemDevolucionObrasActionPerformed(evt);
-            }
-        });
-        jMenuPrestamos.add(jMenuItemDevolucionObras);
-
         jMenuItemMostrarLibrosPrestados.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jMenuItemMostrarLibrosPrestados.setForeground(new java.awt.Color(0, 51, 255));
         jMenuItemMostrarLibrosPrestados.setText("Mostrar Libros Prestados");
@@ -444,31 +433,28 @@ public class MenuBibliotecologo extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenuItemRegistrarPrestamoActionPerformed
 
-    private void jMenuItemDevolucionObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDevolucionObrasActionPerformed
-        DevoluciónDeObras devolucionDeObras = new DevoluciónDeObras();
-        devolucionDeObras.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItemDevolucionObrasActionPerformed
-
     private void jMenuItemMostrarLibrosPrestadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMostrarLibrosPrestadosActionPerformed
-        LibrosPrestados librosPrestados = new LibrosPrestados();
+        LibrosPrestados librosPrestados = new LibrosPrestados("MenuBibliotecologo");
         librosPrestados.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jMenuItemMostrarLibrosPrestadosActionPerformed
 
     private void jMenuItemUsuariosMorososActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUsuariosMorososActionPerformed
         MostrarUsuariosMorosos mostrarUsuariosMorosos = new MostrarUsuariosMorosos();
         mostrarUsuariosMorosos.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jMenuItemUsuariosMorososActionPerformed
 
     private void jMenuItemBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBuscarUsuarioActionPerformed
-        BuscarUsuario buscarUsuario = new BuscarUsuario();
+        BuscarUsuario buscarUsuario = new BuscarUsuario("MenuBibliotecologo");
         buscarUsuario.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jMenuItemBuscarUsuarioActionPerformed
 
     private void jMenuItemBuscarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBuscarObraActionPerformed
-        BuscarObra buscarObra = new BuscarObra();
+        BuscarObra buscarObra = new BuscarObra("MenuBibliotecologo");
         buscarObra.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItemBuscarObraActionPerformed
@@ -532,7 +518,6 @@ public class MenuBibliotecologo extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemBuscarObra;
     private javax.swing.JMenuItem jMenuItemBuscarUsuario;
-    private javax.swing.JMenuItem jMenuItemDevolucionObras;
     private javax.swing.JMenuItem jMenuItemLibro;
     private javax.swing.JMenuItem jMenuItemMantemientoAutores;
     private javax.swing.JMenuItem jMenuItemMantenimientoCtalogo;
