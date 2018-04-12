@@ -5,7 +5,9 @@
  */
 package cr.ac.ucr.if3000.biblioteca.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -51,6 +53,7 @@ public class Biblioteca {
 
     public void modificarPersona(Persona persona, Persona personaModificada) {
         personas.set(personas.indexOf(persona), personaModificada);
+        
     }
 
     public void borrarPersona(Persona persona) {
@@ -98,6 +101,17 @@ public class Biblioteca {
         return null;
     }
 
+    public Catalogo buscarLibroPorCodigo(int codigoCatalogo) {
+        Catalogo catalogo = new Catalogo() {
+        };
+        for (int i = 0; i < catalogos.size(); i++) {
+            if (catalogos.get(i).getCodigoCatalogo() == codigoCatalogo) {
+                catalogo = catalogos.get(i);
+            }
+        }
+        return catalogo;
+    }
+
     public Persona buscarPersona(Object persona) {
         Persona persona1 = new Persona() {
         };
@@ -106,6 +120,45 @@ public class Biblioteca {
 
         return persona1;
 
+    }
+
+    public Persona buscarPersonaPorIdentificacion(String identificacion) {
+        Persona personaEncontrada = new Persona() {
+        };
+        for (int i = 0; i < personas.size(); i++) {
+            Persona persona = (Persona) personas.get(i);
+            if (persona.getIdentificacion().equalsIgnoreCase(identificacion)) {
+                personaEncontrada = persona;
+            }
+
+        }
+        return personaEncontrada;
+    }
+
+    public void registrarPrestamo(Catalogo catalogo, Prestamo prestamo) {
+
+        catalogo.setPrestamo(prestamo);
+
+    }
+
+    public ArrayList catalogoPrestado() {
+        ArrayList librosPrestados = new ArrayList();
+
+        for (int i = 0; i < catalogos.size(); i++) {
+
+            if (catalogos.get(i).getPrestamo() != null) {
+                librosPrestados.add(catalogos.get(i));
+
+            }
+        }
+        return librosPrestados;
+    }
+
+    public String getCodigoPrestamo() {
+        String ultimoCodigo = "1";
+        ultimoCodigo = String.valueOf(catalogoPrestado().size() + 1);
+
+        return ultimoCodigo;
     }
 
 }

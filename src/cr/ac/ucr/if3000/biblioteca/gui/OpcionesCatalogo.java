@@ -17,7 +17,9 @@ import javax.swing.table.DefaultTableModel;
  * @author ValeriaLeivaQuirós
  */
 public class OpcionesCatalogo extends javax.swing.JFrame {
- Biblioteca biblioteca;
+
+    Biblioteca biblioteca;
+
     /**
      * Creates new form Cátalogo
      */
@@ -27,21 +29,19 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        
+
         modelo.addColumn("codigo");
         modelo.addColumn("Titulo");
         modelo.addColumn("Fecha de Ingreso");
         modelo.addColumn("Autor");
-      
-        
-        for (int i = 0; i <biblioteca.getCatalogos().size(); i++) {
-          Catalogo catalogo = biblioteca.getCatalogos().get(i);
-            modelo.addRow(new Object[]{catalogo.getCodigoCatalogo(),catalogo.getTitulo(),catalogo.getFechaIngreso(),catalogo.getAutor()});
+
+        for (int i = 0; i < biblioteca.getCatalogos().size(); i++) {
+            Catalogo catalogo = biblioteca.getCatalogos().get(i);
+            modelo.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
             this.jTableListaCatalogo.setModel(modelo);
-        
+
         }
-        
-        
+
     }
 
     /**
@@ -61,6 +61,7 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
         jButtonEliminar = new javax.swing.JButton();
         jButtonVerInformacion = new javax.swing.JButton();
         jButtonAgregar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mantenimiento Catálogo");
@@ -121,69 +122,83 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/ucr/if3000/biblioteca/Imagenes/sign-out.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelMantenimientoCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBoxAgregar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonVerInformacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(290, 290, 290)
-                        .addComponent(jLabelMantenimientoCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                            .addComponent(jButtonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabelMantenimientoCatalogo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBoxAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonAgregar)
-                        .addGap(20, 20, 20)
-                        .addComponent(jButtonModificar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonEliminar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonVerInformacion)))
-                .addGap(45, 45, 45))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBoxAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonAgregar)
+                                .addGap(20, 20, 20)
+                                .addComponent(jButtonModificar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonEliminar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonVerInformacion)))
+                        .addGap(45, 45, 45))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAgregarActionPerformed
-       
+
     }//GEN-LAST:event_jComboBoxAgregarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-        int seleccionado = (int) jTableListaCatalogo.getValueAt(jTableListaCatalogo.getSelectedRow(),0);
+        int seleccionado = (int) jTableListaCatalogo.getValueAt(jTableListaCatalogo.getSelectedRow(), 0);
         ModificarLibro modificar = null;
-       
-        for (int i = 0; i <biblioteca.getCatalogos().size(); i++) {
-           
+
+        for (int i = 0; i < biblioteca.getCatalogos().size(); i++) {
+
             Catalogo catalogo = biblioteca.getCatalogos().get(i);
-            if(seleccionado==catalogo.getCodigoCatalogo())
+            if (seleccionado == catalogo.getCodigoCatalogo()) {
                 modificar = new ModificarLibro(catalogo);
-                
+            }
+
         }
         modificar.setVisible(true);
-         dispose();
-        
+        dispose();
+
 
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
@@ -197,28 +212,34 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
         String seleccion = jComboBoxAgregar.getItemAt(jComboBoxAgregar.getSelectedIndex());
-        
-        if(seleccion.equalsIgnoreCase("Agregar Libro")){
-          AgregarLibro agregarLibro = new AgregarLibro();
-           agregarLibro.setVisible(true);
-         } else if(seleccion.equalsIgnoreCase("Agregar Revista")){
-             AgregarRevista agregarRevista = new AgregarRevista();
-             agregarRevista.setVisible(true);
-         }else if(seleccion.equalsIgnoreCase("Agregar Tesis")){
-              AgregarTesis agregarTesis = new AgregarTesis();
-             agregarTesis.setVisible(true);
-         }else if(seleccion.equalsIgnoreCase("Agregar Periódico")){
-             AgregarPeriodico agregarPeriodico = new AgregarPeriodico();
-             agregarPeriodico.setVisible(true);
-         }else if(seleccion.equalsIgnoreCase("Agregar Memoria")){
-              AgregarMemoria agregarMemoria = new AgregarMemoria();
-             agregarMemoria.setVisible(true);
-         }else if(seleccion.equalsIgnoreCase("Agregar Otro")){
-             AgregarOtro agregarOtro = new AgregarOtro();
-             agregarOtro.setVisible(true);
-    }
+
+        if (seleccion.equalsIgnoreCase("Agregar Libro")) {
+            AgregarLibro agregarLibro = new AgregarLibro();
+            agregarLibro.setVisible(true);
+        } else if (seleccion.equalsIgnoreCase("Agregar Revista")) {
+            AgregarRevista agregarRevista = new AgregarRevista();
+            agregarRevista.setVisible(true);
+        } else if (seleccion.equalsIgnoreCase("Agregar Tesis")) {
+            AgregarTesis agregarTesis = new AgregarTesis();
+            agregarTesis.setVisible(true);
+        } else if (seleccion.equalsIgnoreCase("Agregar Periódico")) {
+            AgregarPeriodico agregarPeriodico = new AgregarPeriodico();
+            agregarPeriodico.setVisible(true);
+        } else if (seleccion.equalsIgnoreCase("Agregar Memoria")) {
+            AgregarMemoria agregarMemoria = new AgregarMemoria();
+            agregarMemoria.setVisible(true);
+        } else if (seleccion.equalsIgnoreCase("Agregar Otro")) {
+            AgregarOtro agregarOtro = new AgregarOtro();
+            agregarOtro.setVisible(true);
+        }
         dispose();
     }//GEN-LAST:event_jButtonAgregarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
+        menuBibliotecologo.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,6 +280,7 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAgregar;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonModificar;

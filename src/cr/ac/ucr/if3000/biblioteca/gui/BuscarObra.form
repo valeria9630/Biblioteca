@@ -36,7 +36,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButtonVerInformacion" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonDevolucionDeObra" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonRealizarPrestamo" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -78,7 +78,7 @@
               <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonRealizarPrestamo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonVerInformacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonDevolucionDeObra" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
           </Group>
@@ -159,6 +159,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldBuscarPorTituloKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelBuscarPorAutor">
       <Properties>
@@ -196,7 +199,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRealizarPrestamoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonVerInformacion">
+    <Component class="javax.swing.JButton" name="jButtonDevolucionDeObra">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Yu Gothic" size="12" style="0"/>
@@ -204,8 +207,11 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="33" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Ver Informaci&#xf3;n"/>
+        <Property name="text" type="java.lang.String" value="Devoluci&#xf3;n de Obra"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDevolucionDeObraActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -5,6 +5,8 @@
  */
 package cr.ac.ucr.if3000.biblioteca.domain;
 
+import static java.lang.Boolean.TRUE;
+
 /**
  *
  * @author ValeriaLeivaQuirós
@@ -18,7 +20,6 @@ public class PruebasVale {
         Autor autor1 = new Autor("a", "b", "b", "a", "a") {
         };
 
-
         biblioteca.agregarPersona(autor);
         biblioteca.agregarPersona(autor1);
 
@@ -26,6 +27,36 @@ public class PruebasVale {
             System.out.println(biblioteca.getPersonas().get(i).toString());
 
         }
+        System.out.println(biblioteca.buscarPersona(autor1));
+
+        Catalogo libro = new Libro("ss", "s", "sss");
+        biblioteca.agregarCatalogo(libro);
+
+        Catalogo libro1 = new Libro("a", "a", "ad");
+
+        biblioteca.agregarCatalogo(libro1);
+
+        System.out.println("Libro" + biblioteca.getCatalogos().get(0));
+
+        System.out.println("Libro1" + biblioteca.getCatalogos().get(1));
+
+        Prestamo prestamo = new Prestamo(0, autor1, "2-3", "3-4");
+
+        biblioteca.registrarPrestamo(libro, prestamo);
+
+        System.out.println("Prestamo" + biblioteca.getCatalogos().get(0).getPrestamo());
+
+        System.out.println("Prestamo1" + biblioteca.getCatalogos().get(1).getPrestamo());
+
+       
+
+        System.out.println("Estado libro1" + biblioteca.getCatalogos().get(1).getPrestamo());
+//        
+        System.out.println("Libros prestados" + biblioteca.catalogoPrestado().get(0));
+
+        System.out.println("Ultimo Codigo prestamo" + biblioteca.getCodigoPrestamo());
+        
+        System.out.println(biblioteca.buscarLibroPorCodigo(0));
     }
 
 }

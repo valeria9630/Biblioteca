@@ -7,6 +7,7 @@ package cr.ac.ucr.if3000.biblioteca.gui;
 
 import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
 import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+import cr.ac.ucr.if3000.biblioteca.domain.Usuario;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,27 +17,27 @@ import javax.swing.table.DefaultTableModel;
 public class MantenimentoUsuarios extends javax.swing.JFrame {
 
     Biblioteca biblioteca;
-   
+    DefaultTableModel tablaUsuarios;
 
     public MantenimentoUsuarios() {
-        DefaultTableModel tablaUsuarios = new DefaultTableModel();
+        tablaUsuarios = new DefaultTableModel();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         biblioteca = new Biblioteca();
-        
+
         tablaUsuarios.addColumn("NombreUnico");
         tablaUsuarios.addColumn("Contraseña");
         tablaUsuarios.addColumn("Nombre Completo");
         tablaUsuarios.addColumn("Tipo de identificacion");
         tablaUsuarios.addColumn("Identificacion");
-      
-        
-        for (int i = 0; i <biblioteca.getPersonas().size(); i++) {
-          Persona persona = biblioteca.getPersonas().get(i);
-            tablaUsuarios.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(),persona.getNombreCompleto(),persona.getTipoIdentificacion(),persona.getIdentificacion()});
-            this.jTableListaUsuarios.setModel(tablaUsuarios);
-        
+
+        for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
+            Persona persona = biblioteca.getPersonas().get(i);
+            if (persona instanceof Usuario) {
+                tablaUsuarios.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
+                this.jTableListaUsuarios.setModel(tablaUsuarios);
+            }
         }
     }
 
@@ -51,6 +52,7 @@ public class MantenimentoUsuarios extends javax.swing.JFrame {
         jButtonVerLibrosPrestados = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableListaUsuarios = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mantenimiento Autores");
@@ -80,6 +82,11 @@ public class MantenimentoUsuarios extends javax.swing.JFrame {
         jButtonEliminar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonEliminar.setForeground(new java.awt.Color(0, 51, 255));
         jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
 
         jButtonVerLibrosPrestados.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonVerLibrosPrestados.setForeground(new java.awt.Color(0, 51, 255));
@@ -103,23 +110,33 @@ public class MantenimentoUsuarios extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableListaUsuarios);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/ucr/if3000/biblioteca/Imagenes/sign-out.png"))); // NOI18N
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(141, 141, 141)
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonRegistrar)
                         .addGap(26, 26, 26)
                         .addComponent(jButtonVerLibrosPrestados)
-                        .addGap(39, 39, 39)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonEliminar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelMantenimientoUsuarios)
@@ -130,9 +147,15 @@ public class MantenimentoUsuarios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabelMantenimientoUsuarios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRegistrar)
                     .addComponent(jButtonVerLibrosPrestados)
@@ -145,21 +168,43 @@ public class MantenimentoUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVerLibrosPrestadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerLibrosPrestadosActionPerformed
-        LibrosPrestados librosPrestados = new LibrosPrestados();
+        Persona personaLibrosPrestados = null;
+        personaLibrosPrestados = biblioteca.buscarPersonaPorIdentificacion((String) tablaUsuarios.getValueAt(jTableListaUsuarios.getSelectedRow(), 4));
+
+        LibrosPrestados librosPrestados = new LibrosPrestados(personaLibrosPrestados);
+
         librosPrestados.setVisible(true);
     }//GEN-LAST:event_jButtonVerLibrosPrestadosActionPerformed
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        AgregarUsuario agregarUsuario = new AgregarUsuario();
+        AgregarUsuario agregarUsuario = new AgregarUsuario("Usuario");
         agregarUsuario.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-//        Persona personaModificar = null;
-//        personaModificar = biblioteca.buscarPersona(tablaUsuarios.getValueAt(jTableListaUsuarios.getSelectedRow(), 0));
-//        ModificarUsuario modificarUsuario = new ModificarUsuario(personaModificar);
-//        modificarUsuario.setVisible(true);
+        Persona personaModificar = null;
+        personaModificar = biblioteca.buscarPersonaPorIdentificacion((String) tablaUsuarios.getValueAt(jTableListaUsuarios.getSelectedRow(), 4));
+        System.out.println(personaModificar.toString());
+
+        ModificarUsuario modificarUsuario = new ModificarUsuario(personaModificar, "Usuario");
+        modificarUsuario.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        Persona personaBorrada = null;
+        personaBorrada = biblioteca.buscarPersonaPorIdentificacion((String) tablaUsuarios.getValueAt(jTableListaUsuarios.getSelectedRow(), 4));
+        biblioteca.borrarPersona(personaBorrada);
+        MantenimentoUsuarios mantenimentoUsuarios = new MantenimentoUsuarios();
+        mantenimentoUsuarios.setVisible(true);
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
+        menuBibliotecologo.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,6 +243,7 @@ public class MantenimentoUsuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonRegistrar;

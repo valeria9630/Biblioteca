@@ -16,6 +16,7 @@ public abstract class Persona {
     private String nombreCompleto;
     private String tipoIdentificacion;
     private String identificacion;
+    
 
     public Persona() {
         this.nombreUnico = "";

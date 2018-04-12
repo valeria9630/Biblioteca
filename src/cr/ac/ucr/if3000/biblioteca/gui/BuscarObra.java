@@ -5,19 +5,79 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Catalogo;
+import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.nio.charset.CodingErrorAction;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author ValeriaLeivaQuirós
  */
 public class BuscarObra extends javax.swing.JFrame {
+    
+    Biblioteca biblioteca;
+    DefaultTableModel modelo;
+    TableRowSorter trs;
+    Persona persona;
+    String tipoInterfaz;
 
     /**
-     * Creates new form BuscarObra
+     * Creates new form Cátalogo
      */
     public BuscarObra() {
+        modelo = new DefaultTableModel();
+        biblioteca = new Biblioteca();
+        
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        
+        modelo.addColumn("codigo");
+        modelo.addColumn("Titulo");
+        modelo.addColumn("Fecha de Ingreso");
+        modelo.addColumn("Autor");
+        
+        for (int i = 0; i < biblioteca.getCatalogos().size(); i++) {
+            Catalogo catalogo = biblioteca.getCatalogos().get(i);
+            modelo.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
+            this.jTableListaObras.setModel(modelo);
+            
+        }
+    }
+
+    /**
+     *
+     * @param persona
+     */
+    public BuscarObra(Persona persona) {
+        modelo = new DefaultTableModel();
+        biblioteca = new Biblioteca();
+        
+        persona = persona;
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        
+        modelo.addColumn("codigo");
+        modelo.addColumn("Titulo");
+        modelo.addColumn("Fecha de Ingreso");
+        modelo.addColumn("Autor");
+        
+        for (int i = 0; i < biblioteca.getCatalogos().size(); i++) {
+            Catalogo catalogo = biblioteca.getCatalogos().get(i);
+            
+            if (catalogo.getAutor().getIdentificacion().equalsIgnoreCase(persona.getIdentificacion())) {
+                modelo.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
+            }
+            this.jTableListaObras.setModel(modelo);
+            
+        }
     }
 
     /**
@@ -37,7 +97,7 @@ public class BuscarObra extends javax.swing.JFrame {
         jLabelBuscarPorAutor = new javax.swing.JLabel();
         jTextFieldBuscarPorAutor = new javax.swing.JTextField();
         jButtonRealizarPrestamo = new javax.swing.JButton();
-        jButtonVerInformacion = new javax.swing.JButton();
+        jButtonDevolucionDeObra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Buscar Obra");
@@ -64,6 +124,11 @@ public class BuscarObra extends javax.swing.JFrame {
         jLabelBuscarPorTitulo.setText("Buscar obra por titulo:");
 
         jTextFieldBuscarPorTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTextFieldBuscarPorTitulo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldBuscarPorTituloKeyTyped(evt);
+            }
+        });
 
         jLabelBuscarPorAutor.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jLabelBuscarPorAutor.setForeground(new java.awt.Color(0, 51, 255));
@@ -80,9 +145,14 @@ public class BuscarObra extends javax.swing.JFrame {
             }
         });
 
-        jButtonVerInformacion.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jButtonVerInformacion.setForeground(new java.awt.Color(0, 51, 255));
-        jButtonVerInformacion.setText("Ver Información");
+        jButtonDevolucionDeObra.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jButtonDevolucionDeObra.setForeground(new java.awt.Color(0, 51, 255));
+        jButtonDevolucionDeObra.setText("Devolución de Obra");
+        jButtonDevolucionDeObra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDevolucionDeObraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,7 +169,7 @@ public class BuscarObra extends javax.swing.JFrame {
                                 .addComponent(jLabelBuscarPorAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jButtonVerInformacion)
+                                .addComponent(jButtonDevolucionDeObra)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonRealizarPrestamo))
                             .addGroup(layout.createSequentialGroup()
@@ -131,7 +201,7 @@ public class BuscarObra extends javax.swing.JFrame {
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRealizarPrestamo)
-                    .addComponent(jButtonVerInformacion))
+                    .addComponent(jButtonDevolucionDeObra))
                 .addGap(57, 57, 57))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(43, 43, 43)
@@ -145,9 +215,40 @@ public class BuscarObra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRealizarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarPrestamoActionPerformed
-        RegistrarPrestamo registrarPrestamo = new RegistrarPrestamo();
+        int codigo;
+        codigo = ((int) modelo.getValueAt(jTableListaObras.getSelectedRow(), 0));
+        
+        System.out.println(codigo);
+        
+        RegistrarPrestamo registrarPrestamo = new RegistrarPrestamo(codigo);
         registrarPrestamo.setVisible(true);
+        
+        dispose();
+        
+
     }//GEN-LAST:event_jButtonRealizarPrestamoActionPerformed
+
+    private void jTextFieldBuscarPorTituloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscarPorTituloKeyTyped
+        jTextFieldBuscarPorTitulo.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                trs.setRowFilter(RowFilter.regexFilter(jTextFieldBuscarPorTitulo.getText(), 1));
+            }
+            
+        });
+        
+        trs = new TableRowSorter(modelo);
+        jTableListaObras.setRowSorter(trs);
+    }//GEN-LAST:event_jTextFieldBuscarPorTituloKeyTyped
+
+    private void jButtonDevolucionDeObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevolucionDeObraActionPerformed
+        int codigo;
+        codigo = ((int) modelo.getValueAt(jTableListaObras.getSelectedRow(), 0));
+        
+        DevoluciónDeObras devoluciónDeObras = new DevoluciónDeObras(biblioteca.buscarLibroPorCodigo(codigo));
+        devoluciónDeObras.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonDevolucionDeObraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,16 +264,24 @@ public class BuscarObra extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+                    
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarObra.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarObra.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarObra.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarObra.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -185,8 +294,8 @@ public class BuscarObra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonDevolucionDeObra;
     private javax.swing.JButton jButtonRealizarPrestamo;
-    private javax.swing.JButton jButtonVerInformacion;
     private javax.swing.JLabel jLabelBuscarObra;
     private javax.swing.JLabel jLabelBuscarPorAutor;
     private javax.swing.JLabel jLabelBuscarPorTitulo;
