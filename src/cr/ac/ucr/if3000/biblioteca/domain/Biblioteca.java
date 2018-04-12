@@ -53,7 +53,7 @@ public class Biblioteca {
 
     public void modificarPersona(Persona persona, Persona personaModificada) {
         personas.set(personas.indexOf(persona), personaModificada);
-        
+
     }
 
     public void borrarPersona(Persona persona) {
@@ -161,4 +161,10 @@ public class Biblioteca {
         return ultimoCodigo;
     }
 
+    public void devolverCatalogo(Catalogo catalogo) {
+        Prestamo prestamo = null;
+
+        catalogo.setPrestamo(prestamo);
+
+    }
 }

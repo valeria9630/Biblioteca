@@ -5,6 +5,7 @@
  */
 package cr.ac.ucr.if3000.biblioteca.domain;
 
+import java.io.PrintStream;
 import static java.lang.Boolean.TRUE;
 
 /**
@@ -41,22 +42,27 @@ public class PruebasVale {
         System.out.println("Libro1" + biblioteca.getCatalogos().get(1));
 
         Prestamo prestamo = new Prestamo(0, autor1, "2-3", "3-4");
+        Prestamo prestamo1 = new Prestamo(0, autor1, "2-3", "3-4");
 
         biblioteca.registrarPrestamo(libro, prestamo);
+        biblioteca.registrarPrestamo(libro1, prestamo1);
 
         System.out.println("Prestamo" + biblioteca.getCatalogos().get(0).getPrestamo());
 
         System.out.println("Prestamo1" + biblioteca.getCatalogos().get(1).getPrestamo());
 
-       
-
         System.out.println("Estado libro1" + biblioteca.getCatalogos().get(1).getPrestamo());
 //        
         System.out.println("Libros prestados" + biblioteca.catalogoPrestado().get(0));
-
-        System.out.println("Ultimo Codigo prestamo" + biblioteca.getCodigoPrestamo());
+        System.out.println("Libros prestados" + biblioteca.catalogoPrestado().get(1));
         
+        System.out.println("Ultimo Codigo prestamo" + biblioteca.getCodigoPrestamo());
+
         System.out.println(biblioteca.buscarLibroPorCodigo(0));
+
+        biblioteca.devolverCatalogo(libro);
+        System.out.println("Libros prestados" + biblioteca.catalogoPrestado().get(0));
+
     }
 
 }

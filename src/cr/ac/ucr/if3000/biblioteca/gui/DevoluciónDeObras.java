@@ -7,6 +7,7 @@ package cr.ac.ucr.if3000.biblioteca.gui;
 
 import com.sun.org.apache.xml.internal.resolver.Catalog;
 import cr.ac.ucr.if3000.biblioteca.domain.Catalogo;
+import java.util.Calendar;
 
 /**
  *
@@ -27,14 +28,16 @@ public class DevoluciónDeObras extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        if (libro.getPrestamo() != null) {
+            jLabelNPrestamo.setText(String.valueOf(libro.getPrestamo().getNumeroPrestamo()));
+            jLabelLibroTitulo.setText(libro.getTitulo());
+            jLabelLibroCod.setText(String.valueOf(libro.getCodigoCatalogo()));
+            jLabelUsuarioNombre.setText(libro.getPrestamo().getPersona().getNombreUnico());
+            jLabelUsuarioIdentificacion.setText(libro.getPrestamo().getPersona().getIdentificacion());
+            jLabelFechaInicioPrestamo.setText(libro.getPrestamo().getFechaInicioPrestamo());
+            jLabeFechaDevolucion.setText(libro.getPrestamo().getFechaDevoluciónInicial());
 
-        jLabelNPrestamo.setText(String.valueOf(libro.getPrestamo().getNumeroPrestamo()));
-        jLabelLibroTitulo.setText(libro.getTitulo());
-        jLabelLibroCod.setText(String.valueOf(libro.getCodigoCatalogo()));
-        jLabelUsuarioNombre.setText(libro.getPrestamo().getPersona().getNombreUnico());
-        jLabelUsuarioIdentificacion.setText(libro.getPrestamo().getPersona().getIdentificacion());
-        jLabelFechaInicioPrestamo.setText(libro.getPrestamo().getFechaInicioPrestamo());
-        jLabeFechaDevolucion.setText(libro.getPrestamo().getFechaDevoluciónInicial());
+        }
 
     }
 
@@ -109,6 +112,11 @@ public class DevoluciónDeObras extends javax.swing.JFrame {
         jButtonDevolver.setForeground(new java.awt.Color(0, 51, 255));
         jButtonDevolver.setText("Devolver");
         jButtonDevolver.setBorder(null);
+        jButtonDevolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDevolverActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonCancelar.setForeground(new java.awt.Color(0, 51, 255));
@@ -239,6 +247,21 @@ public class DevoluciónDeObras extends javax.swing.JFrame {
         BuscarObra buscarObra = new BuscarObra();
         buscarObra.setVisible(true);
     }//GEN-LAST:event_jButtonBuscarLibroActionPerformed
+
+    private void jButtonDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevolverActionPerformed
+        jLabelNPrestamo.getText();
+        jLabelLibroCod.getText();
+        jLabelUsuarioIdentificacion.getText();
+        jLabelFechaInicioPrestamo.getText();
+        jLabeFechaDevolucion.getText();
+        String dia = Integer.toString(jDateChooserFechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jDateChooserFechaFinal.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(jDateChooserFechaFinal.getCalendar().get(Calendar.YEAR));
+        String fechaDevolucionFinal = (dia + "-" + mes + "-" + año);
+        
+       
+
+    }//GEN-LAST:event_jButtonDevolverActionPerformed
 
     /**
      * @param args the command line arguments

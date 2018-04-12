@@ -299,7 +299,7 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
         String dia1 = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes1 = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.MONTH) + 1);
         String año1 = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.YEAR));
-        String fechaDevolucion = (dia + "-" + mes + "-" + año);
+        String fechaDevolucion = (dia1 + "-" + mes1 + "-" + año1);
 
         Prestamo prestamo = new Prestamo(Integer.parseInt(numeroPrestamo), biblioteca.buscarPersonaPorIdentificacion(personaIdentificacion), fechaInicioPrestamo, fechaDevolucion);
 
