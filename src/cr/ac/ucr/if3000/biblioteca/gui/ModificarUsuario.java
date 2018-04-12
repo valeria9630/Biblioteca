@@ -5,8 +5,11 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Autor;
 import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Bibliotecario;
 import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+import cr.ac.ucr.if3000.biblioteca.domain.Usuario;
 
 /**
  *
@@ -16,15 +19,17 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
     Biblioteca biblioteca;
     Persona personaModificar;
+    String tipoPersona;
 
     /**
      * Creates new form AgregarUsuario
      */
-    public ModificarUsuario(Persona persona) {
+    public ModificarUsuario(Persona persona, String tipo) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         biblioteca = new Biblioteca();
+        tipoPersona = tipo;
         personaModificar = biblioteca.buscarPersona(persona);
         jTextFieldNombreUsuario.setText(personaModificar.getNombreUnico());
         jTextFieldContrasena.setText(personaModificar.getContraseña());
@@ -216,11 +221,29 @@ public class ModificarUsuario extends javax.swing.JFrame {
         String contraseña = jTextFieldContrasena.getText();
         String nombreCompleto = jTextFieldNombreCompleto.getText();
         String tipoIdentificación = (String) jComboBoxTipoIdentificacion.getSelectedItem();
-        String numeroIdentificación = jLabelNumeroIdentificacion.getText();
-        Persona personaNuevaModificada = new Persona(nombreUsuario, contraseña, nombreCompleto, tipoIdentificación, numeroIdentificación) {
-        };
-        biblioteca.modificarPersona(personaModificar, personaNuevaModificada);
-dispose();
+        String numeroIdentificación = jTextFieldNumeroIdentificacion.getText();
+
+        if (tipoPersona.equalsIgnoreCase("Usuario")) {
+            Usuario personaNueva = new Usuario(nombreUsuario, contraseña, nombreCompleto, tipoIdentificación, numeroIdentificación);
+            biblioteca.modificarPersona(personaModificar, personaNueva);
+            MantenimentoUsuarios mantenimientoUsuarios = new MantenimentoUsuarios();
+            mantenimientoUsuarios.setVisible(true);
+        }
+
+        if (tipoPersona.equalsIgnoreCase("Autor")) {
+            Autor personaNueva = new Autor(nombreUsuario, contraseña, nombreCompleto, tipoIdentificación, numeroIdentificación);
+            biblioteca.modificarPersona(personaModificar, personaNueva);
+            MantenimentoAutores mantenimientoAutores = new MantenimentoAutores();
+            mantenimientoAutores.setVisible(true);
+        }
+        if (tipoPersona.equalsIgnoreCase("Bibliotecologo")) {
+            Bibliotecario personaNueva = new Bibliotecario(nombreUsuario, contraseña, nombreCompleto, tipoIdentificación, numeroIdentificación);
+            biblioteca.modificarPersona(personaModificar, personaNueva);
+            MantenimentoBibliotecologos mantenimientoBibliotecologos = new MantenimentoBibliotecologos();
+            mantenimientoBibliotecologos.setVisible(true);
+
+        }
+        dispose();
 
     }//GEN-LAST:event_jButtonModificarActionPerformed
 

@@ -21,31 +21,26 @@ public class MantenimentoAutores extends javax.swing.JFrame {
     Biblioteca biblioteca;
 
     public MantenimentoAutores() {
+        tablaAutores = new DefaultTableModel();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        tablaAutores = new DefaultTableModel();
 
         biblioteca = new Biblioteca();
 
-//        tablaAutores.addColumn("Usuario");
-//        tablaAutores.addColumn("Contraseña");
-//        tablaAutores.addColumn("Nombre");
-//        tablaAutores.addColumn("Tipo Identificacion");
-//        tablaAutores.addColumn("N° Identificación");
-//
-//      
-//        for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
-//
-//            Persona persona = (Persona) biblioteca.getPersonas().get(i);
-//
-//            tablaAutores.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
-//
-//        }
-//
-//        this.jTableListaAutores.setModel(tablaAutores);
-        llenar();
+        tablaAutores.addColumn("NombreUnico");
+        tablaAutores.addColumn("Contraseña");
+        tablaAutores.addColumn("Nombre Completo");
+        tablaAutores.addColumn("Tipo de identificacion");
+        tablaAutores.addColumn("Identificacion");
 
+        for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
+            Persona persona = biblioteca.getPersonas().get(i);
+            if (persona instanceof Autor) {
+                tablaAutores.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
+                this.jTableListaAutores.setModel(tablaAutores);
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -59,6 +54,7 @@ public class MantenimentoAutores extends javax.swing.JFrame {
         jButtonVerObrasEscritas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableListaAutores = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mantenimiento Autores");
@@ -116,6 +112,14 @@ public class MantenimentoAutores extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableListaAutores);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/ucr/if3000/biblioteca/Imagenes/sign-out.png"))); // NOI18N
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,29 +127,36 @@ public class MantenimentoAutores extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelMantenimientoAutores)
-                .addGap(302, 302, 302))
+                .addGap(284, 284, 284))
             .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(22, 22, 22)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonRegistrar)
-                        .addGap(42, 42, 42)
+                        .addGap(34, 34, 34)
                         .addComponent(jButtonVerObrasEscritas)
-                        .addGap(32, 32, 32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonModificar)
-                        .addGap(44, 44, 44)
+                        .addGap(36, 36, 36)
                         .addComponent(jButtonEliminar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabelMantenimientoAutores)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRegistrar)
                     .addComponent(jButtonVerObrasEscritas)
@@ -158,30 +169,47 @@ public class MantenimentoAutores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        AgregarUsuario agregarUsuario = new AgregarUsuario();
+        AgregarUsuario agregarUsuario = new AgregarUsuario("autor");
         agregarUsuario.setVisible(true);
+        dispose();
 
 
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     private void jButtonVerObrasEscritasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerObrasEscritasActionPerformed
-        BuscarObra buscarObra = new BuscarObra();
+        Persona autor = null;
+        autor = biblioteca.buscarPersonaPorIdentificacion((String) tablaAutores.getValueAt(jTableListaAutores.getSelectedRow(), 4));
+
+        BuscarObra buscarObra = new BuscarObra(autor);
         buscarObra.setVisible(true);
 
     }//GEN-LAST:event_jButtonVerObrasEscritasActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         Persona personaModificar = null;
-        personaModificar = biblioteca.buscarPersona(tablaAutores.getValueAt(jTableListaAutores.getSelectedRow(), 0));
-        ModificarUsuario modificarUsuario = new ModificarUsuario(personaModificar);
+        personaModificar = biblioteca.buscarPersonaPorIdentificacion((String) tablaAutores.getValueAt(jTableListaAutores.getSelectedRow(), 4));
+        System.out.println(personaModificar.toString());
+
+        ModificarUsuario modificarUsuario = new ModificarUsuario(personaModificar, "Autor");
         modificarUsuario.setVisible(true);
-
-
+        dispose();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
-        llenar();
+        Persona personaBorrada = null;
+        personaBorrada = biblioteca.buscarPersonaPorIdentificacion((String) tablaAutores.getValueAt(jTableListaAutores.getSelectedRow(), 4));
+        biblioteca.borrarPersona(personaBorrada);
+        MantenimentoAutores mantenimentoAutores = new MantenimentoAutores();
+        mantenimentoAutores.setVisible(true);
+
+
     }//GEN-LAST:event_jButtonEliminarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
+        menuBibliotecologo.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,6 +256,7 @@ public class MantenimentoAutores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonRegistrar;
@@ -237,23 +266,4 @@ public class MantenimentoAutores extends javax.swing.JFrame {
     private javax.swing.JTable jTableListaAutores;
     // End of variables declaration//GEN-END:variables
 
-    public void llenar() {
-        
-         tablaAutores.addColumn("Usuario");
-        tablaAutores.addColumn("Contraseña");
-        tablaAutores.addColumn("Nombre");
-        tablaAutores.addColumn("Tipo Identificacion");
-        tablaAutores.addColumn("N° Identificación");
-
-        for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
-
-            Persona persona = (Persona) biblioteca.getPersonas().get(i);
-
-            tablaAutores.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
-
-        }
-
-        this.jTableListaAutores.setModel(tablaAutores);
-
-    }
 }

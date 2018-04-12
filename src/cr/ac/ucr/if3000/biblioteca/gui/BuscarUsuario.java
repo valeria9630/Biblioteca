@@ -5,19 +5,95 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author ValeriaLeivaQuirós
  */
 public class BuscarUsuario extends javax.swing.JFrame {
-
-    /**
-     * Creates new form BuscarObra
-     */
+    
+    DefaultTableModel tablaPersonas;
+    TableRowSorter trs;
+    Biblioteca biblioteca;
+    int codigoLibro;
+    String tipoInterfaz;
+    
     public BuscarUsuario() {
+        tablaPersonas = new DefaultTableModel();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        biblioteca = new Biblioteca();
+        tipoInterfaz = "";
+        
+        tablaPersonas.addColumn("NombreUnico");
+        tablaPersonas.addColumn("Contraseña");
+        tablaPersonas.addColumn("Nombre Completo");
+        tablaPersonas.addColumn("Tipo de identificacion");
+        tablaPersonas.addColumn("Identificacion");
+        
+        for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
+            Persona persona = biblioteca.getPersonas().get(i);
+            
+            tablaPersonas.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
+            this.jTableListaUsuarios.setModel(tablaPersonas);
+            
+        }
+        
+    }
+    
+    BuscarUsuario(int codigoCatalogo) {
+        tablaPersonas = new DefaultTableModel();
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        biblioteca = new Biblioteca();
+        codigoLibro = codigoCatalogo;
+        tipoInterfaz = "";
+        
+        tablaPersonas.addColumn("NombreUnico");
+        tablaPersonas.addColumn("Contraseña");
+        tablaPersonas.addColumn("Nombre Completo");
+        tablaPersonas.addColumn("Tipo de identificacion");
+        tablaPersonas.addColumn("Identificacion");
+        
+        for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
+            Persona persona = biblioteca.getPersonas().get(i);
+            
+            tablaPersonas.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
+            this.jTableListaUsuarios.setModel(tablaPersonas);
+            
+        }
+    }
+    
+    BuscarUsuario(String tipo) {
+        tablaPersonas = new DefaultTableModel();
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        biblioteca = new Biblioteca();
+        tipoInterfaz = tipo;
+        
+        tablaPersonas.addColumn("NombreUnico");
+        tablaPersonas.addColumn("Contraseña");
+        tablaPersonas.addColumn("Nombre Completo");
+        tablaPersonas.addColumn("Tipo de identificacion");
+        tablaPersonas.addColumn("Identificacion");
+        
+        for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
+            Persona persona = biblioteca.getPersonas().get(i);
+            
+            tablaPersonas.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
+            this.jTableListaUsuarios.setModel(tablaPersonas);
+            
+        }
     }
 
     /**
@@ -31,9 +107,9 @@ public class BuscarUsuario extends javax.swing.JFrame {
 
         jLabelBuscarUsuario = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableListaObras = new javax.swing.JTable();
+        jTableListaUsuarios = new javax.swing.JTable();
         jLabelNumeroIdentificacion = new javax.swing.JLabel();
-        jTextFieldNumeroIdentificacion = new javax.swing.JTextField();
+        jTextFieldNumeroIdentificacionBuscar = new javax.swing.JTextField();
         jButtonSeleccionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,10 +119,10 @@ public class BuscarUsuario extends javax.swing.JFrame {
         jLabelBuscarUsuario.setForeground(new java.awt.Color(0, 51, 255));
         jLabelBuscarUsuario.setText("Buscar Usuario");
 
-        jTableListaObras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
-        jTableListaObras.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jTableListaObras.setForeground(new java.awt.Color(0, 51, 255));
-        jTableListaObras.setModel(new javax.swing.table.DefaultTableModel(
+        jTableListaUsuarios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTableListaUsuarios.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jTableListaUsuarios.setForeground(new java.awt.Color(0, 51, 255));
+        jTableListaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null}
             },
@@ -54,17 +130,27 @@ public class BuscarUsuario extends javax.swing.JFrame {
                 "Usuario", "Contraseña", "Nombre", "Tipo Identificación", "N° Identificación"
             }
         ));
-        jScrollPane1.setViewportView(jTableListaObras);
+        jScrollPane1.setViewportView(jTableListaUsuarios);
 
         jLabelNumeroIdentificacion.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jLabelNumeroIdentificacion.setForeground(new java.awt.Color(0, 51, 255));
         jLabelNumeroIdentificacion.setText("N°Identificación");
 
-        jTextFieldNumeroIdentificacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTextFieldNumeroIdentificacionBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTextFieldNumeroIdentificacionBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNumeroIdentificacionBuscarKeyTyped(evt);
+            }
+        });
 
         jButtonSeleccionar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonSeleccionar.setForeground(new java.awt.Color(0, 51, 255));
         jButtonSeleccionar.setText("Seleccionar");
+        jButtonSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSeleccionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,7 +168,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldNumeroIdentificacion)))
+                                .addComponent(jTextFieldNumeroIdentificacionBuscar)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(79, 79, 79)
@@ -99,7 +185,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelNumeroIdentificacion)
                 .addGap(18, 18, 18)
-                .addComponent(jTextFieldNumeroIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldNumeroIdentificacionBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jButtonSeleccionar)
                 .addGap(170, 170, 170))
@@ -113,6 +199,40 @@ public class BuscarUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldNumeroIdentificacionBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumeroIdentificacionBuscarKeyTyped
+        
+        jTextFieldNumeroIdentificacionBuscar.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                trs.setRowFilter(RowFilter.regexFilter(jTextFieldNumeroIdentificacionBuscar.getText(), 0));
+            }
+            
+        });
+        
+        trs = new TableRowSorter(tablaPersonas);
+        jTableListaUsuarios.setRowSorter(trs);
+
+    }//GEN-LAST:event_jTextFieldNumeroIdentificacionBuscarKeyTyped
+
+    private void jButtonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarActionPerformed
+        
+        String identificacion;
+        identificacion = ((String) tablaPersonas.getValueAt(jTableListaUsuarios.getSelectedRow(), 0));
+        
+        System.out.println(identificacion);
+        if (tipoInterfaz.equalsIgnoreCase("")) {
+            RegistrarPrestamo registrarPrestamo = new RegistrarPrestamo(codigoLibro, identificacion);
+            registrarPrestamo.setVisible(true);
+        }
+        
+        if (tipoInterfaz.equalsIgnoreCase("LibrosPrestados")) {
+            LibrosPrestados librosPrestados = new LibrosPrestados(biblioteca.buscarPersonaPorIdentificacion(identificacion));
+            librosPrestados.setVisible(true);
+        }
+        
+        dispose();
+    }//GEN-LAST:event_jButtonSeleccionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,8 +275,8 @@ public class BuscarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelBuscarUsuario;
     private javax.swing.JLabel jLabelNumeroIdentificacion;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableListaObras;
-    private javax.swing.JTextField jTextFieldNumeroIdentificacion;
+    private javax.swing.JTable jTableListaUsuarios;
+    private javax.swing.JTextField jTextFieldNumeroIdentificacionBuscar;
     // End of variables declaration//GEN-END:variables
 
 }

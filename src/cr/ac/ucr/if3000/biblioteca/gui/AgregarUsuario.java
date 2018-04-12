@@ -5,25 +5,30 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Autor;
 import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Bibliotecario;
 import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+import cr.ac.ucr.if3000.biblioteca.domain.Usuario;
 
 /**
  *
  * @author ValeriaLeivaQuirós
  */
 public class AgregarUsuario extends javax.swing.JFrame {
-    
+
     Biblioteca biblioteca;
+    String tipoPersona;
 
     /**
      * Creates new form AgregarUsuario
      */
-    public AgregarUsuario() {
+    public AgregarUsuario(String tipo) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         biblioteca = new Biblioteca();
+        tipoPersona = tipo;
     }
 
     /**
@@ -189,7 +194,7 @@ public class AgregarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        
+
         dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
@@ -203,15 +208,48 @@ public class AgregarUsuario extends javax.swing.JFrame {
         String nombreCompleto = jTextFieldNombreCompleto.getText();
         String tipoIdentificacion = (String) jComboBoxTipoIdentificacion.getSelectedItem();
         String numeroIdentificacion = (String) jTextFieldNumeroIdentificacion.getText();
-        Persona persona = new Persona(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion) {
-        };
-        
-        biblioteca.agregarPersona((Persona) persona);
+
+        if (tipoPersona.equalsIgnoreCase("Usuario")) {
+            Usuario persona = new Usuario(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
+            biblioteca.agregarPersona(persona);
+            MantenimentoUsuarios mantenimientoUsuarios = new MantenimentoUsuarios();
+            mantenimientoUsuarios.setVisible(true);
+        }
+
+        if (tipoPersona.equalsIgnoreCase("Autor")) {
+            Autor persona = new Autor(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
+            biblioteca.agregarPersona(persona);
+            MantenimentoAutores mantenimientoAutores = new MantenimentoAutores();
+            mantenimientoAutores.setVisible(true);
+        }
+        if (tipoPersona.equalsIgnoreCase("Bibliotecologo")) {
+            Bibliotecario persona = new Bibliotecario(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
+            biblioteca.agregarPersona(persona);
+            MantenimentoBibliotecologos mantenimientoBibliotecologos = new MantenimentoBibliotecologos();
+            mantenimientoBibliotecologos.setVisible(true);
+
+        }
+        if (tipoPersona.equalsIgnoreCase("usuarioMenu")) {
+            Usuario persona = new Usuario(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
+            biblioteca.agregarPersona(persona);
+            MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
+            menuBibliotecologo.setVisible(true);
+
+        }
+
+        if (tipoPersona.equalsIgnoreCase("autorMenu")) {
+            Autor persona = new Autor(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
+            biblioteca.agregarPersona(persona);
+            MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
+            menuBibliotecologo.setVisible(true);
+        }
+        if (tipoPersona.equalsIgnoreCase("bibliotecarioMenu")) {
+            Bibliotecario persona = new Bibliotecario(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
+            biblioteca.agregarPersona(persona);
+            MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
+            menuBibliotecologo.setVisible(true);
+        }
         dispose();
-      
-        MantenimentoUsuarios mantenimientoUsuarios = new MantenimentoUsuarios();
-        mantenimientoUsuarios.setVisible(true);
-        
 
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 
@@ -243,11 +281,11 @@ public class AgregarUsuario extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AgregarUsuario().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new AgregarUsuario(String tipo).setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

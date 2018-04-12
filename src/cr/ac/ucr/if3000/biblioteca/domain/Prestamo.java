@@ -10,5 +10,80 @@ package cr.ac.ucr.if3000.biblioteca.domain;
  * @author ValeriaLeivaQuirós
  */
 public class Prestamo {
+
+    private int numeroPrestamo;
+    private Persona persona;
+    private String fechaInicioPrestamo;
+    private String fechaDevoluciónInicial;
+    private String fechaDevoluciónFinal;
+  
+
+    public Prestamo() {
+        numeroPrestamo = 0;
+
+    }
+
+    public Prestamo(int numeroPrestamo, Persona persona, String fechaInicioPrestamo, String fechaDevoluciónInicial) {
+        this.numeroPrestamo = numeroPrestamo;
+        this.persona = persona;
+        this.fechaInicioPrestamo = fechaInicioPrestamo;
+        this.fechaDevoluciónInicial = fechaDevoluciónInicial;
     
+    }
+
+    public Prestamo(int numeroPrestamo, Persona persona, String fechaInicioPrestamo, String fechaDevoluciónInicial, String fechaDevoluciónFinal) {
+        this.numeroPrestamo = numeroPrestamo;
+        this.persona = persona;
+        this.fechaInicioPrestamo = fechaInicioPrestamo;
+        this.fechaDevoluciónInicial = fechaDevoluciónInicial;
+        this.fechaDevoluciónFinal = fechaDevoluciónFinal;
+
+    }
+
+    public int getNumeroPrestamo() {
+        return numeroPrestamo;
+    }
+
+    public void setNumeroPrestamo(int numeroPrestamo) {
+        this.numeroPrestamo = numeroPrestamo;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    public String getFechaInicioPrestamo() {
+        return fechaInicioPrestamo;
+    }
+
+    public void setFechaInicioPrestamo(String fechaInicioPrestamo) {
+        this.fechaInicioPrestamo = fechaInicioPrestamo;
+    }
+
+    public String getFechaDevoluciónInicial() {
+        return fechaDevoluciónInicial;
+    }
+
+    public void setFechaDevoluciónInicial(String fechaDevoluciónInicial) {
+        this.fechaDevoluciónInicial = fechaDevoluciónInicial;
+    }
+
+    public String getFechaDevoluciónFinal() {
+        return fechaDevoluciónFinal;
+    }
+
+    public void setFechaDevoluciónFinal(String fechaDevoluciónFinal) {
+        this.fechaDevoluciónFinal = fechaDevoluciónFinal;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Prestamo{" + "numeroPrestamo=" + numeroPrestamo + ", persona=" + persona + ", fechaInicioPrestamo=" + fechaInicioPrestamo + ", fechaDevoluci\u00f3nInicial=" + fechaDevoluciónInicial + ", fechaDevoluci\u00f3nFinal=" + fechaDevoluciónFinal + '}';
+    }
+
 }

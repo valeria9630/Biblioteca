@@ -155,9 +155,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelNombre">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre:"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelIdentificacion">
       <Properties>
@@ -171,9 +168,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelCedula">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Identificacion"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonDevolverLibro">
       <Properties>

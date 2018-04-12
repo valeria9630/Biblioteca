@@ -5,19 +5,70 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Catalogo;
+import cr.ac.ucr.if3000.biblioteca.domain.Libro;
+import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+import cr.ac.ucr.if3000.biblioteca.domain.Prestamo;
+import java.util.Calendar;
+
 /**
  *
  * @author ValeriaLeivaQuirós
  */
 public class RegistrarPrestamo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form DevoluciónDeObras
-     */
+    Biblioteca biblioteca;
+    Catalogo catalogoPrestar;
+    Persona persona;
+    int codigoCatalogo;
+    int codigoLibro;
+    String identificacionPersona;
+
     public RegistrarPrestamo() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        biblioteca = new Biblioteca();
+
+        jLabelNumerodePrestamos1.setText(biblioteca.getCodigoPrestamo());
+
+        jButtonUsuario.setVisible(false);
+    }
+
+    public RegistrarPrestamo(int cod) {
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        biblioteca = new Biblioteca();
+        codigoCatalogo = cod;
+
+        jLabelNumerodePrestamos1.setText(biblioteca.getCodigoPrestamo());
+        catalogoPrestar = biblioteca.buscarLibroPorCodigo((cod));
+        jLabelLcodLibro.setText(String.valueOf(catalogoPrestar.getCodigoCatalogo()));
+        jLabelTituloLibro.setText(catalogoPrestar.getTitulo());
+
+    }
+
+    RegistrarPrestamo(int codigoLibro, String identificacion) {
+
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        biblioteca = new Biblioteca();
+        codigoLibro = codigoLibro;
+        identificacionPersona = identificacion;
+
+        jLabelNumerodePrestamos1.setText(biblioteca.getCodigoPrestamo());
+        catalogoPrestar = biblioteca.buscarLibroPorCodigo((codigoLibro));
+        jLabelLcodLibro.setText(String.valueOf(catalogoPrestar.getCodigoCatalogo()));
+        jLabelTituloLibro.setText(catalogoPrestar.getTitulo());
+
+        persona = biblioteca.buscarPersonaPorIdentificacion(identificacion);
+
+        jLabelIdentificacionPersona.setText(persona.getIdentificacion());
+        jLabelNombreUsuario.setText(persona.getNombreUnico());
+
     }
 
     /**
@@ -29,21 +80,26 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jLabelRegistrarPrestamo = new javax.swing.JLabel();
         jLabelNumerodePrestamos = new javax.swing.JLabel();
-        jLabelLibro = new javax.swing.JLabel();
+        jLabelTituloLibro = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabelFechaInicioPrestamo = new javax.swing.JLabel();
-        jLabelFecha = new javax.swing.JLabel();
         jLabelFechaDevolucion = new javax.swing.JLabel();
         jButtonRegistrarPrestamo = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jTextFieldNumeroDePrestamos = new javax.swing.JTextField();
         jDateChooserFechaDevolucion = new com.toedter.calendar.JDateChooser();
-        jTextFieldLibro = new javax.swing.JTextField();
-        jTextFieldUsuario = new javax.swing.JTextField();
         jButtonBuscarLibro = new javax.swing.JButton();
         jButtonUsuario = new javax.swing.JButton();
+        jLabelNumerodePrestamos1 = new javax.swing.JLabel();
+        jDateChooserFechaPrestamo = new com.toedter.calendar.JDateChooser();
+        jLabelLibro1 = new javax.swing.JLabel();
+        jLabelNombreUsuario = new javax.swing.JLabel();
+        jLabelLcodLibro = new javax.swing.JLabel();
+        jLabelIdentificacionPersona = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar Préstamo");
@@ -56,9 +112,8 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
         jLabelNumerodePrestamos.setForeground(new java.awt.Color(0, 51, 255));
         jLabelNumerodePrestamos.setText("N° de préstamos:");
 
-        jLabelLibro.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jLabelLibro.setForeground(new java.awt.Color(0, 51, 255));
-        jLabelLibro.setText("Libro:");
+        jLabelTituloLibro.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jLabelTituloLibro.setForeground(new java.awt.Color(0, 51, 255));
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 51, 255));
@@ -67,8 +122,6 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
         jLabelFechaInicioPrestamo.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jLabelFechaInicioPrestamo.setForeground(new java.awt.Color(0, 51, 255));
         jLabelFechaInicioPrestamo.setText("Fecha inicio de Prestamo:");
-
-        jLabelFecha.setText("Fecha");
 
         jLabelFechaDevolucion.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jLabelFechaDevolucion.setForeground(new java.awt.Color(0, 51, 255));
@@ -93,16 +146,7 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldNumeroDePrestamos.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jTextFieldNumeroDePrestamos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
-
         jDateChooserFechaDevolucion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
-
-        jTextFieldLibro.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jTextFieldLibro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
-
-        jTextFieldUsuario.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jTextFieldUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
         jButtonBuscarLibro.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonBuscarLibro.setForeground(new java.awt.Color(0, 51, 255));
@@ -122,38 +166,66 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
             }
         });
 
+        jLabelNumerodePrestamos1.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jLabelNumerodePrestamos1.setForeground(new java.awt.Color(0, 51, 255));
+        jLabelNumerodePrestamos1.setText("N° de préstamos:");
+
+        jDateChooserFechaPrestamo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+
+        jLabelLibro1.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jLabelLibro1.setForeground(new java.awt.Color(0, 51, 255));
+        jLabelLibro1.setText("Libro:");
+
+        jLabelNombreUsuario.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jLabelNombreUsuario.setForeground(new java.awt.Color(0, 51, 255));
+
+        jLabelLcodLibro.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jLabelLcodLibro.setForeground(new java.awt.Color(0, 51, 255));
+
+        jLabelIdentificacionPersona.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jLabelIdentificacionPersona.setForeground(new java.awt.Color(0, 51, 255));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelNumerodePrestamos)
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabelRegistrarPrestamo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelLibro)
-                            .addComponent(jLabel4))
-                        .addGap(106, 106, 106)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldNumeroDePrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelFechaInicioPrestamo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButtonRegistrarPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonCancelar))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelFechaDevolucion)
-                        .addGap(52, 52, 52)
-                        .addComponent(jDateChooserFechaDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelFechaDevolucion)
+                                .addGap(52, 52, 52)
+                                .addComponent(jDateChooserFechaDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelNumerodePrestamos)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabelLibro1))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addComponent(jLabelRegistrarPrestamo))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(50, 50, 50)
+                                        .addComponent(jLabelNumerodePrestamos1))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabelLcodLibro)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabelFechaInicioPrestamo)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jDateChooserFechaPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabelTituloLibro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabelNombreUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE))))
+                                .addComponent(jLabelIdentificacionPersona)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonBuscarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,24 +237,26 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabelRegistrarPrestamo)
-                .addGap(77, 77, 77)
+                .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNumerodePrestamos)
-                    .addComponent(jTextFieldNumeroDePrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                    .addComponent(jLabelNumerodePrestamos1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelLibro)
-                    .addComponent(jButtonBuscarLibro))
+                    .addComponent(jLabelTituloLibro)
+                    .addComponent(jButtonBuscarLibro)
+                    .addComponent(jLabelLibro1)
+                    .addComponent(jLabelLcodLibro))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonUsuario))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelFecha)
-                    .addComponent(jLabelFechaInicioPrestamo))
+                    .addComponent(jButtonUsuario)
+                    .addComponent(jLabelNombreUsuario)
+                    .addComponent(jLabelIdentificacionPersona))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelFechaInicioPrestamo)
+                    .addComponent(jDateChooserFechaPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelFechaDevolucion)
@@ -208,12 +282,39 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBuscarLibroActionPerformed
 
     private void jButtonUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsuarioActionPerformed
-        BuscarUsuario buscarUsuario = new BuscarUsuario();
+        BuscarUsuario buscarUsuario = new BuscarUsuario(codigoCatalogo);
         buscarUsuario.setVisible(true);
     }//GEN-LAST:event_jButtonUsuarioActionPerformed
 
     private void jButtonRegistrarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarPrestamoActionPerformed
-        // TODO add your handling code here:
+        String numeroPrestamo = jLabelNumerodePrestamos1.getText();
+        String libroCod = jLabelLcodLibro.getText();
+        String personaIdentificacion = jLabelIdentificacionPersona.getText();
+
+        String dia = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.YEAR));
+        String fechaInicioPrestamo = (dia + "-" + mes + "-" + año);
+
+        String dia1 = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes1 = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.MONTH) + 1);
+        String año1 = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.YEAR));
+        String fechaDevolucion = (dia + "-" + mes + "-" + año);
+
+        Prestamo prestamo = new Prestamo(Integer.parseInt(numeroPrestamo), biblioteca.buscarPersonaPorIdentificacion(personaIdentificacion), fechaInicioPrestamo, fechaDevolucion);
+
+        System.out.println(prestamo.toString());
+        System.out.println(libroCod);
+        Catalogo libro = new Libro();
+        libro = biblioteca.buscarLibroPorCodigo(Integer.parseInt(libroCod));
+        System.out.println(libro.toString());
+
+        biblioteca.registrarPrestamo(biblioteca.buscarLibroPorCodigo(Integer.parseInt(libroCod)), prestamo);
+        MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
+        menuBibliotecologo.setVisible(true);
+        dispose();
+
+
     }//GEN-LAST:event_jButtonRegistrarPrestamoActionPerformed
 
     /**
@@ -244,12 +345,12 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistrarPrestamo().setVisible(true);
-            }
-        });
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new RegistrarPrestamo().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -258,15 +359,18 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRegistrarPrestamo;
     private javax.swing.JButton jButtonUsuario;
     private com.toedter.calendar.JDateChooser jDateChooserFechaDevolucion;
+    private com.toedter.calendar.JDateChooser jDateChooserFechaPrestamo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabelFecha;
     private javax.swing.JLabel jLabelFechaDevolucion;
     private javax.swing.JLabel jLabelFechaInicioPrestamo;
-    private javax.swing.JLabel jLabelLibro;
+    private javax.swing.JLabel jLabelIdentificacionPersona;
+    private javax.swing.JLabel jLabelLcodLibro;
+    private javax.swing.JLabel jLabelLibro1;
+    private javax.swing.JLabel jLabelNombreUsuario;
     private javax.swing.JLabel jLabelNumerodePrestamos;
+    private javax.swing.JLabel jLabelNumerodePrestamos1;
     private javax.swing.JLabel jLabelRegistrarPrestamo;
-    private javax.swing.JTextField jTextFieldLibro;
-    private javax.swing.JTextField jTextFieldNumeroDePrestamos;
-    private javax.swing.JTextField jTextFieldUsuario;
+    private javax.swing.JLabel jLabelTituloLibro;
     // End of variables declaration//GEN-END:variables
 }

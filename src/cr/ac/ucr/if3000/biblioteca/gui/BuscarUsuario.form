@@ -37,7 +37,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextFieldNumeroIdentificacion" max="32767" attributes="0"/>
+                              <Component id="jTextFieldNumeroIdentificacionBuscar" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -62,7 +62,7 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabelNumeroIdentificacion" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jTextFieldNumeroIdentificacion" min="-2" pref="23" max="-2" attributes="0"/>
+              <Component id="jTextFieldNumeroIdentificacionBuscar" min="-2" pref="23" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="jButtonSeleccionar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
@@ -96,7 +96,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTableListaObras">
+        <Component class="javax.swing.JTable" name="jTableListaUsuarios">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -135,7 +135,7 @@
         <Property name="text" type="java.lang.String" value="N&#xb0;Identificaci&#xf3;n"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldNumeroIdentificacion">
+    <Component class="javax.swing.JTextField" name="jTextFieldNumeroIdentificacionBuscar">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -145,6 +145,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldNumeroIdentificacionBuscarKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonSeleccionar">
       <Properties>
@@ -156,6 +159,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Seleccionar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSeleccionarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

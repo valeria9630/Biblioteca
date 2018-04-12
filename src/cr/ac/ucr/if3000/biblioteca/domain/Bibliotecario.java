@@ -23,10 +23,7 @@ public class Bibliotecario extends Persona {
         super(nombreUnico, contraseña, nombreCompleto, tipoIdentificacion, identificacion);
     }
 
-    @Override
-    public String toString() {
-        return "Bilbiotecario{" + '}';
-    }
+  
 
    
 

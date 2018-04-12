@@ -5,19 +5,66 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Catalogo;
+import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+import cr.ac.ucr.if3000.biblioteca.domain.Usuario;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ValeriaLeivaQuirós
  */
 public class LibrosPrestados extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MostrarLibrosPrestados
-     */
+    DefaultTableModel tablaLibrosPrestados;
+    Biblioteca biblioteca;
+    Persona persona;
+
     public LibrosPrestados() {
+        tablaLibrosPrestados = new DefaultTableModel();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        biblioteca = new Biblioteca();
+
+        tablaLibrosPrestados.addColumn("codigo");
+        tablaLibrosPrestados.addColumn("Titulo");
+        tablaLibrosPrestados.addColumn("Fecha de Ingreso");
+        tablaLibrosPrestados.addColumn("Autor");
+
+        for (int i = 0; i < biblioteca.catalogoPrestado().size(); i++) {
+            Catalogo catalogo = biblioteca.getCatalogos().get(i);
+            tablaLibrosPrestados.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
+            this.jTableLibrosPrestados.setModel(tablaLibrosPrestados);
+        }
+
+    }
+
+    public LibrosPrestados(Persona persona) {
+        tablaLibrosPrestados = new DefaultTableModel();
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        biblioteca = new Biblioteca();
+
+        tablaLibrosPrestados.addColumn("codigo");
+        tablaLibrosPrestados.addColumn("Titulo");
+        tablaLibrosPrestados.addColumn("Fecha de Ingreso");
+        tablaLibrosPrestados.addColumn("Autor");
+
+        for (int i = 0; i < biblioteca.catalogoPrestado().size(); i++) {
+            Catalogo catalogo = biblioteca.getCatalogos().get(i);
+            if (biblioteca.getCatalogos().get(i).getPrestamo().getPersona().getIdentificacion().equalsIgnoreCase(persona.getIdentificacion())) {
+                tablaLibrosPrestados.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
+            }
+            this.jTableLibrosPrestados.setModel(tablaLibrosPrestados);
+        }
+        persona = persona;
+
+        jLabelNombre.setText(persona.getNombreUnico());
+        jLabelCedula.setText(persona.getIdentificacion());
+
     }
 
     /**
@@ -67,13 +114,9 @@ public class LibrosPrestados extends javax.swing.JFrame {
         jLabelNombreUsuario.setForeground(new java.awt.Color(0, 51, 255));
         jLabelNombreUsuario.setText("Nombre de Usuario:");
 
-        jLabelNombre.setText("Nombre:");
-
         jLabelIdentificacion.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jLabelIdentificacion.setForeground(new java.awt.Color(0, 51, 255));
         jLabelIdentificacion.setText("Identificación:");
-
-        jLabelCedula.setText("Identificacion");
 
         jButtonDevolverLibro.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonDevolverLibro.setForeground(new java.awt.Color(0, 51, 255));
@@ -164,13 +207,13 @@ public class LibrosPrestados extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarUsuarioActionPerformed
-        BuscarUsuario buscarUsuario = new BuscarUsuario();
+        BuscarUsuario buscarUsuario = new BuscarUsuario("LibrosPrestados");
         buscarUsuario.setVisible(true);
     }//GEN-LAST:event_jButtonBuscarUsuarioActionPerformed
 
     private void jButtonDevolverLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevolverLibroActionPerformed
-     DevoluciónDeObras devoluciónDeObras= new DevoluciónDeObras();
-     devoluciónDeObras.setVisible(true);
+        DevoluciónDeObras devoluciónDeObras = new DevoluciónDeObras();
+        devoluciónDeObras.setVisible(true);
     }//GEN-LAST:event_jButtonDevolverLibroActionPerformed
 
     /**
