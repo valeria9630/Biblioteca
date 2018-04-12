@@ -173,16 +173,21 @@ public class ModificarOtro extends javax.swing.JFrame {
 
         Catalogo catalogoModificado = null;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a623c4e36c5e8b0271072f5a6973848a16e853d
         String titulo = jTextFieldTitulo.getText();
-        String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
-        String fechaIngreso = (dia + "-" + mes + "-" + año);
+        
         String nombreUnico = jTextFieldAutor.getText();
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
         if(jDateChooserFechaIngresoACambiar.getDate()==null){
         catalogoModificado = new Otros(titulo, jTextFieldFechaIngresoActual.getText(), autor,otroViejo.getCodigoCatalogo());
         }else if(jDateChooserFechaIngresoACambiar.getDate()!=null){
+            String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
+        String fechaIngreso = (dia + "-" + mes + "-" + año);
             catalogoModificado = new Otros(titulo, fechaIngreso, autor,otroViejo.getCodigoCatalogo());
         }
         biblioteca.modificarCatalogo(this.otroViejo, catalogoModificado);

@@ -17,8 +17,10 @@ public abstract class Catalogo {
     private int codigoCatalogo;
     private static int contador;
     private Prestamo prestamo;
+ 
 
     public Catalogo() {
+       
         this.codigoCatalogo = 0;
         this.prestamo= prestamo;
 

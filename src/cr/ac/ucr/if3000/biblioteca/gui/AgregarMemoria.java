@@ -44,12 +44,11 @@ Biblioteca biblioteca;
         jLabelAbstract = new javax.swing.JLabel();
         jLabelNombreConferencia = new javax.swing.JLabel();
         jDateChooserFechaIngreso = new com.toedter.calendar.JDateChooser();
-        jTextFieldNombreConferencia = new javax.swing.JTextField();
         jTextFieldTitulo = new javax.swing.JTextField();
         jTextFieldAutor = new javax.swing.JTextField();
-        jTextFieldTituloResumen = new javax.swing.JTextField();
-        jTextFieldTituloAbstract = new javax.swing.JTextField();
-        jTextFieldTituloNombreDeConferencia = new javax.swing.JTextField();
+        jTextFieldResumen = new javax.swing.JTextField();
+        jTextFieldAbstract = new javax.swing.JTextField();
+        jTextFieldNombreDeConferencia = new javax.swing.JTextField();
         jButtonAgregar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
 
@@ -92,14 +91,14 @@ Biblioteca biblioteca;
         jTextFieldAutor.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jTextFieldAutor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
-        jTextFieldTituloResumen.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jTextFieldTituloResumen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTextFieldResumen.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jTextFieldResumen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
-        jTextFieldTituloAbstract.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jTextFieldTituloAbstract.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTextFieldAbstract.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jTextFieldAbstract.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
-        jTextFieldTituloNombreDeConferencia.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jTextFieldTituloNombreDeConferencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTextFieldNombreDeConferencia.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jTextFieldNombreDeConferencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
         jButtonAgregar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonAgregar.setForeground(new java.awt.Color(0, 51, 255));
@@ -135,13 +134,12 @@ Biblioteca biblioteca;
                     .addComponent(jLabelTitulo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldNombreConferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jTextFieldTituloNombreDeConferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jTextFieldTituloAbstract, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jTextFieldTituloResumen, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(jTextFieldNombreDeConferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(jTextFieldAbstract, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(jTextFieldResumen, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                     .addComponent(jTextFieldAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(62, 62, 62))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,9 +169,7 @@ Biblioteca biblioteca;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldNombreConferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,15 +179,15 @@ Biblioteca biblioteca;
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextFieldTituloResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(19, 19, 19)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabelAbstract)
-                                            .addComponent(jTextFieldTituloAbstract, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jTextFieldAbstract, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabelNombreConferencia)
-                                            .addComponent(jTextFieldTituloNombreDeConferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jTextFieldNombreDeConferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jLabelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(159, 159, 159))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -224,9 +220,9 @@ Biblioteca biblioteca;
         String año = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.YEAR));
         String fecha = (dia+"-"+mes+"-"+año);
         String nombreAutor = jTextFieldAutor.getText();
-        String resumen = jTextFieldTituloResumen.getText();
-        String abstracto = jTextFieldTituloAbstract.getText();
-        String nombreConderencia = jTextFieldNombreConferencia.getText();
+        String resumen = jTextFieldResumen.getText();
+        String abstracto = jTextFieldAbstract.getText();
+        String nombreConderencia = jTextFieldNombreDeConferencia.getText();
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreAutor);
         
         System.out.println(autor.toString());
@@ -286,11 +282,10 @@ Biblioteca biblioteca;
     private javax.swing.JLabel jLabelNombreConferencia;
     private javax.swing.JLabel jLabelResumen;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JTextField jTextFieldAbstract;
     private javax.swing.JTextField jTextFieldAutor;
-    private javax.swing.JTextField jTextFieldNombreConferencia;
+    private javax.swing.JTextField jTextFieldNombreDeConferencia;
+    private javax.swing.JTextField jTextFieldResumen;
     private javax.swing.JTextField jTextFieldTitulo;
-    private javax.swing.JTextField jTextFieldTituloAbstract;
-    private javax.swing.JTextField jTextFieldTituloNombreDeConferencia;
-    private javax.swing.JTextField jTextFieldTituloResumen;
     // End of variables declaration//GEN-END:variables
 }

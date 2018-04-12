@@ -40,8 +40,8 @@
                           <Component id="jTextFieldEdicion" min="-2" pref="155" max="-2" attributes="0"/>
                           <Component id="jTextFieldAutor" min="-2" pref="155" max="-2" attributes="0"/>
                           <Component id="jTextFieldISSN" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                          <Component id="jDateChooserFechaDeIngreso" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
                           <Component id="jTextFieldTitulo" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
+                          <Component id="jDateChooserFechaDeIngreso" min="-2" pref="156" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">

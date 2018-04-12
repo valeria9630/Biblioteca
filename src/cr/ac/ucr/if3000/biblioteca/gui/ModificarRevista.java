@@ -32,7 +32,7 @@ public class ModificarRevista extends javax.swing.JFrame {
         this.revistaVieja = (Revista) catalogoViejo;
         jTextFieldTitulo.setText(this.revistaVieja.getTitulo());
         jTextFieldFechaIngresoActual.setText(this.revistaVieja.getFechaIngreso());
-        jTextFieldAutor.setText(this.revistaVieja.getAutor().getNombreCompleto());
+        jTextFieldAutor.setText(this.revistaVieja.getAutor().getNombreUnico());
         jTextFieldIssn.setText(this.revistaVieja.getIssn());
         jTextFieldEdicion.setText(this.revistaVieja.getEdicion());
         
@@ -207,16 +207,17 @@ public class ModificarRevista extends javax.swing.JFrame {
          Catalogo catalogoModificado = null;
         String titulo = jTextFieldTitulo.getText();
         String nombreUnico = jTextFieldAutor.getText();
-        String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
-        String fechaIngreso = (dia+"-"+mes+"-"+año);
+       
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
         String issn = jTextFieldIssn.getText();
         String edicion = jTextFieldEdicion.getText();
         if(jDateChooserFechaIngresoACambiar.getDate()==null){
         catalogoModificado = new Revista(issn, edicion, titulo, jTextFieldFechaIngresoActual.getText(), autor, revistaVieja.getCodigoCatalogo());
         }else if(jDateChooserFechaIngresoACambiar.getDate()!=null){
+             String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
+        String fechaIngreso = (dia+"-"+mes+"-"+año);
             catalogoModificado = new Revista(issn, edicion, titulo, fechaIngreso, autor, revistaVieja.getCodigoCatalogo());
         }
         biblioteca.modificarCatalogo(revistaVieja, catalogoModificado);
