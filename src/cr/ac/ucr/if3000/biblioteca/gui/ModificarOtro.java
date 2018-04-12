@@ -173,7 +173,10 @@ public class ModificarOtro extends javax.swing.JFrame {
 
         Catalogo catalogoModificado = null;
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 8a623c4e36c5e8b0271072f5a6973848a16e853d
         String titulo = jTextFieldTitulo.getText();
         
         String nombreUnico = jTextFieldAutor.getText();
