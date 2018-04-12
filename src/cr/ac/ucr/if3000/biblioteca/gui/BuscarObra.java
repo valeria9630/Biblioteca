@@ -20,7 +20,7 @@ import javax.swing.table.TableRowSorter;
  * @author ValeriaLeivaQuirós
  */
 public class BuscarObra extends javax.swing.JFrame {
-    
+
     Biblioteca biblioteca;
     DefaultTableModel modelo;
     TableRowSorter trs;
@@ -33,21 +33,21 @@ public class BuscarObra extends javax.swing.JFrame {
     public BuscarObra() {
         modelo = new DefaultTableModel();
         biblioteca = new Biblioteca();
-        
+
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        
+
         modelo.addColumn("codigo");
         modelo.addColumn("Titulo");
         modelo.addColumn("Fecha de Ingreso");
         modelo.addColumn("Autor");
-        
+
         for (int i = 0; i < biblioteca.getCatalogos().size(); i++) {
             Catalogo catalogo = biblioteca.getCatalogos().get(i);
             modelo.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
             this.jTableListaObras.setModel(modelo);
-            
+
         }
     }
 
@@ -58,25 +58,79 @@ public class BuscarObra extends javax.swing.JFrame {
     public BuscarObra(Persona persona) {
         modelo = new DefaultTableModel();
         biblioteca = new Biblioteca();
-        
+
         persona = persona;
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        
+
         modelo.addColumn("codigo");
         modelo.addColumn("Titulo");
         modelo.addColumn("Fecha de Ingreso");
         modelo.addColumn("Autor");
-        
+
         for (int i = 0; i < biblioteca.getCatalogos().size(); i++) {
             Catalogo catalogo = biblioteca.getCatalogos().get(i);
-            
+
             if (catalogo.getAutor().getIdentificacion().equalsIgnoreCase(persona.getIdentificacion())) {
                 modelo.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
             }
             this.jTableListaObras.setModel(modelo);
-            
+
+        }
+    }
+
+    public BuscarObra(String tipo) {
+        modelo = new DefaultTableModel();
+        biblioteca = new Biblioteca();
+
+        persona = persona;
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        jButtonDevolucionDeObra.setVisible(false);
+        jButtonRealizarPrestamo.setVisible(false);
+
+        modelo.addColumn("codigo");
+        modelo.addColumn("Titulo");
+        modelo.addColumn("Fecha de Ingreso");
+        modelo.addColumn("Autor");
+
+        for (int i = 0; i < biblioteca.getCatalogos().size(); i++) {
+            Catalogo catalogo = biblioteca.getCatalogos().get(i);
+
+            modelo.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
+
+            this.jTableListaObras.setModel(modelo);
+
+        }
+
+    }
+
+    public BuscarObra(Persona personas, String tipo) {
+        modelo = new DefaultTableModel();
+        biblioteca = new Biblioteca();
+
+        persona = persona;
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        jButtonDevolucionDeObra.setVisible(false);
+        jButtonRealizarPrestamo.setVisible(false);
+
+        modelo.addColumn("codigo");
+        modelo.addColumn("Titulo");
+        modelo.addColumn("Fecha de Ingreso");
+        modelo.addColumn("Autor");
+
+        for (int i = 0; i < biblioteca.getCatalogos().size(); i++) {
+            Catalogo catalogo = biblioteca.getCatalogos().get(i);
+
+            if (catalogo.getAutor().getIdentificacion().equalsIgnoreCase(persona.getIdentificacion())) {
+                modelo.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
+            }
+            this.jTableListaObras.setModel(modelo);
+
         }
     }
 
@@ -217,14 +271,14 @@ public class BuscarObra extends javax.swing.JFrame {
     private void jButtonRealizarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarPrestamoActionPerformed
         int codigo;
         codigo = ((int) modelo.getValueAt(jTableListaObras.getSelectedRow(), 0));
-        
+
         System.out.println(codigo);
-        
+
         RegistrarPrestamo registrarPrestamo = new RegistrarPrestamo(codigo);
         registrarPrestamo.setVisible(true);
-        
+
         dispose();
-        
+
 
     }//GEN-LAST:event_jButtonRealizarPrestamoActionPerformed
 
@@ -234,9 +288,9 @@ public class BuscarObra extends javax.swing.JFrame {
             public void keyReleased(KeyEvent ke) {
                 trs.setRowFilter(RowFilter.regexFilter(jTextFieldBuscarPorTitulo.getText(), 1));
             }
-            
+
         });
-        
+
         trs = new TableRowSorter(modelo);
         jTableListaObras.setRowSorter(trs);
     }//GEN-LAST:event_jTextFieldBuscarPorTituloKeyTyped
@@ -244,7 +298,7 @@ public class BuscarObra extends javax.swing.JFrame {
     private void jButtonDevolucionDeObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevolucionDeObraActionPerformed
         int codigo;
         codigo = ((int) modelo.getValueAt(jTableListaObras.getSelectedRow(), 0));
-        
+
         DevoluciónDeObras devoluciónDeObras = new DevoluciónDeObras(biblioteca.buscarLibroPorCodigo(codigo));
         devoluciónDeObras.setVisible(true);
         dispose();
@@ -264,21 +318,21 @@ public class BuscarObra extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(BuscarObra.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(BuscarObra.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(BuscarObra.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(BuscarObra.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);

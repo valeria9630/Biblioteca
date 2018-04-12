@@ -5,6 +5,8 @@
  */
 package cr.ac.ucr.if3000.biblioteca.domain;
 
+import java.util.Date;
+
 /**
  *
  * @author ValeriaLeivaQuirós
@@ -15,8 +17,6 @@ public class Prestamo {
     private Persona persona;
     private String fechaInicioPrestamo;
     private String fechaDevoluciónInicial;
-    private String fechaDevoluciónFinal;
-  
 
     public Prestamo() {
         numeroPrestamo = 0;
@@ -28,16 +28,6 @@ public class Prestamo {
         this.persona = persona;
         this.fechaInicioPrestamo = fechaInicioPrestamo;
         this.fechaDevoluciónInicial = fechaDevoluciónInicial;
-    
-    }
-
-    public Prestamo(int numeroPrestamo, Persona persona, String fechaInicioPrestamo, String fechaDevoluciónInicial, String fechaDevoluciónFinal) {
-        this.numeroPrestamo = numeroPrestamo;
-        this.persona = persona;
-        this.fechaInicioPrestamo = fechaInicioPrestamo;
-        this.fechaDevoluciónInicial = fechaDevoluciónInicial;
-        this.fechaDevoluciónFinal = fechaDevoluciónFinal;
-
     }
 
     public int getNumeroPrestamo() {
@@ -72,18 +62,9 @@ public class Prestamo {
         this.fechaDevoluciónInicial = fechaDevoluciónInicial;
     }
 
-    public String getFechaDevoluciónFinal() {
-        return fechaDevoluciónFinal;
-    }
-
-    public void setFechaDevoluciónFinal(String fechaDevoluciónFinal) {
-        this.fechaDevoluciónFinal = fechaDevoluciónFinal;
-    }
-
-
     @Override
     public String toString() {
-        return "Prestamo{" + "numeroPrestamo=" + numeroPrestamo + ", persona=" + persona + ", fechaInicioPrestamo=" + fechaInicioPrestamo + ", fechaDevoluci\u00f3nInicial=" + fechaDevoluciónInicial + ", fechaDevoluci\u00f3nFinal=" + fechaDevoluciónFinal + '}';
+        return "Prestamo{" + "numeroPrestamo=" + numeroPrestamo + ", persona=" + persona + ", fechaInicioPrestamo=" + fechaInicioPrestamo + ", fechaDevoluci\u00f3nInicial=" + fechaDevoluciónInicial + '}';
     }
 
 }

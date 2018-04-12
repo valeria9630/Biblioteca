@@ -16,13 +16,15 @@ import java.util.Calendar;
  * @author daniela
  */
 public class ModificarOtro extends javax.swing.JFrame {
+
     Biblioteca biblioteca;
     Otros otroViejo;
+
     /**
      * Creates new form agregarLibro
      */
     public ModificarOtro(Catalogo catalogo) {
-        biblioteca= new Biblioteca();
+        biblioteca = new Biblioteca();
         this.otroViejo = (Otros) catalogo;
         initComponents();
         setLocationRelativeTo(null);
@@ -30,7 +32,7 @@ public class ModificarOtro extends javax.swing.JFrame {
         jTextFieldAutor.setText(otroViejo.getAutor().getNombreUnico());
         jTextFieldTitulo.setText(this.otroViejo.getTitulo());
         jTextFieldFechaIngresoActual.setText(this.otroViejo.getFechaIngreso());
-        
+
     }
 
     /**
@@ -168,12 +170,15 @@ public class ModificarOtro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+<<<<<<< HEAD
         Catalogo catalogoModificado = null;
+=======
+>>>>>>> 086cbc1dcf94c7cbce3eb6b0b9117ebfb19e43be
         String titulo = jTextFieldTitulo.getText();
         String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
         String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
-        String fechaIngreso = (dia+"-"+mes+"-"+año);
+        String fechaIngreso = (dia + "-" + mes + "-" + año);
         String nombreUnico = jTextFieldAutor.getText();
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
         if(jDateChooserFechaIngresoACambiar.getDate()==null){

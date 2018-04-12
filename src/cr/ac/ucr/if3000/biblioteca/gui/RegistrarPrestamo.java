@@ -10,7 +10,15 @@ import cr.ac.ucr.if3000.biblioteca.domain.Catalogo;
 import cr.ac.ucr.if3000.biblioteca.domain.Libro;
 import cr.ac.ucr.if3000.biblioteca.domain.Persona;
 import cr.ac.ucr.if3000.biblioteca.domain.Prestamo;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.DatePicker;
 
 /**
  *
@@ -279,14 +287,17 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
     private void jButtonBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarLibroActionPerformed
         BuscarObra buscarObra = new BuscarObra();
         buscarObra.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonBuscarLibroActionPerformed
 
     private void jButtonUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsuarioActionPerformed
         BuscarUsuario buscarUsuario = new BuscarUsuario(codigoCatalogo);
         buscarUsuario.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonUsuarioActionPerformed
 
     private void jButtonRegistrarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarPrestamoActionPerformed
+
         String numeroPrestamo = jLabelNumerodePrestamos1.getText();
         String libroCod = jLabelLcodLibro.getText();
         String personaIdentificacion = jLabelIdentificacionPersona.getText();
@@ -294,14 +305,15 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
         String dia = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.MONTH) + 1);
         String año = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.YEAR));
-        String fechaInicioPrestamo = (dia + "-" + mes + "-" + año);
+        String fechaInicio = (dia + "-" + mes + "-" + año);
 
         String dia1 = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes1 = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.MONTH) + 1);
-        String año1 = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.YEAR));
-        String fechaDevolucion = (dia + "-" + mes + "-" + año);
+        String mes2 = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.MONTH) + 1);
+        String año3 = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.YEAR));
 
-        Prestamo prestamo = new Prestamo(Integer.parseInt(numeroPrestamo), biblioteca.buscarPersonaPorIdentificacion(personaIdentificacion), fechaInicioPrestamo, fechaDevolucion);
+        String fechaFinal = (dia1 + "-" + mes2 + "-" + año3);
+
+        Prestamo prestamo = new Prestamo(Integer.parseInt(numeroPrestamo), biblioteca.buscarPersonaPorIdentificacion(personaIdentificacion), fechaInicio, fechaFinal);
 
         System.out.println(prestamo.toString());
         System.out.println(libroCod);
@@ -310,6 +322,7 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
         System.out.println(libro.toString());
 
         biblioteca.registrarPrestamo(biblioteca.buscarLibroPorCodigo(Integer.parseInt(libroCod)), prestamo);
+
         MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
         menuBibliotecologo.setVisible(true);
         dispose();

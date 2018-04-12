@@ -5,19 +5,29 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Autor;
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Bibliotecario;
+import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+import cr.ac.ucr.if3000.biblioteca.domain.Usuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author daniela
  */
 public class InicioDeSesion extends javax.swing.JFrame {
 
+    Biblioteca biblioteca;
+
     /**
      * Creates new form DatosParaIngresar
      */
     public InicioDeSesion() {
         initComponents();
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         setResizable(false);
+        biblioteca = new Biblioteca();
     }
 
     /**
@@ -31,10 +41,10 @@ public class InicioDeSesion extends javax.swing.JFrame {
 
         jLabelUsuario = new javax.swing.JLabel();
         jLabelContrasena = new javax.swing.JLabel();
-        jTextFieldUsuario = new javax.swing.JTextField();
-        jTextFieldContrasena = new javax.swing.JTextField();
-        jButtonAgregar = new javax.swing.JButton();
+        jButtonIniciar = new javax.swing.JButton();
         jLabelImagen = new javax.swing.JLabel();
+        jTextFieldUsuario = new javax.swing.JTextField();
+        jTextFieldContraseña = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar Sesión");
@@ -48,28 +58,15 @@ public class InicioDeSesion extends javax.swing.JFrame {
         jLabelContrasena.setForeground(new java.awt.Color(0, 51, 255));
         jLabelContrasena.setText("Contraseña");
 
-        jTextFieldUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
-        jTextFieldUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
-        jTextFieldUsuario.addActionListener(new java.awt.event.ActionListener() {
+        jButtonIniciar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jButtonIniciar.setForeground(new java.awt.Color(0, 51, 255));
+        jButtonIniciar.setText("Iniciar");
+        jButtonIniciar.setBorder(null);
+        jButtonIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUsuarioActionPerformed(evt);
+                jButtonIniciarActionPerformed(evt);
             }
         });
-
-        jTextFieldContrasena.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldContrasena.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
-        jTextFieldContrasena.setCaretColor(new java.awt.Color(255, 255, 255));
-        jTextFieldContrasena.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldContrasenaActionPerformed(evt);
-            }
-        });
-
-        jButtonAgregar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jButtonAgregar.setForeground(new java.awt.Color(0, 51, 255));
-        jButtonAgregar.setText("Agregar");
-        jButtonAgregar.setBorder(null);
 
         jLabelImagen.setIcon(new javax.swing.ImageIcon("C:\\Users\\ValeriaLeivaQuirós\\Pictures\\imagenesIconos\\iconos\\user.png")); // NOI18N
 
@@ -78,26 +75,26 @@ public class InicioDeSesion extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(jLabelContrasena))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelUsuario)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabelImagen))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(163, 163, 163)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelUsuario)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(19, 19, 19)
+                                    .addComponent(jLabelImagen))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(147, 147, 147)
+                            .addComponent(jButtonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(148, 148, 148)
+                            .addComponent(jLabelContrasena))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(131, 131, 131)
+                            .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,27 +103,91 @@ public class InicioDeSesion extends javax.swing.JFrame {
                 .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(2, 2, 2)
                 .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelContrasena)
-                .addGap(18, 18, 18)
-                .addComponent(jTextFieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextFieldContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jButtonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
+    private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
+        String usuarioUnico = jTextFieldUsuario.getText();
+        String contraseña = jTextFieldContraseña.getText();
 
-    private void jTextFieldContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldContrasenaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldContrasenaActionPerformed
+        if (biblioteca.validarNombreUnico(usuarioUnico)) {
+            System.out.println("perimite1");
+            if (biblioteca.validarContraseña(contraseña)) {
+
+                System.out.println("perimite2");
+                Persona persona = biblioteca.buscarPersonaPorNombreUnico(usuarioUnico);
+                System.out.println(persona.toString());
+                
+                if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico) instanceof Autor) {
+                    biblioteca.setIdentificacion(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
+                    System.out.println("Autor");
+                    MenuAutor menuAutor = new MenuAutor();
+                    menuAutor.setVisible(true);
+                    dispose();
+
+                }
+                if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico) instanceof Usuario) {
+                    biblioteca.setIdentificacion(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
+                    System.out.println("Usuario");
+                    MenuUsuario menuUsuario = new MenuUsuario();
+                    menuUsuario.setVisible(true);
+                    dispose();
+
+                }
+                if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico) instanceof Bibliotecario) {
+                    biblioteca.setIdentificacion(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
+                    System.out.println("Bibliotecologo");
+                    MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
+                    menuBibliotecologo.setVisible(true);
+                    dispose();
+                }
+
+            }
+
+        }
+
+//        if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).equals(usuarioUnico)) {
+//            System.out.println("nombre unico");
+//            if (biblioteca.validarContraseña(contraseña) == true) {
+//                System.out.println("Nombre contraseña");
+//                if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico) instanceof Autor) {
+//                    biblioteca.setIdentificacion(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
+//                    System.out.println("Autor");
+//                    MenuAutor menuAutor = new MenuAutor();
+//                    menuAutor.setVisible(true);
+//
+//                }
+//                if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico) instanceof Usuario) {
+//                    biblioteca.setIdentificacion(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
+//                    MenuUsuario menuUsuario = new MenuUsuario();
+//                    menuUsuario.setVisible(true);
+//
+//                }
+//                if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico) instanceof Bibliotecario) {
+//                    biblioteca.setIdentificacion(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
+//                    MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
+//                    menuBibliotecologo.setVisible(true);
+//
+//                }
+//
+//            }
+//            dispose();
+//        } else {
+//            JOptionPane.showMessageDialog(null, "No sirve");
+//        }
+
+    }//GEN-LAST:event_jButtonIniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,11 +226,11 @@ public class InicioDeSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAgregar;
+    private javax.swing.JButton jButtonIniciar;
     private javax.swing.JLabel jLabelContrasena;
     private javax.swing.JLabel jLabelImagen;
     private javax.swing.JLabel jLabelUsuario;
-    private javax.swing.JTextField jTextFieldContrasena;
+    private javax.swing.JTextField jTextFieldContraseña;
     private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
 }

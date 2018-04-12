@@ -6,13 +6,17 @@
 package cr.ac.ucr.if3000.biblioteca.gui;
 
 import com.sun.org.apache.xml.internal.resolver.Catalog;
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
 import cr.ac.ucr.if3000.biblioteca.domain.Catalogo;
+import java.util.Calendar;
 
 /**
  *
  * @author ValeriaLeivaQuirós
  */
 public class DevoluciónDeObras extends javax.swing.JFrame {
+
+    Biblioteca biblioteca;
 
     /**
      * Creates new form DevoluciónDeObras
@@ -21,20 +25,23 @@ public class DevoluciónDeObras extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        biblioteca = new Biblioteca();
     }
 
     public DevoluciónDeObras(Catalogo libro) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        if (libro.getPrestamo() != null) {
+            jLabelNPrestamo.setText(String.valueOf(libro.getPrestamo().getNumeroPrestamo()));
+            jLabelLibroTitulo.setText(libro.getTitulo());
+            jLabelLibroCod.setText(String.valueOf(libro.getCodigoCatalogo()));
+            jLabelUsuarioNombre.setText(libro.getPrestamo().getPersona().getNombreUnico());
+            jLabelUsuarioIdentificacion.setText(libro.getPrestamo().getPersona().getIdentificacion());
+            jLabelFechaInicioPrestamo.setText(libro.getPrestamo().getFechaInicioPrestamo());
+            jLabeFechaDevolucion.setText(libro.getPrestamo().getFechaDevoluciónInicial());
 
-        jLabelNPrestamo.setText(String.valueOf(libro.getPrestamo().getNumeroPrestamo()));
-        jLabelLibroTitulo.setText(libro.getTitulo());
-        jLabelLibroCod.setText(String.valueOf(libro.getCodigoCatalogo()));
-        jLabelUsuarioNombre.setText(libro.getPrestamo().getPersona().getNombreUnico());
-        jLabelUsuarioIdentificacion.setText(libro.getPrestamo().getPersona().getIdentificacion());
-        jLabelFechaInicioPrestamo.setText(libro.getPrestamo().getFechaInicioPrestamo());
-        jLabeFechaDevolucion.setText(libro.getPrestamo().getFechaDevoluciónInicial());
+        }
 
     }
 
@@ -57,10 +64,8 @@ public class DevoluciónDeObras extends javax.swing.JFrame {
         jLabelFechaInicioPrestamo = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabeFechaDevolucion = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jButtonDevolver = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jDateChooserFechaFinal = new com.toedter.calendar.JDateChooser();
         jButtonBuscarLibro = new javax.swing.JButton();
         jLabelNPrestamo = new javax.swing.JLabel();
         jLabelLibroTitulo = new javax.swing.JLabel();
@@ -89,26 +94,19 @@ public class DevoluciónDeObras extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 51, 255));
         jLabel5.setText("Fecha inicio de Prestamo:");
 
-        jLabelLibroCod.setText("Libro");
-
-        jLabelUsuarioIdentificacion.setText("Usuario");
-
-        jLabelFechaInicioPrestamo.setText("Fecha");
-
         jLabel9.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 51, 255));
         jLabel9.setText("Fecha asignada para devolución:");
-
-        jLabeFechaDevolucion.setText("fecha");
-
-        jLabel11.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel11.setText("Fecha devolución Final:");
 
         jButtonDevolver.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonDevolver.setForeground(new java.awt.Color(0, 51, 255));
         jButtonDevolver.setText("Devolver");
         jButtonDevolver.setBorder(null);
+        jButtonDevolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDevolverActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonCancelar.setForeground(new java.awt.Color(0, 51, 255));
@@ -119,8 +117,6 @@ public class DevoluciónDeObras extends javax.swing.JFrame {
             }
         });
 
-        jDateChooserFechaFinal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
-
         jButtonBuscarLibro.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonBuscarLibro.setForeground(new java.awt.Color(0, 51, 255));
         jButtonBuscarLibro.setText("Buscar Libro");
@@ -129,12 +125,6 @@ public class DevoluciónDeObras extends javax.swing.JFrame {
                 jButtonBuscarLibroActionPerformed(evt);
             }
         });
-
-        jLabelNPrestamo.setText("Usuario");
-
-        jLabelLibroTitulo.setText("Libro");
-
-        jLabelUsuarioNombre.setText("Usuario");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,8 +148,7 @@ public class DevoluciónDeObras extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel2)
                                             .addComponent(jLabel5)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel11))
+                                            .addComponent(jLabel9))
                                         .addGap(37, 37, 37))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,13 +162,12 @@ public class DevoluciónDeObras extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jButtonCancelar)
-                                .addComponent(jDateChooserFechaFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                                 .addComponent(jLabelFechaInicioPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabeFechaDevolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelNPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelNPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                                 .addComponent(jLabelUsuarioIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelLibroCod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelLibroCod, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
                                 .addGap(14, 14, 14)
                                 .addComponent(jButtonBuscarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
@@ -212,18 +200,11 @@ public class DevoluciónDeObras extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabeFechaDevolucion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jDateChooserFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonCancelar)
-                            .addComponent(jButtonDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCancelar)
+                    .addComponent(jButtonDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41))
         );
 
         pack();
@@ -239,6 +220,16 @@ public class DevoluciónDeObras extends javax.swing.JFrame {
         BuscarObra buscarObra = new BuscarObra();
         buscarObra.setVisible(true);
     }//GEN-LAST:event_jButtonBuscarLibroActionPerformed
+
+    private void jButtonDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevolverActionPerformed
+
+        String codigoLibro = jLabelLibroCod.getText();
+        System.out.println(codigoLibro);
+
+        System.out.println(biblioteca.buscarLibroPorCodigo(Integer.parseInt(codigoLibro)));
+
+
+    }//GEN-LAST:event_jButtonDevolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,9 +270,7 @@ public class DevoluciónDeObras extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBuscarLibro;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonDevolver;
-    private com.toedter.calendar.JDateChooser jDateChooserFechaFinal;
     private javax.swing.JLabel jLabeFechaDevolucion;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
