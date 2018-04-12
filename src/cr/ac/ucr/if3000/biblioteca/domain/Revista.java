@@ -9,11 +9,10 @@ package cr.ac.ucr.if3000.biblioteca.domain;
  *
  * @author ValeriaLeivaQuirós
  */
-public class Revista extends Catalogo{
+public class Revista extends Catalogo {
+
     private String issn;
     private String edicion;
-
-   
 
     public Revista() {
         this.issn = issn;
@@ -31,6 +30,8 @@ public class Revista extends Catalogo{
         this.edicion = edicion;
     }
 
+<<<<<<< HEAD
+=======
     public Revista(String issn, String edicion, String titulo, String fechaIngreso, Autor autor, int codigoCatalogo) {
         super(titulo, fechaIngreso, autor, codigoCatalogo);
         this.issn = issn;
@@ -41,6 +42,7 @@ public class Revista extends Catalogo{
 
    
 
+>>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
     public String getIssn() {
         return issn;
     }
@@ -57,6 +59,8 @@ public class Revista extends Catalogo{
         this.edicion = edicion;
     }
 
+<<<<<<< HEAD
+=======
     @Override
     public String toString() {
         return "Revista{" + "issn=" + issn + ", edicion=" + edicion + '}';
@@ -68,4 +72,5 @@ public class Revista extends Catalogo{
                 "ISSN:"+getIssn()+"\n"+"Edicion:"+getEdicion();
     }
     
+>>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
 }

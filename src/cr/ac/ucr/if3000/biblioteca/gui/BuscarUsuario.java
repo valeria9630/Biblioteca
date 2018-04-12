@@ -18,13 +18,13 @@ import javax.swing.table.TableRowSorter;
  * @author ValeriaLeivaQuirós
  */
 public class BuscarUsuario extends javax.swing.JFrame {
-    
+
     DefaultTableModel tablaPersonas;
     TableRowSorter trs;
     Biblioteca biblioteca;
     int codigoLibro;
     String tipoInterfaz;
-    
+
     public BuscarUsuario() {
         tablaPersonas = new DefaultTableModel();
         initComponents();
@@ -32,23 +32,23 @@ public class BuscarUsuario extends javax.swing.JFrame {
         setResizable(false);
         biblioteca = new Biblioteca();
         tipoInterfaz = "";
-        
+
         tablaPersonas.addColumn("NombreUnico");
         tablaPersonas.addColumn("Contraseña");
         tablaPersonas.addColumn("Nombre Completo");
         tablaPersonas.addColumn("Tipo de identificacion");
         tablaPersonas.addColumn("Identificacion");
-        
+
         for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
             Persona persona = biblioteca.getPersonas().get(i);
-            
+
             tablaPersonas.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
             this.jTableListaUsuarios.setModel(tablaPersonas);
-            
+
         }
-        
+
     }
-    
+
     BuscarUsuario(int codigoCatalogo) {
         tablaPersonas = new DefaultTableModel();
         initComponents();
@@ -57,22 +57,22 @@ public class BuscarUsuario extends javax.swing.JFrame {
         biblioteca = new Biblioteca();
         codigoLibro = codigoCatalogo;
         tipoInterfaz = "";
-        
+
         tablaPersonas.addColumn("NombreUnico");
         tablaPersonas.addColumn("Contraseña");
         tablaPersonas.addColumn("Nombre Completo");
         tablaPersonas.addColumn("Tipo de identificacion");
         tablaPersonas.addColumn("Identificacion");
-        
+
         for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
             Persona persona = biblioteca.getPersonas().get(i);
-            
+
             tablaPersonas.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
             this.jTableListaUsuarios.setModel(tablaPersonas);
-            
+
         }
     }
-    
+
     BuscarUsuario(String tipo) {
         tablaPersonas = new DefaultTableModel();
         initComponents();
@@ -80,19 +80,19 @@ public class BuscarUsuario extends javax.swing.JFrame {
         setResizable(false);
         biblioteca = new Biblioteca();
         tipoInterfaz = tipo;
-        
+
         tablaPersonas.addColumn("NombreUnico");
         tablaPersonas.addColumn("Contraseña");
         tablaPersonas.addColumn("Nombre Completo");
         tablaPersonas.addColumn("Tipo de identificacion");
         tablaPersonas.addColumn("Identificacion");
-        
+
         for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
             Persona persona = biblioteca.getPersonas().get(i);
-            
+
             tablaPersonas.addRow(new Object[]{persona.getNombreUnico(), persona.getContraseña(), persona.getNombreCompleto(), persona.getTipoIdentificacion(), persona.getIdentificacion()});
             this.jTableListaUsuarios.setModel(tablaPersonas);
-            
+
         }
     }
 
@@ -201,36 +201,36 @@ public class BuscarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldNumeroIdentificacionBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumeroIdentificacionBuscarKeyTyped
-        
+
         jTextFieldNumeroIdentificacionBuscar.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ke) {
                 trs.setRowFilter(RowFilter.regexFilter(jTextFieldNumeroIdentificacionBuscar.getText(), 0));
             }
-            
+
         });
-        
+
         trs = new TableRowSorter(tablaPersonas);
         jTableListaUsuarios.setRowSorter(trs);
 
     }//GEN-LAST:event_jTextFieldNumeroIdentificacionBuscarKeyTyped
 
     private void jButtonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarActionPerformed
-        
+
         String identificacion;
         identificacion = ((String) tablaPersonas.getValueAt(jTableListaUsuarios.getSelectedRow(), 0));
-        
+
         System.out.println(identificacion);
         if (tipoInterfaz.equalsIgnoreCase("")) {
             RegistrarPrestamo registrarPrestamo = new RegistrarPrestamo(codigoLibro, identificacion);
             registrarPrestamo.setVisible(true);
         }
-        
+
         if (tipoInterfaz.equalsIgnoreCase("LibrosPrestados")) {
             LibrosPrestados librosPrestados = new LibrosPrestados(biblioteca.buscarPersonaPorIdentificacion(identificacion));
             librosPrestados.setVisible(true);
         }
-        
+
         dispose();
     }//GEN-LAST:event_jButtonSeleccionarActionPerformed
 

@@ -97,11 +97,12 @@ public class MenuUsuario extends javax.swing.JFrame {
     private void jButtonLibrosPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLibrosPrestamosActionPerformed
 
         Persona personaLibrosPrestados = null;
-        personaLibrosPrestados = biblioteca.buscarPersonaPorIdentificacion("");
+        personaLibrosPrestados = biblioteca.buscarPersonaPorIdentificacion(biblioteca.getIdentificacionPersonaActiva());
 
-        LibrosPrestados librosPrestados = new LibrosPrestados(personaLibrosPrestados);
+        LibrosPrestados librosPrestados = new LibrosPrestados(personaLibrosPrestados,"MenuUsuario");
 
         librosPrestados.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jButtonLibrosPrestamosActionPerformed
 

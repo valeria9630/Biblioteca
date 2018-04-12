@@ -8,6 +8,7 @@ package cr.ac.ucr.if3000.biblioteca.gui;
 import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
 import cr.ac.ucr.if3000.biblioteca.domain.Bibliotecario;
 import cr.ac.ucr.if3000.biblioteca.domain.Persona;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -179,9 +180,15 @@ public class MantenimentoBibliotecologos extends javax.swing.JFrame {
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         Persona personaBorrada = null;
         personaBorrada = biblioteca.buscarPersonaPorIdentificacion((String) tablaBibliotecarios.getValueAt(jTableListaBibliotecologos.getSelectedRow(), 4));
-        biblioteca.borrarPersona(personaBorrada);
+        if (biblioteca.getIdentificacionPersonaActiva() != personaBorrada.getIdentificacion()) {
+            biblioteca.borrarPersona(personaBorrada);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se puede eliminar a usted mismo");
+
+        }
         MantenimentoBibliotecologos mantenimentoBibliotecologos = new MantenimentoBibliotecologos();
         mantenimentoBibliotecologos.setVisible(true);
+
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     /**

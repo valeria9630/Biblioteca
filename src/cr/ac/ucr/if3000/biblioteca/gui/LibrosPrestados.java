@@ -16,43 +16,44 @@ import javax.swing.table.DefaultTableModel;
  * @author ValeriaLeivaQuirós
  */
 public class LibrosPrestados extends javax.swing.JFrame {
-    
+
     DefaultTableModel tablaLibrosPrestados;
     Biblioteca biblioteca;
     Persona persona;
-    
+    String tipoInterafaz;
+
     public LibrosPrestados() {
         tablaLibrosPrestados = new DefaultTableModel();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         biblioteca = new Biblioteca();
-        
+
         tablaLibrosPrestados.addColumn("codigo");
         tablaLibrosPrestados.addColumn("Titulo");
         tablaLibrosPrestados.addColumn("Fecha de Ingreso");
         tablaLibrosPrestados.addColumn("Autor");
-        
+
         for (int i = 0; i < biblioteca.catalogoPrestado().size(); i++) {
             Catalogo catalogo = biblioteca.getCatalogos().get(i);
             tablaLibrosPrestados.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
             this.jTableLibrosPrestados.setModel(tablaLibrosPrestados);
         }
-        
+
     }
-    
+
     public LibrosPrestados(Persona persona) {
         tablaLibrosPrestados = new DefaultTableModel();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         biblioteca = new Biblioteca();
-        
+
         tablaLibrosPrestados.addColumn("codigo");
         tablaLibrosPrestados.addColumn("Titulo");
         tablaLibrosPrestados.addColumn("Fecha de Ingreso");
         tablaLibrosPrestados.addColumn("Autor");
-        
+
         for (int i = 0; i < biblioteca.catalogoPrestado().size(); i++) {
             Catalogo catalogo = biblioteca.getCatalogos().get(i);
             if (biblioteca.getCatalogos().get(i).getPrestamo().getPersona().getIdentificacion().equalsIgnoreCase(persona.getIdentificacion())) {
@@ -61,24 +62,25 @@ public class LibrosPrestados extends javax.swing.JFrame {
             this.jTableLibrosPrestados.setModel(tablaLibrosPrestados);
         }
         persona = persona;
-        
+
         jLabelNombre.setText(persona.getNombreUnico());
         jLabelCedula.setText(persona.getIdentificacion());
-        
+
     }
-    
+
     public LibrosPrestados(Persona persona, String tipo) {
         tablaLibrosPrestados = new DefaultTableModel();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         biblioteca = new Biblioteca();
-        
+        tipoInterafaz = tipo;
+
         tablaLibrosPrestados.addColumn("codigo");
         tablaLibrosPrestados.addColumn("Titulo");
         tablaLibrosPrestados.addColumn("Fecha de Ingreso");
         tablaLibrosPrestados.addColumn("Autor");
-        
+
         for (int i = 0; i < biblioteca.catalogoPrestado().size(); i++) {
             Catalogo catalogo = biblioteca.getCatalogos().get(i);
             if (biblioteca.getCatalogos().get(i).getPrestamo().getPersona().getIdentificacion().equalsIgnoreCase(persona.getIdentificacion())) {
@@ -87,11 +89,11 @@ public class LibrosPrestados extends javax.swing.JFrame {
             this.jTableLibrosPrestados.setModel(tablaLibrosPrestados);
         }
         persona = persona;
-        
+
         jLabelNombre.setText(persona.getNombreUnico());
         jLabelCedula.setText(persona.getIdentificacion());
         jButtonBuscarUsuario.setVisible(false);
-        
+
     }
 
     /**
@@ -116,6 +118,7 @@ public class LibrosPrestados extends javax.swing.JFrame {
         jButtonDevolverLibro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLibrosPrestados = new javax.swing.JTable();
+        jButtonVolver = new javax.swing.JButton();
 
         jLabel7.setText("jLabel7");
 
@@ -167,15 +170,20 @@ public class LibrosPrestados extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableLibrosPrestados);
 
+        jButtonVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/ucr/if3000/biblioteca/Imagenes/sign-out.png"))); // NOI18N
+        jButtonVolver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(356, 356, 356)
-                        .addComponent(jLabelLibrosPrestados))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,14 +204,24 @@ public class LibrosPrestados extends javax.swing.JFrame {
                         .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonDevolverLibro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonBuscarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButtonBuscarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(308, 308, 308)
+                        .addComponent(jLabelLibrosPrestados)))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabelLibrosPrestados)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabelLibrosPrestados))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addComponent(jLabel3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,6 +260,16 @@ public class LibrosPrestados extends javax.swing.JFrame {
         DevoluciónDeObras devoluciónDeObras = new DevoluciónDeObras();
         devoluciónDeObras.setVisible(true);
     }//GEN-LAST:event_jButtonDevolverLibroActionPerformed
+
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        
+        if (tipoInterafaz.equalsIgnoreCase("MenuUsuario")) {
+            MenuUsuario menuUsuario = new MenuUsuario();
+            menuUsuario.setVisible(true);
+            dispose();
+
+        }
+    }//GEN-LAST:event_jButtonVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,6 +310,7 @@ public class LibrosPrestados extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscarUsuario;
     private javax.swing.JButton jButtonDevolverLibro;
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;

@@ -79,15 +79,15 @@
                               <Component id="jLabelIdentificacionPersona" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButtonBuscarLibro" min="-2" pref="76" max="-2" attributes="0"/>
                   <Component id="jButtonUsuario" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="35" max="32767" attributes="0"/>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -101,7 +101,7 @@
                   <Component id="jLabelNumerodePrestamos" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelNumerodePrestamos1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabelTituloLibro" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonBuscarLibro" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -111,7 +111,7 @@
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonUsuario" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="jLabelNombreUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelIdentificacionPersona" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
