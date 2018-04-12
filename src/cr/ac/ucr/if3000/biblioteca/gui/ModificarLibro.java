@@ -17,8 +17,10 @@ import java.util.Calendar;
  * @author daniela
  */
 public class ModificarLibro extends javax.swing.JFrame {
+
     Biblioteca biblioteca;
     Libro libroViejo;
+
     /**
      * Creates new form agregarLibro
      */
@@ -30,7 +32,7 @@ public class ModificarLibro extends javax.swing.JFrame {
         this.libroViejo = (Libro) catalogoViejo;
         jTextFieldTitulo.setText(this.libroViejo.getTitulo());
         jTextFieldFechaIngresoActual.setText(this.libroViejo.getFechaIngreso());
-        jTextFieldAutor.setText(this.libroViejo.getAutor().getNombreCompleto());
+        jTextFieldAutor.setText(this.libroViejo.getAutor().getNombreUnico());
         jTextFieldISBN.setText(this.libroViejo.getIsbn());
         jTextFieldTema.setText(this.libroViejo.getTema());
         jTextFieldSubtema.setText(this.libroViejo.getSubtema());
@@ -129,8 +131,6 @@ public class ModificarLibro extends javax.swing.JFrame {
         jTextFieldSubtema.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jTextFieldSubtema.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
-        jTextFieldFechaIngresoActual.setText("jTextField1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,8 +171,8 @@ public class ModificarLibro extends javax.swing.JFrame {
                         .addComponent(jLabelFechaIngreso)
                         .addGap(18, 18, 18)
                         .addComponent(jTextFieldFechaIngresoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jDateChooserFechaACambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jDateChooserFechaACambiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(43, 43, 43))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -233,22 +233,28 @@ public class ModificarLibro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        Catalogo catalogoModificado = null;
         String isbn = jTextFieldISBN.getText();
         String tema = jTextFieldTema.getText();
         String subtema = jTextFieldSubtema.getText();
         String titulo = jTextFieldTitulo.getText();
         String nombreUnico = jTextFieldAutor.getText();
+        
+        Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
+       
+        if(jDateChooserFechaACambiar.getDate()== null){
+        catalogoModificado = new Libro(isbn, tema, subtema, titulo, jTextFieldFechaIngresoActual.getText(), autor,libroViejo.getCodigoCatalogo() );
+        }else if(jDateChooserFechaACambiar.getDate()!=null){
         String dia = Integer.toString(jDateChooserFechaACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jDateChooserFechaACambiar.getCalendar().get(Calendar.MONTH) + 1);
         String año = Integer.toString(jDateChooserFechaACambiar.getCalendar().get(Calendar.YEAR));
-        String fechaIngreso = (dia+"-"+mes+"-"+año);
-        Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
-        System.out.println(autor.toString());
-        Catalogo catalogoModificado = new Libro(isbn, tema, subtema, titulo, fechaIngreso, autor);
-        System.out.println(catalogoModificado.toString());
+        String fechaIngreso = (dia + "-" + mes + "-" + año);
+        catalogoModificado = new Libro(isbn, tema, subtema, titulo, fechaIngreso, autor,libroViejo.getCodigoCatalogo() );
+        }
+        
         biblioteca.modificarCatalogo(libroViejo, catalogoModificado);
         dispose();
-        Cátalogo catalogo = new Cátalogo();
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
@@ -256,30 +262,7 @@ public class ModificarLibro extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 //    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(ModificarLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(ModificarLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(ModificarLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(ModificarLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
+//        /* Set the Nimbus look and feel */cat
 //        //</editor-fold>
 //
 //        /* Create and display the form */

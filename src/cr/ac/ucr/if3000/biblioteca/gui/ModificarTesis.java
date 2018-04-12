@@ -209,6 +209,7 @@ public class ModificarTesis extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+         Catalogo catalogoModificado = null;
         String titulo = jTextFieldTitulo.getText();
         String nombreUnico = jTextFieldAutor.getText();
         String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
@@ -218,10 +219,14 @@ public class ModificarTesis extends javax.swing.JFrame {
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
         String resumen = jTextFieldResumen.getText();
         String abstracto = jTextFieldAbstract.getText();
-        Catalogo catalogoModificado = new Tesis(resumen, abstracto, titulo, fechaIngreso, autor);
+        if(jDateChooserFechaIngresoACambiar.getDate()==null){
+        catalogoModificado = new Tesis(resumen, abstracto, titulo, jTextFieldFechaIngresoActual.getText(), autor, tesisVieja.getCodigoCatalogo());
+        }else if(jDateChooserFechaIngresoACambiar.getDate()!=null){
+            catalogoModificado = new Tesis(resumen, abstracto, titulo, fechaIngreso, autor, tesisVieja.getCodigoCatalogo());
+        }
         biblioteca.modificarCatalogo(tesisVieja,catalogoModificado);
         dispose();
-        Cátalogo catalogo = new Cátalogo();
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonModificarActionPerformed
 

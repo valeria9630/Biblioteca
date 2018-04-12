@@ -19,5 +19,8 @@ public class Autor extends Persona {
     public Autor(String nombreUnico, String contraseña, String nombreCompleto, String tipoIdentificacion, String identificacion) {
         super(nombreUnico, contraseña, nombreCompleto, tipoIdentificacion, identificacion);
     }
-
+     @Override
+    public String toString() {
+        return getNombreUnico();
+    }
 }

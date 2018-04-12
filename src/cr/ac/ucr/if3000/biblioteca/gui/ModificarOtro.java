@@ -170,6 +170,10 @@ public class ModificarOtro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+<<<<<<< HEAD
+        Catalogo catalogoModificado = null;
+=======
+>>>>>>> 086cbc1dcf94c7cbce3eb6b0b9117ebfb19e43be
         String titulo = jTextFieldTitulo.getText();
         String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
@@ -177,10 +181,14 @@ public class ModificarOtro extends javax.swing.JFrame {
         String fechaIngreso = (dia + "-" + mes + "-" + año);
         String nombreUnico = jTextFieldAutor.getText();
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
-        Catalogo catalogoModificado = new Otros(titulo, fechaIngreso, autor);
+        if(jDateChooserFechaIngresoACambiar.getDate()==null){
+        catalogoModificado = new Otros(titulo, jTextFieldFechaIngresoActual.getText(), autor,otroViejo.getCodigoCatalogo());
+        }else if(jDateChooserFechaIngresoACambiar.getDate()!=null){
+            catalogoModificado = new Otros(titulo, fechaIngreso, autor,otroViejo.getCodigoCatalogo());
+        }
         biblioteca.modificarCatalogo(this.otroViejo, catalogoModificado);
         dispose();
-        Cátalogo catalogo = new Cátalogo();
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
