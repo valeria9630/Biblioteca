@@ -220,13 +220,9 @@ public class AgregarLibro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
-<<<<<<< HEAD
+
         Autor autor1 = new Autor("andres Calamaro", "opp", "ppo", "njsvn", "hsbdvj");
         Autor autor2 = new Autor("rocio", "a", "a", "a", "a");
-=======
-        Autor autor1 = new Autor("andres Calamaro", "opp", "andresCalamaro", "njsvn", "hsbdvj");
-        Autor autor2 = new Autor("rocio", "jdbv", "bvj", "djkb", "jk");
->>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
         biblioteca.agregarPersona(autor1);
         biblioteca.agregarPersona(autor2);
 

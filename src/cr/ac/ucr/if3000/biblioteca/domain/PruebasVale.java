@@ -71,7 +71,7 @@ System.out.println(biblioteca.buscarLibroPorCodigo(0));
 biblioteca.devolverCatalogo(libro);
 System.out.println("Libros prestados" + biblioteca.catalogoPrestado().get(0));
 System.out.println(autor.getContraseña());
-System.out.println(biblioteca.validarContraseña("l"));
+//System.out.println(biblioteca.validarContraseña("l"));
 
 //        System.out.println(biblioteca.listadeUsuariosMorosos().get(0));
         } catch (Exception ex) {
