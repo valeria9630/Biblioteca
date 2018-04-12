@@ -35,24 +35,21 @@
                   <Component id="jLabelTitulo" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextFieldTitulo" pref="155" max="32767" attributes="0"/>
-                          <Component id="jTextFieldNombreDeConferencia" pref="155" max="32767" attributes="0"/>
-                          <Component id="jTextFieldAbstract" pref="155" max="32767" attributes="0"/>
-                          <Component id="jTextFieldResumen" pref="155" max="32767" attributes="0"/>
-                          <Component id="jTextFieldAutor" pref="155" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jTextFieldTitulo" pref="155" max="32767" attributes="0"/>
+                      <Component id="jTextFieldNombreDeConferencia" pref="155" max="32767" attributes="0"/>
+                      <Component id="jTextFieldAbstract" pref="155" max="32767" attributes="0"/>
+                      <Component id="jTextFieldResumen" pref="155" max="32767" attributes="0"/>
+                      <Component id="jTextFieldAutor" pref="155" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="jTextFieldFechaIngesoActual" pref="87" max="32767" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jDateChooserFechaIngresoACambiar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="jTextFieldFechaIngesoActual" min="-2" pref="83" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jDateChooserFechaIngresoACambiar" min="-2" pref="101" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">

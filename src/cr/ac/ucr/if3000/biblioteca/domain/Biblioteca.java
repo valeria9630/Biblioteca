@@ -53,7 +53,7 @@ public class Biblioteca {
 
     public void modificarPersona(Persona persona, Persona personaModificada) {
         personas.set(personas.indexOf(persona), personaModificada);
-        
+
     }
 
     public void borrarPersona(Persona persona) {
@@ -90,22 +90,22 @@ public class Biblioteca {
         }
     }
 
-    public Autor buscaAutorPorNombreUnico(String nombreUnico) {
+    public Autor buscaAutorPorNombreUnico(String nombreCompleto) {
 
         for (int i = 0; i < personas.size(); i++) {
             Persona persona = personas.get(i);
-            if (nombreUnico.equalsIgnoreCase(persona.getNombreUnico())) {
+            if (nombreCompleto.equalsIgnoreCase(persona.getNombreUnico())) {
                 return (Autor) persona;
             }
         }
         return null;
     }
-    
-     public void modificarCatalogo(Catalogo catalogo, Catalogo catalogoModificado){
+
+    public void modificarCatalogo(Catalogo catalogo, Catalogo catalogoModificado) {
         for (int i = 0; i < catalogos.size(); i++) {
             Catalogo temp = catalogos.get(i);
-            System.out.println("temp "+temp.getCodigoCatalogo()+ " , modif " + catalogoModificado.getCodigoCatalogo());
-            if(temp.getCodigoCatalogo() == catalogo.getCodigoCatalogo()){
+            System.out.println("temp " + temp.getCodigoCatalogo() + " , modif " + catalogoModificado.getCodigoCatalogo());
+            if (temp.getCodigoCatalogo() == catalogo.getCodigoCatalogo()) {
                 catalogos.set(i, catalogoModificado);
                 System.out.println("true");
             }
@@ -122,6 +122,43 @@ public class Biblioteca {
             }
         }
         return catalogo;
+    }
+
+    public String buscaCatalogoPorCodigo(int codigo) {
+        Libro catalogo1 = null;
+        Revista catalogo2 = null;
+        Periodico catalogo3 = null;
+        Tesis catalogo4 = null;
+        Memoria catalogo5 = null;
+        Otros catalogo6 = null;
+
+        String result = "";
+        for (int i = 0; i < catalogos.size(); i++) {
+            Catalogo catalogoTemp = catalogos.get(i);
+            if (catalogoTemp.getCodigoCatalogo() == codigo) {
+                if (catalogoTemp instanceof Libro) {
+                    catalogo1 = (Libro) catalogoTemp;
+                    result = catalogo1.mostrar1();
+                } else if (catalogoTemp instanceof Revista) {
+                    catalogo2 = (Revista) catalogoTemp;
+                    result = catalogo2.mostrar2();
+                } else if (catalogoTemp instanceof Periodico) {
+                    catalogo3 = (Periodico) catalogoTemp;
+                    result = catalogo3.mostrar3();
+                } else if (catalogoTemp instanceof Tesis) {
+                    catalogo4 = (Tesis) catalogoTemp;
+                    result = catalogo4.mostrar4();
+                } else if (catalogoTemp instanceof Memoria) {
+                    catalogo5 = (Memoria) catalogoTemp;
+                    result = catalogo5.mostrar5();
+                } else if (catalogoTemp instanceof Otros) {
+                    catalogo6 = (Otros) catalogoTemp;
+                    result = catalogo6.mostrar6();
+
+                }
+            }
+        }
+        return result;
     }
 
     public Persona buscarPersona(Object persona) {
@@ -169,6 +206,13 @@ public class Biblioteca {
     public String getCodigoPrestamo() {
         String ultimoCodigo = "1";
         ultimoCodigo = String.valueOf(catalogoPrestado().size() + 1);
+
+        return ultimoCodigo;
+    }
+
+    public int getUltimoCodigoCatalogo() {
+        int ultimoCodigo = 1;
+        ultimoCodigo = catalogos.size() + 1;
 
         return ultimoCodigo;
     }

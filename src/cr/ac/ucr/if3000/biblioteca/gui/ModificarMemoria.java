@@ -144,20 +144,18 @@ public class ModificarMemoria extends javax.swing.JFrame {
                     .addComponent(jLabelFechaIngreso)
                     .addComponent(jLabelTitulo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                        .addComponent(jTextFieldNombreDeConferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                        .addComponent(jTextFieldAbstract, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                        .addComponent(jTextFieldResumen, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                        .addComponent(jTextFieldAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                            .addComponent(jTextFieldNombreDeConferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                            .addComponent(jTextFieldAbstract, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                            .addComponent(jTextFieldResumen, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                            .addComponent(jTextFieldAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
-                        .addGap(62, 62, 62))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextFieldFechaIngesoActual, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jDateChooserFechaIngresoACambiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
+                        .addComponent(jTextFieldFechaIngesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jDateChooserFechaIngresoACambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -229,7 +227,8 @@ public class ModificarMemoria extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-       String titulo = jTextFieldTitulo.getText();
+        Catalogo catalogoModificado = null;
+        String titulo = jTextFieldTitulo.getText();
         String nombreUnico = jTextFieldAutor.getText();
         String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
@@ -239,7 +238,15 @@ public class ModificarMemoria extends javax.swing.JFrame {
         String remunen = jTextFieldResumen.getText();
         String abstracto = jTextFieldAbstract.getText();
         String nombreConferencia = jTextFieldNombreDeConferencia.getText();
-        Catalogo catalogoModificado = new Memoria(remunen, abstracto, nombreConferencia, titulo, fechaIngreso, autor);
+        if(jDateChooserFechaIngresoACambiar.getDate()==null){
+        catalogoModificado = new Memoria(remunen, abstracto, nombreConferencia, titulo, jTextFieldFechaIngesoActual.getText(), autor, memoriaVieja.getCodigoCatalogo());
+        }else if(jDateChooserFechaIngresoACambiar.getDate()!=null){
+            catalogoModificado = new Memoria(remunen, abstracto, nombreConferencia, titulo, fechaIngreso, autor,memoriaVieja.getCodigoCatalogo());
+        }
+         biblioteca.modificarCatalogo(memoriaVieja, catalogoModificado);
+        dispose();
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
+        catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     /**

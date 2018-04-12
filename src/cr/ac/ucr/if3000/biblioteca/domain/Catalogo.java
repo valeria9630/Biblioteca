@@ -19,7 +19,7 @@ public abstract class Catalogo {
     private Prestamo prestamo;
 
     public Catalogo() {
-        this.codigoCatalogo = contador++;
+        this.codigoCatalogo = 0;
         this.prestamo= prestamo;
 
     }
@@ -31,6 +31,15 @@ public abstract class Catalogo {
         this.autor = autor;
         this.prestamo =prestamo;
     }
+
+    public Catalogo(String titulo, String fechaIngreso, Autor autor, int codigoCatalogo) {
+        this.titulo = titulo;
+        this.fechaIngreso = fechaIngreso;
+        this.autor = autor;
+        this.codigoCatalogo = codigoCatalogo;
+    }
+    
+    
 
     public Catalogo(String titulo, String fechaIngreso, Autor autor, Prestamo prestamo) {
         this.titulo = titulo;

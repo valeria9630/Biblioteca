@@ -5,9 +5,11 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Autor;
 import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
 import cr.ac.ucr.if3000.biblioteca.domain.Catalogo;
 import cr.ac.ucr.if3000.biblioteca.domain.Periodico;
+import java.util.Calendar;
 
 /**
  *
@@ -33,6 +35,7 @@ public class ModificarPeriodico extends javax.swing.JFrame {
         jTextFieldTituloISSN.setText(this.periodicoViejo.getIssb());
         jTextFieldEdicion.setText(this.periodicoViejo.getEdicion());
         jTextFieldFecha2Actual.setText(this.periodicoViejo.getFecha());
+        
     }
 
     /**
@@ -236,7 +239,34 @@ public class ModificarPeriodico extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-        // TODO add your handling code here:
+
+        Catalogo catalogoModificado = null;
+        String titulo = jTextFieldTitulo.getText();
+        String nombreUnico = jTextFieldAutor.getText();
+        String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
+        String fechaIngreso = (dia+"-"+mes+"-"+año);
+        Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
+        String issn = jTextFieldTituloISSN.getText();
+        String edicion = jTextFieldEdicion.getText();
+        String dia2 = Integer.toString(jDateChooserFecha2ACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes2 = Integer.toString(jDateChooserFecha2ACambiar.getCalendar().get(Calendar.MONTH) + 1);
+        String año2 = Integer.toString(jDateChooserFecha2ACambiar.getCalendar().get(Calendar.YEAR));
+        String fecha = (dia+"-"+mes+"-"+año);
+        if(jDateChooserFechaIngresoACambiar.getDate()==null&&jDateChooserFecha2ACambiar.getDate()==null){
+        catalogoModificado = new Periodico(issn, edicion, jTextFieldFecha2Actual.getText(), titulo, jTextFieldFechaIngresoActual.getText(), autor,periodicoViejo.getCodigoCatalogo());
+        }else if(jDateChooserFechaIngresoACambiar.getDate()!=null&&jDateChooserFecha2ACambiar.getDate()!=null){
+        catalogoModificado = new Periodico(issn, edicion, fecha, titulo, fechaIngreso, autor, periodicoViejo.getCodigoCatalogo());
+        }else if(jDateChooserFechaIngresoACambiar.getDate()==null&&jDateChooserFecha2ACambiar.getDate()!=null){
+           catalogoModificado = new Periodico(issn, edicion, fecha, titulo, jTextFieldFechaIngresoActual.getText(), autor, periodicoViejo.getCodigoCatalogo());
+        }else if(jDateChooserFechaIngresoACambiar.getDate()!=null&&jDateChooserFecha2ACambiar.getDate()==null){
+         catalogoModificado = new Periodico(issn, edicion, jTextFieldFecha2Actual.getText(), titulo, fechaIngreso, autor, periodicoViejo.getCodigoCatalogo());
+        }
+        biblioteca.modificarCatalogo(periodicoViejo, catalogoModificado);
+        dispose();
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
+        catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     /**

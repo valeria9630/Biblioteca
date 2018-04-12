@@ -27,6 +27,13 @@ public class Periodico extends Catalogo{
         this.fecha = fecha;
     }
 
+    public Periodico(String issb, String edicion, String fecha, String titulo, String fechaIngreso, Autor autor, int codigoCatalogo) {
+        super(titulo, fechaIngreso, autor, codigoCatalogo);
+        this.issb = issb;
+        this.edicion = edicion;
+        this.fecha = fecha;
+    }
+    
     public String getIssb() {
         return issb;
     }
@@ -56,6 +63,10 @@ public class Periodico extends Catalogo{
         return "Periodico{" + "issb=" + issb + ", edicion=" + edicion + ", fecha=" + fecha + '}';
     }
     
+    public String mostrar3() {
+        return "Titulon:"+getTitulo()+"\n"+"FechaIngreso:"+getFechaIngreso()+"\n"+"Autor:"+getAutor().getNombreUnico()+"\n"+
+                "ISSB:"+getIssb()+"\n"+"Edicion:"+getEdicion()+"\n"+"Fecha:"+getFecha();
+    }
     
     
 }

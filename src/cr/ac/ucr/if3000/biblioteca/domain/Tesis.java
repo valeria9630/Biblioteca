@@ -25,6 +25,12 @@ public class Tesis extends Catalogo {
         this.abstracion = abstracion;
     }
 
+    public Tesis(String resumen, String abstracion, String titulo, String fechaIngreso, Autor autor, int codigoCatalogo) {
+        super(titulo, fechaIngreso, autor, codigoCatalogo);
+        this.resumen = resumen;
+        this.abstracion = abstracion;
+    }
+
     public String getResumen() {
         return resumen;
     }
@@ -46,4 +52,8 @@ public class Tesis extends Catalogo {
         return "Tesis{" + "resumen=" + resumen + ", abstracion=" + abstracion + '}';
     }
 
+    public String mostrar4() {
+        return  "Titulon:"+getTitulo()+"\n"+"FechaIngreso:"+getFechaIngreso()+"\n"+"Autor:"+getAutor().getNombreUnico()+"\n"+
+                "Resumen:"+getResumen()+"\n"+"Abstract:"+getAbstracion();
+    }
 }

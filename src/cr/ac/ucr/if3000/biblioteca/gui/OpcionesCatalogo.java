@@ -14,6 +14,9 @@ import cr.ac.ucr.if3000.biblioteca.domain.Otros;
 import cr.ac.ucr.if3000.biblioteca.domain.Periodico;
 import cr.ac.ucr.if3000.biblioteca.domain.Revista;
 import cr.ac.ucr.if3000.biblioteca.domain.Tesis;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,6 +37,9 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        boolean esSeleccionado = false;
+       
+        
 
         modelo.addColumn("codigo");
         modelo.addColumn("Titulo");
@@ -46,9 +52,31 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
             this.jTableListaCatalogo.setModel(modelo);
 
         }
-
+        
+//         while(esSeleccionado==true){
+//        if(jTableListaCatalogo.addKeyListener(l))
+//        seleccionado =  (int) jTableListaCatalogo.getValueAt(jTableListaCatalogo.getSelectedRow(), 0);
+//        jTextArea1.setText(biblioteca.buscaCatalogoPorCodigo(seleccionado));
+//          esSeleccionado=true;
+//            while(esSeleccionado ==true){
+//         
+//                seleccionado = jTableListaCatalogo.getAccessibleContext();
+//                
+//    }
+    
+        jTableListaCatalogo.addMouseListener(new MouseAdapter() {
+         public void mousePressed(MouseEvent me) { 
+        int seleccionado =  (int) jTableListaCatalogo.getValueAt(jTableListaCatalogo.getSelectedRow(), 0);
+       jTextArea1.setText(biblioteca.buscaCatalogoPorCodigo(seleccionado));
+         }
+        });
     }
 
+    
+//    public void keyPressed(KeyEvent e){
+//       int seleccionado =  (int) jTableListaCatalogo.getValueAt(jTableListaCatalogo.getSelectedRow(), 0);
+//       jTextArea1.setText(biblioteca.buscaCatalogoPorCodigo(seleccionado));
+//}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,9 +92,10 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
         jComboBoxAgregar = new javax.swing.JComboBox<>();
         jButtonModificar = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
-        jButtonVerInformacion = new javax.swing.JButton();
         jButtonAgregar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mantenimiento Catálogo");
@@ -115,10 +144,6 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
             }
         });
 
-        jButtonVerInformacion.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jButtonVerInformacion.setForeground(new java.awt.Color(0, 51, 255));
-        jButtonVerInformacion.setText("Ver Información");
-
         jButtonAgregar.setForeground(new java.awt.Color(51, 51, 255));
         jButtonAgregar.setText("Agregar");
         jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +159,12 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setForeground(new java.awt.Color(0, 102, 102));
+        jTextArea1.setRows(5);
+        jTextArea1.setDisabledTextColor(new java.awt.Color(0, 102, 102));
+        jScrollPane2.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,19 +172,23 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelMantenimientoCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(jLabelMantenimientoCatalogo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBoxAgregar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonVerInformacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(87, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,14 +202,14 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jComboBoxAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonAgregar)
-                                .addGap(20, 20, 20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonModificar)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonEliminar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonVerInformacion)))
+                                .addGap(26, 26, 26)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(45, 45, 45))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(133, 133, 133)
@@ -190,39 +225,39 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxAgregarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-int seleccionado = (int) jTableListaCatalogo.getValueAt(jTableListaCatalogo.getSelectedRow(), 0);
+        int seleccionado = (int) jTableListaCatalogo.getValueAt(jTableListaCatalogo.getSelectedRow(), 0);
         Catalogo catalogo = null;
         boolean encontrado = false;
         int cont = 0;
-        while(!encontrado){
+        while (!encontrado) {
             catalogo = biblioteca.getCatalogos().get(cont);
             if (seleccionado == catalogo.getCodigoCatalogo()) {
                 encontrado = true;
             }
             cont++;
         }
-      
-        if(catalogo instanceof Libro){
-        ModificarLibro modificarLibro = new ModificarLibro(catalogo);
-        modificarLibro.setVisible(true);
-    } else if(catalogo instanceof Revista){
-        ModificarRevista modificarRevista = new ModificarRevista(catalogo);
-        modificarRevista.setVisible(true);
-    }else if(catalogo instanceof Tesis){
-        ModificarTesis modificarTesis = new ModificarTesis(catalogo);
-        modificarTesis.setVisible(true);
-    }else if(catalogo instanceof Periodico){
-        ModificarPeriodico modificarPeriodico = new ModificarPeriodico(catalogo);
-        modificarPeriodico.setVisible(true);
-    }else if(catalogo instanceof Memoria){
-        ModificarMemoria modificarMemoria = new ModificarMemoria(catalogo);
-        modificarMemoria.setVisible(true);
-    }else if(catalogo instanceof Otros){
-        ModificarOtro modificarOtro = new ModificarOtro(catalogo);
-        modificarOtro.setVisible(true);
-    }
+
+        if (catalogo instanceof Libro) {
+            ModificarLibro modificarLibro = new ModificarLibro(catalogo);
+            modificarLibro.setVisible(true);
+        } else if (catalogo instanceof Revista) {
+            ModificarRevista modificarRevista = new ModificarRevista(catalogo);
+            modificarRevista.setVisible(true);
+        } else if (catalogo instanceof Tesis) {
+            ModificarTesis modificarTesis = new ModificarTesis(catalogo);
+            modificarTesis.setVisible(true);
+        } else if (catalogo instanceof Periodico) {
+            ModificarPeriodico modificarPeriodico = new ModificarPeriodico(catalogo);
+            modificarPeriodico.setVisible(true);
+        } else if (catalogo instanceof Memoria) {
+            ModificarMemoria modificarMemoria = new ModificarMemoria(catalogo);
+            modificarMemoria.setVisible(true);
+        } else if (catalogo instanceof Otros) {
+            ModificarOtro modificarOtro = new ModificarOtro(catalogo);
+            modificarOtro.setVisible(true);
+        }
         dispose();
-                             
+
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
@@ -307,10 +342,11 @@ int seleccionado = (int) jTableListaCatalogo.getValueAt(jTableListaCatalogo.getS
     private javax.swing.JButton jButtonAgregar;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonModificar;
-    private javax.swing.JButton jButtonVerInformacion;
     private javax.swing.JComboBox<String> jComboBoxAgregar;
     private javax.swing.JLabel jLabelMantenimientoCatalogo;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableListaCatalogo;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

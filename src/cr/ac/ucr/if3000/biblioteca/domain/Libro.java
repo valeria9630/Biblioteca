@@ -34,6 +34,13 @@ public class Libro extends Catalogo {
         this.subtema = subtema;
     }
 
+    public Libro(String isbn, String tema, String subtema, String titulo, String fechaIngreso, Autor autor, int codigoCatalogo) {
+        super(titulo, fechaIngreso, autor, codigoCatalogo);
+        this.isbn = isbn;
+        this.tema = tema;
+        this.subtema = subtema;
+    }
+
    
 
     public String getIsbn() {
@@ -63,6 +70,11 @@ public class Libro extends Catalogo {
     @Override
     public String toString() {
         return "Libro{" + "isbn=" + isbn + ", tema=" + tema + ", subtema=" + subtema + '}';
+    }
+  
+    public String mostrar1() {
+        return "Titulon:"+getTitulo()+"\n"+"FechaIngreso:"+getFechaIngreso()+"\n"+"Autor:"+getAutor().getNombreUnico()+"\n"+
+                "ISBN:"+getIsbn()+"\n"+"Tema:"+getTema()+"\n"+"SubTema:"+getSubtema();
     }
 
 }

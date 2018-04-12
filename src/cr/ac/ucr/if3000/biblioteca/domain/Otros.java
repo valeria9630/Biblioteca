@@ -17,7 +17,18 @@ public class Otros extends Catalogo {
     public Otros(String titulo, String fechaIngreso, Autor autor) {
         super(titulo, fechaIngreso, autor);
     }
+
+    public Otros(String titulo, String fechaIngreso, Autor autor, int codigoCatalogo) {
+        super(titulo, fechaIngreso, autor, codigoCatalogo);
+    }
+
+    @Override
+    public String toString() {
+        return "Otros{" + '}';
+    }
     
    
-    
+    public String mostrar6() {
+        return "Titulon:"+getTitulo()+"\n"+"FechaIngreso:"+getFechaIngreso()+"\n"+"Autor:"+getAutor().getNombreUnico();
+    }
 }

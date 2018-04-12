@@ -30,6 +30,15 @@ public class Memoria extends Catalogo{
         this.nombreConferencia = nombreConferencia;
     }
 
+    public Memoria(String resumen, String abstracto, String nombreConferencia, String titulo, String fechaIngreso, Autor autor, int codigoCatalogo) {
+        super(titulo, fechaIngreso, autor, codigoCatalogo);
+        this.resumen = resumen;
+        this.abstracto = abstracto;
+        this.nombreConferencia = nombreConferencia;
+    }
+    
+    
+
     public String getResumen() {
         return resumen;
     }
@@ -60,7 +69,10 @@ public class Memoria extends Catalogo{
     }
   
     
-    
+    public String mostrar5() {
+        return "Titulon:"+getTitulo()+"\n"+"FechaIngreso:"+getFechaIngreso()+"\n"+"Autor:"+getAutor().getNombreUnico()+"\n"+
+                "Resumen:"+getResumen()+"\n"+"Abstract:"+getAbstracto()+"\n"+"Nombre de Conferencia:"+getNombreConferencia();
+    }
     
     
 }
