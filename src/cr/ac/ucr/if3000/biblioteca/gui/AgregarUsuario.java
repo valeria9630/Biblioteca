@@ -10,6 +10,7 @@ import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
 import cr.ac.ucr.if3000.biblioteca.domain.Bibliotecario;
 import cr.ac.ucr.if3000.biblioteca.domain.Persona;
 import cr.ac.ucr.if3000.biblioteca.domain.Usuario;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -208,48 +209,54 @@ public class AgregarUsuario extends javax.swing.JFrame {
         String nombreCompleto = jTextFieldNombreCompleto.getText();
         String tipoIdentificacion = (String) jComboBoxTipoIdentificacion.getSelectedItem();
         String numeroIdentificacion = (String) jTextFieldNumeroIdentificacion.getText();
-
+        String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
         if (tipoPersona.equalsIgnoreCase("Usuario")) {
-            Usuario persona = new Usuario(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
+
+            Usuario persona = new Usuario(nombreUsuario, contraseñaEncriptada, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
             biblioteca.agregarPersona(persona);
             MantenimentoUsuarios mantenimientoUsuarios = new MantenimentoUsuarios();
             mantenimientoUsuarios.setVisible(true);
+            dispose();
         }
 
         if (tipoPersona.equalsIgnoreCase("Autor")) {
-            Autor persona = new Autor(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
+            Autor persona = new Autor(nombreUsuario, contraseñaEncriptada, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
             biblioteca.agregarPersona(persona);
             MantenimentoAutores mantenimientoAutores = new MantenimentoAutores();
             mantenimientoAutores.setVisible(true);
+            dispose();
         }
         if (tipoPersona.equalsIgnoreCase("Bibliotecologo")) {
-            Bibliotecario persona = new Bibliotecario(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
+            Bibliotecario persona = new Bibliotecario(nombreUsuario, contraseñaEncriptada, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
             biblioteca.agregarPersona(persona);
             MantenimentoBibliotecologos mantenimientoBibliotecologos = new MantenimentoBibliotecologos();
             mantenimientoBibliotecologos.setVisible(true);
-
+            dispose();
         }
         if (tipoPersona.equalsIgnoreCase("usuarioMenu")) {
-            Usuario persona = new Usuario(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
+            Usuario persona = new Usuario(nombreUsuario, contraseñaEncriptada, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
             biblioteca.agregarPersona(persona);
             MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
             menuBibliotecologo.setVisible(true);
+            dispose();
 
         }
 
         if (tipoPersona.equalsIgnoreCase("autorMenu")) {
-            Autor persona = new Autor(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
+            Autor persona = new Autor(nombreUsuario, contraseñaEncriptada, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
             biblioteca.agregarPersona(persona);
             MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
             menuBibliotecologo.setVisible(true);
+            dispose();
         }
         if (tipoPersona.equalsIgnoreCase("bibliotecarioMenu")) {
-            Bibliotecario persona = new Bibliotecario(nombreUsuario, contraseña, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
+            Bibliotecario persona = new Bibliotecario(nombreUsuario, contraseñaEncriptada, nombreCompleto, tipoIdentificacion, numeroIdentificacion);
             biblioteca.agregarPersona(persona);
             MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
             menuBibliotecologo.setVisible(true);
+            dispose();
         }
-        dispose();
+
 
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 

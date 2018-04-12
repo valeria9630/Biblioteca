@@ -16,43 +16,43 @@ import javax.swing.table.DefaultTableModel;
  * @author ValeriaLeivaQuirós
  */
 public class LibrosPrestados extends javax.swing.JFrame {
-
+    
     DefaultTableModel tablaLibrosPrestados;
     Biblioteca biblioteca;
     Persona persona;
-
+    
     public LibrosPrestados() {
         tablaLibrosPrestados = new DefaultTableModel();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         biblioteca = new Biblioteca();
-
+        
         tablaLibrosPrestados.addColumn("codigo");
         tablaLibrosPrestados.addColumn("Titulo");
         tablaLibrosPrestados.addColumn("Fecha de Ingreso");
         tablaLibrosPrestados.addColumn("Autor");
-
+        
         for (int i = 0; i < biblioteca.catalogoPrestado().size(); i++) {
             Catalogo catalogo = biblioteca.getCatalogos().get(i);
             tablaLibrosPrestados.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
             this.jTableLibrosPrestados.setModel(tablaLibrosPrestados);
         }
-
+        
     }
-
+    
     public LibrosPrestados(Persona persona) {
         tablaLibrosPrestados = new DefaultTableModel();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         biblioteca = new Biblioteca();
-
+        
         tablaLibrosPrestados.addColumn("codigo");
         tablaLibrosPrestados.addColumn("Titulo");
         tablaLibrosPrestados.addColumn("Fecha de Ingreso");
         tablaLibrosPrestados.addColumn("Autor");
-
+        
         for (int i = 0; i < biblioteca.catalogoPrestado().size(); i++) {
             Catalogo catalogo = biblioteca.getCatalogos().get(i);
             if (biblioteca.getCatalogos().get(i).getPrestamo().getPersona().getIdentificacion().equalsIgnoreCase(persona.getIdentificacion())) {
@@ -61,10 +61,37 @@ public class LibrosPrestados extends javax.swing.JFrame {
             this.jTableLibrosPrestados.setModel(tablaLibrosPrestados);
         }
         persona = persona;
-
+        
         jLabelNombre.setText(persona.getNombreUnico());
         jLabelCedula.setText(persona.getIdentificacion());
-
+        
+    }
+    
+    public LibrosPrestados(Persona persona, String tipo) {
+        tablaLibrosPrestados = new DefaultTableModel();
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        biblioteca = new Biblioteca();
+        
+        tablaLibrosPrestados.addColumn("codigo");
+        tablaLibrosPrestados.addColumn("Titulo");
+        tablaLibrosPrestados.addColumn("Fecha de Ingreso");
+        tablaLibrosPrestados.addColumn("Autor");
+        
+        for (int i = 0; i < biblioteca.catalogoPrestado().size(); i++) {
+            Catalogo catalogo = biblioteca.getCatalogos().get(i);
+            if (biblioteca.getCatalogos().get(i).getPrestamo().getPersona().getIdentificacion().equalsIgnoreCase(persona.getIdentificacion())) {
+                tablaLibrosPrestados.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
+            }
+            this.jTableLibrosPrestados.setModel(tablaLibrosPrestados);
+        }
+        persona = persona;
+        
+        jLabelNombre.setText(persona.getNombreUnico());
+        jLabelCedula.setText(persona.getIdentificacion());
+        jButtonBuscarUsuario.setVisible(false);
+        
     }
 
     /**

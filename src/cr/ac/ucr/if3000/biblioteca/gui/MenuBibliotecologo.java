@@ -64,6 +64,7 @@ public class MenuBibliotecologo extends javax.swing.JFrame {
         jMenuItemBuscarObra = new javax.swing.JMenuItem();
         jMenu14 = new javax.swing.JMenu();
         jMenuSalir = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -316,6 +317,17 @@ public class MenuBibliotecologo extends javax.swing.JFrame {
         jMenuSalir.setForeground(new java.awt.Color(0, 51, 255));
         jMenuSalir.setText("Salir");
         jMenuSalir.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+
+        jMenuItem2.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jMenuItem2.setForeground(new java.awt.Color(0, 51, 255));
+        jMenuItem2.setText("Cerrar Sesion");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenuSalir.add(jMenuItem2);
+
         jMenuBar1.add(jMenuSalir);
 
         setJMenuBar(jMenuBar1);
@@ -337,61 +349,70 @@ public class MenuBibliotecologo extends javax.swing.JFrame {
     private void jMenuItemLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLibroActionPerformed
         AgregarLibro agregarLibro = new AgregarLibro();
         agregarLibro.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jMenuItemLibroActionPerformed
 
     private void jMenuItemRevistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRevistaActionPerformed
         AgregarRevista agregarRevista = new AgregarRevista();
         agregarRevista.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jMenuItemRevistaActionPerformed
 
     private void TesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TesisActionPerformed
         AgregarTesis agregarTesis = new AgregarTesis();
         agregarTesis.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_TesisActionPerformed
 
     private void jMenuItemPeriodicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPeriodicoActionPerformed
         AgregarPeriodico agregarPeriodico = new AgregarPeriodico();
         agregarPeriodico.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jMenuItemPeriodicoActionPerformed
 
     private void jMenuItemMemoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMemoriaActionPerformed
         AgregarMemoria agregarMemoria = new AgregarMemoria();
         agregarMemoria.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jMenuItemMemoriaActionPerformed
 
     private void jMenuItemOtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemOtroActionPerformed
         AgregarOtro agregarOtro = new AgregarOtro();
         agregarOtro.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jMenuItemOtroActionPerformed
 
     private void jMenuItemRegistrarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegistrarAutorActionPerformed
         AgregarUsuario agregarUsuario = new AgregarUsuario("autorMenu");
         agregarUsuario.setVisible(true);
-
+        dispose();
 
     }//GEN-LAST:event_jMenuItemRegistrarAutorActionPerformed
 
     private void jMenuItemRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegistrarEmpleadoActionPerformed
         AgregarUsuario agregarUsuario = new AgregarUsuario("bibliotecarioMenu");
         agregarUsuario.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jMenuItemRegistrarEmpleadoActionPerformed
 
     private void jMenuItemRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegistrarUsuarioActionPerformed
         AgregarUsuario agregarUsuario = new AgregarUsuario("usuarioMenu");
         agregarUsuario.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jMenuItemRegistrarUsuarioActionPerformed
 
     private void jMenuItemMantenimientoCtalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMantenimientoCtalogoActionPerformed
         OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);
+        dispose();
 
 
     }//GEN-LAST:event_jMenuItemMantenimientoCtalogoActionPerformed
@@ -399,6 +420,7 @@ public class MenuBibliotecologo extends javax.swing.JFrame {
     private void jMenuItemMantemientoAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMantemientoAutoresActionPerformed
         MantenimentoAutores mantenimientAutores = new MantenimentoAutores();
         mantenimientAutores.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jMenuItemMantemientoAutoresActionPerformed
 
@@ -406,18 +428,20 @@ public class MenuBibliotecologo extends javax.swing.JFrame {
         MantenimentoBibliotecologos mantenimentoBibliotecologos = new MantenimentoBibliotecologos();
         mantenimentoBibliotecologos.setVisible(true);
 
+        dispose();
     }//GEN-LAST:event_jMenuItemMantenimientoEmpleadoActionPerformed
 
     private void jMenuItemMantenimientoUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMantenimientoUsuariosActionPerformed
         MantenimentoUsuarios mantenimentoUsuarios = new MantenimentoUsuarios();
         mantenimentoUsuarios.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jMenuItemMantenimientoUsuariosActionPerformed
 
     private void jMenuItemRegistrarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegistrarPrestamoActionPerformed
         RegistrarPrestamo registrarPrestamo = new RegistrarPrestamo();
         registrarPrestamo.setVisible(true);
-
+        dispose();
     }//GEN-LAST:event_jMenuItemRegistrarPrestamoActionPerformed
 
     private void jMenuItemDevolucionObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDevolucionObrasActionPerformed
@@ -444,10 +468,17 @@ public class MenuBibliotecologo extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemBuscarUsuarioActionPerformed
 
     private void jMenuItemBuscarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBuscarObraActionPerformed
-       BuscarObra buscarObra= new BuscarObra();
-       buscarObra.setVisible(true);
-       dispose();
+        BuscarObra buscarObra = new BuscarObra();
+        buscarObra.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jMenuItemBuscarObraActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        InicioDeSesion inicioDeSesion = new InicioDeSesion();
+        inicioDeSesion.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -498,6 +529,7 @@ public class MenuBibliotecologo extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuBuscar;
     private javax.swing.JMenu jMenuEmpleados;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemBuscarObra;
     private javax.swing.JMenuItem jMenuItemBuscarUsuario;
     private javax.swing.JMenuItem jMenuItemDevolucionObras;
