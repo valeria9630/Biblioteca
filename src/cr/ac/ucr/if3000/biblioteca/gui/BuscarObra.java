@@ -11,6 +11,8 @@ import cr.ac.ucr.if3000.biblioteca.domain.Catalogo;
 import cr.ac.ucr.if3000.biblioteca.domain.Persona;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.nio.charset.CodingErrorAction;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -57,7 +59,15 @@ public class BuscarObra extends javax.swing.JFrame {
             this.jTableListaObras.setModel(modelo);
 
         }
+        
+         jTableListaObras.addMouseListener(new MouseAdapter() {
+         public void mousePressed(MouseEvent me) { 
+        int seleccionado =  (int) jTableListaObras.getValueAt(jTableListaObras.getSelectedRow(), 0);
+       jTextArea1.setText(biblioteca.buscaCatalogoPorCodigo(seleccionado));
+         }
+        });
     }
+    
 
     /**
      *
@@ -138,7 +148,12 @@ public class BuscarObra extends javax.swing.JFrame {
         jLabelBuscarPorAutor = new javax.swing.JLabel();
         jButtonRealizarPrestamo = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+<<<<<<< HEAD
         jTextFieldBuscarPorAutor = new javax.swing.JTextField();
+=======
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+>>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Buscar Obra");
@@ -197,6 +212,7 @@ public class BuscarObra extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         jTextFieldBuscarPorAutor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
         jTextFieldBuscarPorAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,6 +224,12 @@ public class BuscarObra extends javax.swing.JFrame {
                 jTextFieldBuscarPorAutorKeyTyped(evt);
             }
         });
+=======
+        jTextArea1.setColumns(20);
+        jTextArea1.setForeground(new java.awt.Color(0, 102, 102));
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+>>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -229,6 +251,7 @@ public class BuscarObra extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(83, 83, 83)
@@ -247,21 +270,56 @@ public class BuscarObra extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonRealizarPrestamo)
                                 .addGap(86, 86, 86))))))
+=======
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldBuscarPorAutor)
+                                            .addComponent(jTextFieldBuscarPorTitulo, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(93, 93, 93)
+                                        .addComponent(jLabelBuscarPorTitulo))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonDevolucionDeObra)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButtonRealizarPrestamo)))
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabelBuscarPorAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(72, 72, 72))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(31, 31, 31))))))))
+>>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(99, 99, 99)
                 .addComponent(jLabelBuscarPorTitulo)
-                .addGap(18, 18, 18)
-                .addComponent(jTextFieldBuscarPorTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextFieldBuscarPorTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabelBuscarPorAutor)
                 .addGap(18, 18, 18)
+<<<<<<< HEAD
                 .addComponent(jTextFieldBuscarPorAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(77, 77, 77)
                 .addComponent(jButtonRealizarPrestamo)
                 .addGap(55, 55, 55))
+=======
+                .addComponent(jTextFieldBuscarPorAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonDevolucionDeObra)
+                    .addComponent(jButtonRealizarPrestamo))
+                .addGap(22, 22, 22))
+>>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -404,7 +462,9 @@ public class BuscarObra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelBuscarPorAutor;
     private javax.swing.JLabel jLabelBuscarPorTitulo;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableListaObras;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextFieldBuscarPorAutor;
     private javax.swing.JTextField jTextFieldBuscarPorTitulo;
     // End of variables declaration//GEN-END:variables

@@ -266,7 +266,20 @@ public class AgregarLibro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
+<<<<<<< HEAD
         
+=======
+
+
+        Autor autor1 = new Autor("andres Calamaro", "opp", "ppo", "njsvn", "hsbdvj");
+        Autor autor2 = new Autor("rocio", "a", "a", "a", "a");
+
+
+
+        biblioteca.agregarPersona(autor1);
+        biblioteca.agregarPersona(autor2);
+
+>>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
         String titulo = jTextFieldTitulo.getText();
         String dia = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.MONTH) + 1);

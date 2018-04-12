@@ -28,11 +28,18 @@ public class PruebasVale {
         Autor autor = new Autor("l", contraseñaEncriptada, "l", "l", "l");
         Autor autor1 = new Autor("a", "b", "b", "a", "a");
 
+<<<<<<< HEAD
         biblioteca.agregarPersona(autor);
         biblioteca.agregarPersona(autor1);
 
         for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
             System.out.println(biblioteca.getPersonas().get(i).toString());
+=======
+biblioteca.devolverCatalogo(libro);
+System.out.println("Libros prestados" + biblioteca.catalogoPrestado().get(0));
+System.out.println(autor.getContraseña());
+//System.out.println(biblioteca.validarContraseña("l"));
+>>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
 
         }
         System.out.println(biblioteca.buscarPersona(autor1));

@@ -30,6 +30,7 @@ public class Revista extends Catalogo {
         this.edicion = edicion;
     }
 
+
     public Revista(String issn, String edicion, String titulo, String fechaIngreso, Autor autor, int codigoCatalogo) {
         super(titulo, fechaIngreso, autor, codigoCatalogo);
         this.issn = issn;
@@ -52,6 +53,7 @@ public class Revista extends Catalogo {
         this.edicion = edicion;
     }
 
+
     @Override
     public String toString() {
         return "Revista{" + "issn=" + issn + ", edicion=" + edicion + '}';
@@ -61,5 +63,6 @@ public class Revista extends Catalogo {
         return "Titulon:" + getTitulo() + "\n" + "FechaIngreso:" + getFechaIngreso() + "\n" + "Autor:" + getAutor().getNombreUnico() + "\n"
                 + "ISSN:" + getIssn() + "\n" + "Edicion:" + getEdicion();
     }
+
 
 }
