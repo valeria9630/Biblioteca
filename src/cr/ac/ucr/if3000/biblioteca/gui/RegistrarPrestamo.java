@@ -312,7 +312,7 @@ public class RegistrarPrestamo extends javax.swing.JFrame {
         String año3 = Integer.toString(jDateChooserFechaPrestamo.getCalendar().get(Calendar.YEAR));
 
         String fechaFinal = (dia1 + "-" + mes2 + "-" + año3);
-
+        System.out.println(fechaFinal);
         Prestamo prestamo = new Prestamo(Integer.parseInt(numeroPrestamo), biblioteca.buscarPersonaPorIdentificacion(personaIdentificacion), fechaInicio, fechaFinal);
 
         System.out.println(prestamo.toString());

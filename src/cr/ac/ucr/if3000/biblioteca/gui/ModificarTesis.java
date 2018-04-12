@@ -16,12 +16,13 @@ import java.util.Calendar;
  * @author daniela
  */
 public class ModificarTesis extends javax.swing.JFrame {
+
     Biblioteca biblioteca;
     Tesis tesisVieja;
+
     /**
      * Creates new form AgregarTesis
      */
-    
 
     public ModificarTesis(Catalogo catalogoViejo) {
         biblioteca = new Biblioteca();
@@ -31,6 +32,7 @@ public class ModificarTesis extends javax.swing.JFrame {
         setResizable(false);
         jTextFieldTitulo.setText(this.tesisVieja.getTitulo());
         jTextFieldFechaIngresoActual.setText(this.tesisVieja.getFechaIngreso());
+        jTextFieldAutor.setEnabled(false);
         jTextFieldAutor.setText(this.tesisVieja.getAutor().getNombreUnico());
         jTextFieldResumen.setText(this.tesisVieja.getResumen());
         jTextFieldAbstract.setText(this.tesisVieja.getAbstracion());
@@ -209,23 +211,23 @@ public class ModificarTesis extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-         Catalogo catalogoModificado = null;
+        Catalogo catalogoModificado = null;
         String titulo = jTextFieldTitulo.getText();
         String nombreUnico = jTextFieldAutor.getText();
-        
+
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
         String resumen = jTextFieldResumen.getText();
         String abstracto = jTextFieldAbstract.getText();
-        if(jDateChooserFechaIngresoACambiar.getDate()==null){
-        catalogoModificado = new Tesis(resumen, abstracto, titulo, jTextFieldFechaIngresoActual.getText(), autor, tesisVieja.getCodigoCatalogo());
-        }else if(jDateChooserFechaIngresoACambiar.getDate()!=null){
+        if (jDateChooserFechaIngresoACambiar.getDate() == null) {
+            catalogoModificado = new Tesis(resumen, abstracto, titulo, jTextFieldFechaIngresoActual.getText(), autor, tesisVieja.getCodigoCatalogo());
+        } else if (jDateChooserFechaIngresoACambiar.getDate() != null) {
             String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
-        String fechaIngreso = (dia+"-"+mes+"-"+año);
+            String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
+            String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
+            String fechaIngreso = (dia + "-" + mes + "-" + año);
             catalogoModificado = new Tesis(resumen, abstracto, titulo, fechaIngreso, autor, tesisVieja.getCodigoCatalogo());
         }
-        biblioteca.modificarCatalogo(tesisVieja,catalogoModificado);
+        biblioteca.modificarCatalogo(tesisVieja, catalogoModificado);
         dispose();
         OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);

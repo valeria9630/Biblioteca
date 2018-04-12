@@ -19,7 +19,6 @@ public class ModificarRevista extends javax.swing.JFrame {
 
     Biblioteca biblioteca;
     Revista revistaVieja;
-    
 
     /**
      * Creates new form AgregarRevista
@@ -32,10 +31,11 @@ public class ModificarRevista extends javax.swing.JFrame {
         this.revistaVieja = (Revista) catalogoViejo;
         jTextFieldTitulo.setText(this.revistaVieja.getTitulo());
         jTextFieldFechaIngresoActual.setText(this.revistaVieja.getFechaIngreso());
+        jTextFieldAutor.setEnabled(false);
         jTextFieldAutor.setText(this.revistaVieja.getAutor().getNombreUnico());
         jTextFieldIssn.setText(this.revistaVieja.getIssn());
         jTextFieldEdicion.setText(this.revistaVieja.getEdicion());
-        
+
     }
 
     /**
@@ -204,20 +204,20 @@ public class ModificarRevista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
-         Catalogo catalogoModificado = null;
+        Catalogo catalogoModificado = null;
         String titulo = jTextFieldTitulo.getText();
         String nombreUnico = jTextFieldAutor.getText();
-       
+
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
         String issn = jTextFieldIssn.getText();
         String edicion = jTextFieldEdicion.getText();
-        if(jDateChooserFechaIngresoACambiar.getDate()==null){
-        catalogoModificado = new Revista(issn, edicion, titulo, jTextFieldFechaIngresoActual.getText(), autor, revistaVieja.getCodigoCatalogo());
-        }else if(jDateChooserFechaIngresoACambiar.getDate()!=null){
-             String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
-        String fechaIngreso = (dia+"-"+mes+"-"+año);
+        if (jDateChooserFechaIngresoACambiar.getDate() == null) {
+            catalogoModificado = new Revista(issn, edicion, titulo, jTextFieldFechaIngresoActual.getText(), autor, revistaVieja.getCodigoCatalogo());
+        } else if (jDateChooserFechaIngresoACambiar.getDate() != null) {
+            String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
+            String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
+            String fechaIngreso = (dia + "-" + mes + "-" + año);
             catalogoModificado = new Revista(issn, edicion, titulo, fechaIngreso, autor, revistaVieja.getCodigoCatalogo());
         }
         biblioteca.modificarCatalogo(revistaVieja, catalogoModificado);
@@ -229,8 +229,6 @@ public class ModificarRevista extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregar;

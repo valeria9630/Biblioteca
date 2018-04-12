@@ -179,9 +179,10 @@ public class MantenimentoAutores extends javax.swing.JFrame {
     private void jButtonVerObrasEscritasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerObrasEscritasActionPerformed
         Persona autor = null;
         autor = biblioteca.buscarPersonaPorIdentificacion((String) tablaAutores.getValueAt(jTableListaAutores.getSelectedRow(), 4));
-        System.out.println("***" + autor.toString());
+
         BuscarObra buscarObra = new BuscarObra(autor, "MantenimientoAutores");
         buscarObra.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jButtonVerObrasEscritasActionPerformed
 

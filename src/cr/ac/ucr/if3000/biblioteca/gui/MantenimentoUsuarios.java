@@ -171,9 +171,10 @@ public class MantenimentoUsuarios extends javax.swing.JFrame {
         Persona personaLibrosPrestados = null;
         personaLibrosPrestados = biblioteca.buscarPersonaPorIdentificacion((String) tablaUsuarios.getValueAt(jTableListaUsuarios.getSelectedRow(), 4));
 
-        LibrosPrestados librosPrestados = new LibrosPrestados(personaLibrosPrestados);
+        LibrosPrestados librosPrestados = new LibrosPrestados(personaLibrosPrestados, "MantenimientoUsuarios");
 
         librosPrestados.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonVerLibrosPrestadosActionPerformed
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed

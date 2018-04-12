@@ -17,9 +17,10 @@ import java.util.Calendar;
  * @author daniela
  */
 public class ModificarLibro extends javax.swing.JFrame {
-
+    
     Biblioteca biblioteca;
     Libro libroViejo;
+    Autor autorCatalogo;
 
     /**
      * Creates new form agregarLibro
@@ -32,6 +33,7 @@ public class ModificarLibro extends javax.swing.JFrame {
         this.libroViejo = (Libro) catalogoViejo;
         jTextFieldTitulo.setText(this.libroViejo.getTitulo());
         jTextFieldFechaIngresoActual.setText(this.libroViejo.getFechaIngreso());
+        jTextFieldAutor.setEnabled(false);
         jTextFieldAutor.setText(this.libroViejo.getAutor().getNombreUnico());
         jTextFieldISBN.setText(this.libroViejo.getIsbn());
         jTextFieldTema.setText(this.libroViejo.getTema());
@@ -169,9 +171,9 @@ public class ModificarLibro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jLabelFechaIngreso)
-                        .addGap(18, 18, 18)
+                        .addGap(30, 30, 30)
                         .addComponent(jTextFieldFechaIngresoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDateChooserFechaACambiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(43, 43, 43))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -241,15 +243,15 @@ public class ModificarLibro extends javax.swing.JFrame {
         String nombreUnico = jTextFieldAutor.getText();
         
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
-       
-        if(jDateChooserFechaACambiar.getDate()== null){
-        catalogoModificado = new Libro(isbn, tema, subtema, titulo, jTextFieldFechaIngresoActual.getText(), autor,libroViejo.getCodigoCatalogo() );
-        }else if(jDateChooserFechaACambiar.getDate()!=null){
-        String dia = Integer.toString(jDateChooserFechaACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jDateChooserFechaACambiar.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(jDateChooserFechaACambiar.getCalendar().get(Calendar.YEAR));
-        String fechaIngreso = (dia + "-" + mes + "-" + año);
-        catalogoModificado = new Libro(isbn, tema, subtema, titulo, fechaIngreso, autor,libroViejo.getCodigoCatalogo() );
+        
+        if (jDateChooserFechaACambiar.getDate() == null) {
+            catalogoModificado = new Libro(isbn, tema, subtema, titulo, jTextFieldFechaIngresoActual.getText(), autor, libroViejo.getCodigoCatalogo());
+        } else if (jDateChooserFechaACambiar.getDate() != null) {
+            String dia = Integer.toString(jDateChooserFechaACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes = Integer.toString(jDateChooserFechaACambiar.getCalendar().get(Calendar.MONTH) + 1);
+            String año = Integer.toString(jDateChooserFechaACambiar.getCalendar().get(Calendar.YEAR));
+            String fechaIngreso = (dia + "-" + mes + "-" + año);
+            catalogoModificado = new Libro(isbn, tema, subtema, titulo, fechaIngreso, autor, libroViejo.getCodigoCatalogo());
         }
         
         biblioteca.modificarCatalogo(libroViejo, catalogoModificado);

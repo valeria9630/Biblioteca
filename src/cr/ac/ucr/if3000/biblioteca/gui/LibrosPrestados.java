@@ -22,12 +22,13 @@ public class LibrosPrestados extends javax.swing.JFrame {
     Persona persona;
     String tipoInterafaz;
 
-    public LibrosPrestados() {
+    public LibrosPrestados(String tipo) {
         tablaLibrosPrestados = new DefaultTableModel();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         biblioteca = new Biblioteca();
+        tipoInterafaz = tipo;
 
         tablaLibrosPrestados.addColumn("codigo");
         tablaLibrosPrestados.addColumn("Titulo");
@@ -115,7 +116,6 @@ public class LibrosPrestados extends javax.swing.JFrame {
         jLabelNombre = new javax.swing.JLabel();
         jLabelIdentificacion = new javax.swing.JLabel();
         jLabelCedula = new javax.swing.JLabel();
-        jButtonDevolverLibro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLibrosPrestados = new javax.swing.JTable();
         jButtonVolver = new javax.swing.JButton();
@@ -148,24 +148,15 @@ public class LibrosPrestados extends javax.swing.JFrame {
         jLabelIdentificacion.setForeground(new java.awt.Color(0, 51, 255));
         jLabelIdentificacion.setText("Identificación:");
 
-        jButtonDevolverLibro.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jButtonDevolverLibro.setForeground(new java.awt.Color(0, 51, 255));
-        jButtonDevolverLibro.setText("Devolver Libro");
-        jButtonDevolverLibro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDevolverLibroActionPerformed(evt);
-            }
-        });
-
         jTableLibrosPrestados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
         jTableLibrosPrestados.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jTableLibrosPrestados.setForeground(new java.awt.Color(0, 51, 255));
         jTableLibrosPrestados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+
             },
             new String [] {
-                "Tipo", "Titulo", "Autor", "Estado"
+
             }
         ));
         jScrollPane1.setViewportView(jTableLibrosPrestados);
@@ -202,9 +193,7 @@ public class LibrosPrestados extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonDevolverLibro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonBuscarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButtonBuscarUsuario))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,13 +228,11 @@ public class LibrosPrestados extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(294, 294, 294)
-                                .addComponent(jButtonBuscarUsuario)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonDevolverLibro))
+                                .addComponent(jButtonBuscarUsuario))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(19, 19, 19))))
+                        .addGap(26, 26, 26))))
         );
 
         pack();
@@ -256,19 +243,27 @@ public class LibrosPrestados extends javax.swing.JFrame {
         buscarUsuario.setVisible(true);
     }//GEN-LAST:event_jButtonBuscarUsuarioActionPerformed
 
-    private void jButtonDevolverLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevolverLibroActionPerformed
-        DevoluciónDeObras devoluciónDeObras = new DevoluciónDeObras();
-        devoluciónDeObras.setVisible(true);
-    }//GEN-LAST:event_jButtonDevolverLibroActionPerformed
-
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        
+
         if (tipoInterafaz.equalsIgnoreCase("MenuUsuario")) {
             MenuUsuario menuUsuario = new MenuUsuario();
             menuUsuario.setVisible(true);
             dispose();
 
         }
+        if (tipoInterafaz.equalsIgnoreCase("MenuBibliotecologo")) {
+            MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
+            menuBibliotecologo.setVisible(true);
+            dispose();
+
+        }
+        if (tipoInterafaz.equalsIgnoreCase("MantenimientoUsuarios")) {
+            MantenimentoUsuarios mantenimentoUsuarios = new MantenimentoUsuarios();
+            mantenimentoUsuarios.setVisible(true);
+            dispose();
+        }
+
+
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     /**
@@ -300,16 +295,15 @@ public class LibrosPrestados extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LibrosPrestados().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new LibrosPrestados().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscarUsuario;
-    private javax.swing.JButton jButtonDevolverLibro;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

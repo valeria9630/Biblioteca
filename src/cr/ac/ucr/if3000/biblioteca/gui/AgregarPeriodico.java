@@ -16,7 +16,10 @@ import java.util.Calendar;
  * @author daniela
  */
 public class AgregarPeriodico extends javax.swing.JFrame {
+
     Biblioteca biblioteca;
+    Autor autor;
+
     /**
      * Creates new form AgregarPeriodico
      */
@@ -25,6 +28,26 @@ public class AgregarPeriodico extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        
+        jTextFieldAutor.setEnabled(false);
+        jTextFieldEdicion.setEnabled(false);
+        jTextFieldISSN.setEnabled(false);
+        jTextFieldTitulo.setEnabled(false);
+        jDateChooserFecha.setEnabled(false);
+        jDateChooserFechaDeIngreso.setEnabled(false);
+
+//        
+    }
+    
+    public AgregarPeriodico(Autor persona) {
+        biblioteca = new Biblioteca();
+        autor = persona;
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        
+        jTextFieldAutor.setText(persona.getNombreUnico());
+        
     }
 
     /**
@@ -51,6 +74,7 @@ public class AgregarPeriodico extends javax.swing.JFrame {
         jTextFieldEdicion = new javax.swing.JTextField();
         jDateChooserFechaDeIngreso = new com.toedter.calendar.JDateChooser();
         jDateChooserFecha = new com.toedter.calendar.JDateChooser();
+        jButtonUsuario1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agregar Periodico");
@@ -118,6 +142,15 @@ public class AgregarPeriodico extends javax.swing.JFrame {
 
         jDateChooserFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
+        jButtonUsuario1.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jButtonUsuario1.setForeground(new java.awt.Color(0, 51, 255));
+        jButtonUsuario1.setText("Buscar Usuario");
+        jButtonUsuario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUsuario1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,7 +167,7 @@ public class AgregarPeriodico extends javax.swing.JFrame {
                                 .addGap(122, 122, 122)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldEdicion)
-                                    .addComponent(jDateChooserFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                                    .addComponent(jDateChooserFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
                                 .addGap(1, 1, 1))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +190,9 @@ public class AgregarPeriodico extends javax.swing.JFrame {
                         .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(74, 74, 74)
                         .addComponent(jButtonCancelar)))
-                .addGap(77, 77, 77))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
             .addGroup(layout.createSequentialGroup()
                 .addGap(140, 140, 140)
                 .addComponent(jLabelAgregarPeriodico)
@@ -178,11 +213,13 @@ public class AgregarPeriodico extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelFechaIngreso)
                             .addComponent(jDateChooserFechaDeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabelAutor)
-                            .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelIssn)
                             .addComponent(jTextFieldISSN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -204,29 +241,25 @@ public class AgregarPeriodico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-    
-       OpcionesCatalogo catalogo = new OpcionesCatalogo();
+        
+        OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
-       Autor autor1 = new Autor("andres Calamaro", "opp", "ppo", "njsvn", "hsbdvj");
-        Autor autor2 = new Autor("rocio", "jdbv", "bvj", "djkb", "jk");
-        biblioteca.agregarPersona(autor1);
-        biblioteca.agregarPersona(autor2);
         
         String titulo = jTextFieldTitulo.getText();
         String dia = Integer.toString(jDateChooserFechaDeIngreso.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jDateChooserFechaDeIngreso.getCalendar().get(Calendar.MONTH) + 1);
         String año = Integer.toString(jDateChooserFechaDeIngreso.getCalendar().get(Calendar.YEAR));
-        String fechaIngreso = (dia+"-"+mes+"-"+año);
+        String fechaIngreso = (dia + "-" + mes + "-" + año);
         String nombreAutor = jTextFieldAutor.getText();
         String issn = jTextFieldISSN.getText();
         String edicion = jTextFieldEdicion.getText();
         String dia1 = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes1 = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
         String año1 = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
-        String fecha = (dia1+"-"+mes1+"-"+año1);
+        String fecha = (dia1 + "-" + mes1 + "-" + año1);
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreAutor);
         
         System.out.println(autor.toString());
@@ -234,10 +267,17 @@ public class AgregarPeriodico extends javax.swing.JFrame {
         
         biblioteca.agregarCatalogo(periodico);
         dispose();
-     
+        
         OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonAgregarActionPerformed
+
+    private void jButtonUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsuario1ActionPerformed
+        BuscarUsuario buscarUsuario = new BuscarUsuario("Periodico", "buscar");
+        buscarUsuario.setVisible(true);
+        
+        dispose();
+    }//GEN-LAST:event_jButtonUsuario1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,6 +317,7 @@ public class AgregarPeriodico extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregar;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonUsuario1;
     private com.toedter.calendar.JDateChooser jDateChooserFecha;
     private com.toedter.calendar.JDateChooser jDateChooserFechaDeIngreso;
     private javax.swing.JLabel jLabelAgregarPeriodico;

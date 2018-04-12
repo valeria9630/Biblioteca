@@ -20,19 +20,8 @@ public class Biblioteca {
 
     private static ArrayList<Persona> personas = new ArrayList<Persona>();
     private static ArrayList<Catalogo> catalogos = new ArrayList<Catalogo>();
-<<<<<<< HEAD
 
     private static String identificacionPersonaActiva;
-=======
-<<<<<<< HEAD
-    private static String identificacion;
-=======
-<<<<<<< HEAD
-    private static String identificacionPersonaActiva;
-=======
->>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
->>>>>>> 53e4d064574faf6cd94b12620b0dbf70813eaa11
->>>>>>> 8a623c4e36c5e8b0271072f5a6973848a16e853d
 
     public Biblioteca() {
 
@@ -44,30 +33,13 @@ public class Biblioteca {
 
     }
 
-    public static String getIdentificacion() {
-        return identificacion;
-    }
-
-    public static void setIdentificacion(String identificacion) {
-        Biblioteca.identificacion = identificacion;
-=======
-<<<<<<< HEAD
-
-    }
-
     public static String getIdentificacionPersonaActiva() {
         return identificacionPersonaActiva;
     }
 
     public static void setIdentificacionPersonaActiva(String identificacionPersonaActiva) {
         Biblioteca.identificacionPersonaActiva = identificacionPersonaActiva;
-<<<<<<< HEAD
 
-=======
-=======
->>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
->>>>>>> 53e4d064574faf6cd94b12620b0dbf70813eaa11
->>>>>>> 8a623c4e36c5e8b0271072f5a6973848a16e853d
     }
 
     public ArrayList<Persona> getPersonas() {
@@ -107,19 +79,11 @@ public class Biblioteca {
 
     public boolean validarContraseña(String contraseña) {
         boolean validarContraseña = false;
-         String contraseñaTemp= contraseña;
-     
-         String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
-         System.out.println(contraseñaEncriptada);
-=======
-<<<<<<< HEAD
-    public boolean validarContraseña(String contraseña) {
-        boolean validarContraseña = false;
         String contraseñaTemp = contraseña;
 
         String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
         System.out.println(contraseñaEncriptada);
->>>>>>> 53e4d064574faf6cd94b12620b0dbf70813eaa11
+
         for (int i = 0; i < personas.size(); i++) {
             if (personas.get(i).getContraseña().equalsIgnoreCase(DigestUtils.md5Hex(contraseña))) {
                 validarContraseña = true;
@@ -142,14 +106,6 @@ public class Biblioteca {
 
     }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
->>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
->>>>>>> 53e4d064574faf6cd94b12620b0dbf70813eaa11
->>>>>>> 8a623c4e36c5e8b0271072f5a6973848a16e853d
     public void agregarCatalogo(Catalogo catalogo) {
         if (!existeCatalogo(catalogo)) {
             catalogos.add(catalogo);
@@ -311,17 +267,12 @@ public class Biblioteca {
         return ultimoCodigo;
     }
 
-
     public int getUltimoCodigoCatalogo() {
         int ultimoCodigo = 1;
         ultimoCodigo = catalogos.size() + 1;
 
         return ultimoCodigo;
     }
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
     public void devolverCatalogo(Catalogo catalogo) {
         Prestamo prestamo = null;
@@ -339,18 +290,20 @@ public class Biblioteca {
         int fechaFinalMes;
         int fechaInicialAño;
         int fechaFinalAño;
-        System.out.println("pasa");
-        for (int i = 0; i < catalogos.size(); i++) {
-            fechaInicialDía = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(0, 1));
-            fechaFinalDía = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaDevoluciónInicial().substring(0, 1));
-            fechaInicialMes = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(3, 4));
-            fechaFinalMes = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaDevoluciónInicial().substring(3, 4));
-            fechaInicialAño = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(5, 6));
-            fechaFinalAño = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaDevoluciónInicial().substring(5, 6));
 
-            System.out.println(fechaFinalDía);
-            System.out.println(fechaFinalMes);
-            System.out.println(fechaFinalMes);
+        for (int i = 0; i < catalogos.size(); i++) {
+            fechaInicialDía = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(0, 2));
+            fechaInicialMes = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(3, 4));
+            fechaInicialAño = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(5, 9));
+
+            fechaFinalDía = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(0, 2));
+            fechaFinalMes = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(3, 4));
+            fechaFinalAño = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(5, 9));
+
+            if (fechaInicialDía <= fechaFinalDía && fechaInicialMes <= fechaFinalMes) {
+                listaUsuariosMorosos.add(catalogos.get(i).getPrestamo().getPersona());
+
+            }
 
         }
         return listaUsuariosMorosos;
@@ -368,9 +321,6 @@ public class Biblioteca {
         return fechaDate;
     }
 
-=======
-<<<<<<< HEAD
->>>>>>> 8a623c4e36c5e8b0271072f5a6973848a16e853d
     public ArrayList listaObrasEscritas(Autor persona) {
         ArrayList listaObrasEscritas = new ArrayList();
         for (int i = 0; i < catalogos.size(); i++) {
@@ -382,24 +332,5 @@ public class Biblioteca {
         }
         return listaObrasEscritas;
     }
-<<<<<<< HEAD
 
-    public Persona buscarPersonaPorNombreUnico(String nombreUnico) {
-        Persona personaEncontrada = new Persona() {
-        };
-        for (int i = 0; i < personas.size(); i++) {
-            Persona persona = (Persona) personas.get(i);
-            if (persona.getNombreUnico().equalsIgnoreCase(nombreUnico)) {
-                personaEncontrada = persona;
-            }
-
-        }
-        return personaEncontrada;
-    }
-
-=======
-=======
->>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
->>>>>>> 53e4d064574faf6cd94b12620b0dbf70813eaa11
->>>>>>> 8a623c4e36c5e8b0271072f5a6973848a16e853d
 }
