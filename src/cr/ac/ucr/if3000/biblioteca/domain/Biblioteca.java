@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import org.apache.commons.codec.digest.DigestUtils;
 import java.util.ArrayList;
 import java.util.Date;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -19,10 +20,25 @@ public class Biblioteca {
 
     private static ArrayList<Persona> personas = new ArrayList<Persona>();
     private static ArrayList<Catalogo> catalogos = new ArrayList<Catalogo>();
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+    private static String identificacionPersonaActiva;
+=======
+<<<<<<< HEAD
+>>>>>>> 86ed7e761789edf39fddbf73b85e7b7056125a76
     private static String identificacion;
     private static String identificacionPersonaActiva;
+<<<<<<< HEAD
 
+=======
+=======
+>>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
+>>>>>>> 53e4d064574faf6cd94b12620b0dbf70813eaa11
+>>>>>>> 8a623c4e36c5e8b0271072f5a6973848a16e853d
+>>>>>>> 86ed7e761789edf39fddbf73b85e7b7056125a76
 
     public Biblioteca() {
 
@@ -31,7 +47,10 @@ public class Biblioteca {
     public Biblioteca(ArrayList<Persona> personas, ArrayList<Catalogo> catalogos) {
         this.personas = personas;
         this.catalogos = catalogos;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 86ed7e761789edf39fddbf73b85e7b7056125a76
 
     }
 
@@ -51,7 +70,17 @@ public class Biblioteca {
 
     public static void setIdentificacionPersonaActiva(String identificacionPersonaActiva) {
         Biblioteca.identificacionPersonaActiva = identificacionPersonaActiva;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+=======
+>>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
+>>>>>>> 53e4d064574faf6cd94b12620b0dbf70813eaa11
+>>>>>>> 8a623c4e36c5e8b0271072f5a6973848a16e853d
+>>>>>>> 86ed7e761789edf39fddbf73b85e7b7056125a76
     }
 
     public ArrayList<Persona> getPersonas() {
@@ -89,6 +118,7 @@ public class Biblioteca {
 
     }
 
+<<<<<<< HEAD
 //    public boolean validarContraseña(String contraseña) {
 //        boolean validarContraseña = false;
 //         String contraseñaTemp= contraseña;
@@ -96,6 +126,16 @@ public class Biblioteca {
 //         String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
 //         System.out.println(contraseñaEncriptada);
 //    }
+=======
+    public boolean validarContraseña(String contraseña) {
+        boolean validarContraseña = false;
+         String contraseñaTemp= contraseña;
+     
+         String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
+         System.out.println(contraseñaEncriptada);
+=======
+<<<<<<< HEAD
+>>>>>>> 86ed7e761789edf39fddbf73b85e7b7056125a76
     public boolean validarContraseña(String contraseña) {
         boolean validarContraseña = false;
         String contraseñaTemp = contraseña;
@@ -125,6 +165,17 @@ public class Biblioteca {
 
     }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
+>>>>>>> 53e4d064574faf6cd94b12620b0dbf70813eaa11
+>>>>>>> 8a623c4e36c5e8b0271072f5a6973848a16e853d
+>>>>>>> 86ed7e761789edf39fddbf73b85e7b7056125a76
     public void agregarCatalogo(Catalogo catalogo) {
         if (!existeCatalogo(catalogo)) {
             catalogos.add(catalogo);
@@ -294,7 +345,13 @@ public class Biblioteca {
         return ultimoCodigo;
     }
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 86ed7e761789edf39fddbf73b85e7b7056125a76
 
     public void devolverCatalogo(Catalogo catalogo) {
         Prestamo prestamo = null;
@@ -341,7 +398,13 @@ public class Biblioteca {
         return fechaDate;
     }
 
+<<<<<<< HEAD
 
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> 8a623c4e36c5e8b0271072f5a6973848a16e853d
+>>>>>>> 86ed7e761789edf39fddbf73b85e7b7056125a76
     public ArrayList listaObrasEscritas(Autor persona) {
         ArrayList listaObrasEscritas = new ArrayList();
         for (int i = 0; i < catalogos.size(); i++) {
@@ -353,5 +416,28 @@ public class Biblioteca {
         }
         return listaObrasEscritas;
     }
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+    public Persona buscarPersonaPorNombreUnico(String nombreUnico) {
+        Persona personaEncontrada = new Persona() {
+        };
+        for (int i = 0; i < personas.size(); i++) {
+            Persona persona = (Persona) personas.get(i);
+            if (persona.getNombreUnico().equalsIgnoreCase(nombreUnico)) {
+                personaEncontrada = persona;
+            }
+
+        }
+        return personaEncontrada;
+    }
+
+=======
+=======
+>>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
+>>>>>>> 53e4d064574faf6cd94b12620b0dbf70813eaa11
+>>>>>>> 8a623c4e36c5e8b0271072f5a6973848a16e853d
+>>>>>>> 86ed7e761789edf39fddbf73b85e7b7056125a76
 }

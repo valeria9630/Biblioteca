@@ -28,7 +28,7 @@ public class AgregarLibro extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        
+
     }
 
     /**
@@ -221,8 +221,14 @@ public class AgregarLibro extends javax.swing.JFrame {
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
 
+<<<<<<< HEAD
         Autor autor1 = new Autor("andres Calamaro", "opp", "ppo", "njsvn", "hsbdvj");
         Autor autor2 = new Autor("rocio", "a", "a", "a", "a");
+=======
+        Autor autor1 = new Autor("andres Calamaro", "opp", "andresCalamaro", "njsvn", "hsbdvj");
+        Autor autor2 = new Autor("rocio", "jdbv", "bvj", "djkb", "jk");
+
+>>>>>>> 86ed7e761789edf39fddbf73b85e7b7056125a76
         biblioteca.agregarPersona(autor1);
         biblioteca.agregarPersona(autor2);
 
@@ -237,7 +243,6 @@ public class AgregarLibro extends javax.swing.JFrame {
         String subtema = jTextFieldSubtema.getText();
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreAutor);
 
-      
         Libro libro = new Libro(isbn, tema, subtema, titulo, fecha, autor);
 
         biblioteca.agregarCatalogo(libro);
