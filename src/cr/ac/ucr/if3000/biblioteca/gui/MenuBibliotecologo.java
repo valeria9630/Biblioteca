@@ -354,7 +354,7 @@ public class MenuBibliotecologo extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemPeriodicoActionPerformed
 
     private void jMenuItemMemoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMemoriaActionPerformed
-        ModificarMemoria agregarMemoria = new ModificarMemoria();
+        AgregarMemoria agregarMemoria = new AgregarMemoria();
         agregarMemoria.setVisible(true);
 
     }//GEN-LAST:event_jMenuItemMemoriaActionPerformed

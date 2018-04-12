@@ -5,19 +5,34 @@
  */
 package cr.ac.ucr.if3000.biblioteca.gui;
 
+import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
+import cr.ac.ucr.if3000.biblioteca.domain.Catalogo;
+import cr.ac.ucr.if3000.biblioteca.domain.Periodico;
+
 /**
  *
  * @author daniela
  */
 public class ModificarPeriodico extends javax.swing.JFrame {
 
+    Biblioteca biblioteca;
+    Periodico periodicoViejo;
+
     /**
      * Creates new form AgregarPeriodico
      */
-    public ModificarPeriodico() {
+    public ModificarPeriodico(Catalogo catalogoviejo) {
+        biblioteca = new Biblioteca();
+        this.periodicoViejo = (Periodico) catalogoviejo;
         initComponents();
-          setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         setResizable(false);
+        jTextFieldTitulo.setText(this.periodicoViejo.getTitulo());
+        jTextFieldFechaIngresoActual.setText(this.periodicoViejo.getFechaIngreso());
+        jTextFieldAutor.setText(this.periodicoViejo.getAutor().getNombreCompleto());
+        jTextFieldTituloISSN.setText(this.periodicoViejo.getIssb());
+        jTextFieldEdicion.setText(this.periodicoViejo.getEdicion());
+        jTextFieldFecha2Actual.setText(this.periodicoViejo.getFecha());
     }
 
     /**
@@ -39,11 +54,13 @@ public class ModificarPeriodico extends javax.swing.JFrame {
         jButtonModificar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jTextFieldTitulo = new javax.swing.JTextField();
-        jTextFieldTituloAutor = new javax.swing.JTextField();
+        jTextFieldAutor = new javax.swing.JTextField();
         jTextFieldTituloISSN = new javax.swing.JTextField();
         jTextFieldEdicion = new javax.swing.JTextField();
-        jDateChooserFechaIngreso = new com.toedter.calendar.JDateChooser();
-        jDateChooserFecha = new com.toedter.calendar.JDateChooser();
+        jDateChooserFechaIngresoACambiar = new com.toedter.calendar.JDateChooser();
+        jDateChooserFecha2ACambiar = new com.toedter.calendar.JDateChooser();
+        jTextFieldFechaIngresoActual = new javax.swing.JTextField();
+        jTextFieldFecha2Actual = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agregar Periodico");
@@ -80,6 +97,11 @@ public class ModificarPeriodico extends javax.swing.JFrame {
         jButtonModificar.setForeground(new java.awt.Color(0, 51, 255));
         jButtonModificar.setText("Modificar");
         jButtonModificar.setBorder(null);
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jButtonCancelar.setForeground(new java.awt.Color(0, 51, 255));
@@ -93,8 +115,8 @@ public class ModificarPeriodico extends javax.swing.JFrame {
         jTextFieldTitulo.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jTextFieldTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
-        jTextFieldTituloAutor.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jTextFieldTituloAutor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jTextFieldAutor.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jTextFieldAutor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
         jTextFieldTituloISSN.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jTextFieldTituloISSN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
@@ -102,9 +124,9 @@ public class ModificarPeriodico extends javax.swing.JFrame {
         jTextFieldEdicion.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jTextFieldEdicion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
-        jDateChooserFechaIngreso.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jDateChooserFechaIngresoACambiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
-        jDateChooserFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jDateChooserFecha2ACambiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,35 +139,47 @@ public class ModificarPeriodico extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelTitulo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(130, 130, 130)
+                                .addComponent(jTextFieldTitulo))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelAutor)
+                                            .addComponent(jLabelIssn))
+                                        .addGap(132, 132, 132)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldTituloISSN)
+                                            .addComponent(jTextFieldAutor)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelEdición)
+                                            .addComponent(jLabelFecha))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(122, 122, 122)
+                                                .addComponent(jTextFieldEdicion))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jDateChooserFecha2ACambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(1, 1, 1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelFechaIngreso)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                                .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelEdición)
-                                    .addComponent(jLabelFecha))
-                                .addGap(122, 122, 122)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldEdicion)
-                                    .addComponent(jDateChooserFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(1, 1, 1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelAutor)
-                                    .addComponent(jLabelIssn))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldTituloISSN)
-                                    .addComponent(jTextFieldTituloAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTextFieldFechaIngresoActual, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jDateChooserFechaIngresoACambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTextFieldFecha2Actual, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(89, 89, 89)
                         .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(74, 74, 74)
                         .addComponent(jButtonCancelar)))
-                .addGap(77, 77, 77))
+                .addGap(44, 44, 44))
             .addGroup(layout.createSequentialGroup()
                 .addGap(140, 140, 140)
                 .addComponent(jLabelAgregarPeriodico)
@@ -164,12 +198,14 @@ public class ModificarPeriodico extends javax.swing.JFrame {
                             .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelFechaIngreso)
-                            .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelFechaIngreso)
+                                .addComponent(jTextFieldFechaIngresoActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateChooserFechaIngresoACambiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabelAutor)
-                            .addComponent(jTextFieldTituloAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelIssn)
@@ -179,8 +215,10 @@ public class ModificarPeriodico extends javax.swing.JFrame {
                             .addComponent(jLabelEdición)
                             .addComponent(jTextFieldEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
-                        .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabelFecha))
+                        .addComponent(jDateChooserFecha2ACambiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelFecha)
+                        .addComponent(jTextFieldFecha2Actual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,47 +235,51 @@ public class ModificarPeriodico extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModificarPeriodico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModificarPeriodico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModificarPeriodico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModificarPeriodico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ModificarPeriodico().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ModificarPeriodico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ModificarPeriodico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ModificarPeriodico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ModificarPeriodico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ModificarPeriodico().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonModificar;
-    private com.toedter.calendar.JDateChooser jDateChooserFecha;
-    private com.toedter.calendar.JDateChooser jDateChooserFechaIngreso;
+    private com.toedter.calendar.JDateChooser jDateChooserFecha2ACambiar;
+    private com.toedter.calendar.JDateChooser jDateChooserFechaIngresoACambiar;
     private javax.swing.JLabel jLabelAgregarPeriodico;
     private javax.swing.JLabel jLabelAutor;
     private javax.swing.JLabel jLabelEdición;
@@ -245,9 +287,11 @@ public class ModificarPeriodico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFechaIngreso;
     private javax.swing.JLabel jLabelIssn;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JTextField jTextFieldAutor;
     private javax.swing.JTextField jTextFieldEdicion;
+    private javax.swing.JTextField jTextFieldFecha2Actual;
+    private javax.swing.JTextField jTextFieldFechaIngresoActual;
     private javax.swing.JTextField jTextFieldTitulo;
-    private javax.swing.JTextField jTextFieldTituloAutor;
     private javax.swing.JTextField jTextFieldTituloISSN;
     // End of variables declaration//GEN-END:variables
 }

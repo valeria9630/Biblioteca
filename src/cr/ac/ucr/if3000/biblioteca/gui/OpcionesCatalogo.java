@@ -9,6 +9,11 @@ import static com.sun.org.apache.bcel.internal.Repository.instanceOf;
 import cr.ac.ucr.if3000.biblioteca.domain.Biblioteca;
 import cr.ac.ucr.if3000.biblioteca.domain.Catalogo;
 import cr.ac.ucr.if3000.biblioteca.domain.Libro;
+import cr.ac.ucr.if3000.biblioteca.domain.Memoria;
+import cr.ac.ucr.if3000.biblioteca.domain.Otros;
+import cr.ac.ucr.if3000.biblioteca.domain.Periodico;
+import cr.ac.ucr.if3000.biblioteca.domain.Revista;
+import cr.ac.ucr.if3000.biblioteca.domain.Tesis;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -171,20 +176,38 @@ public class OpcionesCatalogo extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxAgregarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-        int seleccionado = (int) jTableListaCatalogo.getValueAt(jTableListaCatalogo.getSelectedRow(),0);
-        ModificarLibro modificar = null;
-       
-        for (int i = 0; i <biblioteca.getCatalogos().size(); i++) {
-           
-            Catalogo catalogo = biblioteca.getCatalogos().get(i);
-            if(seleccionado==catalogo.getCodigoCatalogo())
-                modificar = new ModificarLibro(catalogo);
-                
+        int seleccionado = (int) jTableListaCatalogo.getValueAt(jTableListaCatalogo.getSelectedRow(), 0);
+        Catalogo catalogo = null;
+        boolean encontrado = false;
+        int cont = 0;
+        while(!encontrado){
+            catalogo = biblioteca.getCatalogos().get(cont);
+            if (seleccionado == catalogo.getCodigoCatalogo()) {
+                encontrado = true;
+            }
+            cont++;
         }
-        modificar.setVisible(true);
-         dispose();
-        
-
+      
+        if(catalogo instanceof Libro){
+        ModificarLibro modificarLibro = new ModificarLibro(catalogo);
+        modificarLibro.setVisible(true);
+    } else if(catalogo instanceof Revista){
+        ModificarRevista modificarRevista = new ModificarRevista(catalogo);
+        modificarRevista.setVisible(true);
+    }else if(catalogo instanceof Tesis){
+        ModificarTesis modificarTesis = new ModificarTesis(catalogo);
+        modificarTesis.setVisible(true);
+    }else if(catalogo instanceof Periodico){
+        ModificarPeriodico modificarPeriodico = new ModificarPeriodico(catalogo);
+        modificarPeriodico.setVisible(true);
+    }else if(catalogo instanceof Memoria){
+        ModificarMemoria modificarMemoria = new ModificarMemoria(catalogo);
+        modificarMemoria.setVisible(true);
+    }else if(catalogo instanceof Otros){
+        ModificarOtro modificarOtro = new ModificarOtro(catalogo);
+        modificarOtro.setVisible(true);
+    }
+        dispose();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed

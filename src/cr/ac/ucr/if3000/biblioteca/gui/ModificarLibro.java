@@ -18,7 +18,7 @@ import java.util.Calendar;
  */
 public class ModificarLibro extends javax.swing.JFrame {
     Biblioteca biblioteca;
-    Catalogo catalogoViejo;
+    Libro libroViejo;
     /**
      * Creates new form agregarLibro
      */
@@ -27,7 +27,13 @@ public class ModificarLibro extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        this.catalogoViejo = catalogoViejo;
+        this.libroViejo = (Libro) catalogoViejo;
+        jTextFieldTitulo.setText(this.libroViejo.getTitulo());
+        jTextFieldFechaIngresoActual.setText(this.libroViejo.getFechaIngreso());
+        jTextFieldAutor.setText(this.libroViejo.getAutor().getNombreCompleto());
+        jTextFieldISBN.setText(this.libroViejo.getIsbn());
+        jTextFieldTema.setText(this.libroViejo.getTema());
+        jTextFieldSubtema.setText(this.libroViejo.getSubtema());
     }
 
     /**
@@ -49,11 +55,12 @@ public class ModificarLibro extends javax.swing.JFrame {
         jButtonModificar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jTextFieldTitulo = new javax.swing.JTextField();
-        jDateChooserFechaIngreso = new com.toedter.calendar.JDateChooser();
+        jDateChooserFechaACambiar = new com.toedter.calendar.JDateChooser();
         jTextFieldAutor = new javax.swing.JTextField();
         jTextFieldISBN = new javax.swing.JTextField();
         jTextFieldTema = new javax.swing.JTextField();
         jTextFieldSubtema = new javax.swing.JTextField();
+        jTextFieldFechaIngresoActual = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Modificar Libro");
@@ -108,7 +115,7 @@ public class ModificarLibro extends javax.swing.JFrame {
         jTextFieldTitulo.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jTextFieldTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
-        jDateChooserFechaIngreso.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jDateChooserFechaACambiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
         jTextFieldAutor.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jTextFieldAutor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
@@ -122,6 +129,8 @@ public class ModificarLibro extends javax.swing.JFrame {
         jTextFieldSubtema.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         jTextFieldSubtema.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
+        jTextFieldFechaIngresoActual.setText("jTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,35 +139,41 @@ public class ModificarLibro extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabelFechaIngreso)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabelTema)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldTema, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jLabelTema)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldTema, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jLabelSubtema)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldSubtema, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelAutor)
+                                    .addComponent(jLabelIsbn))
+                                .addGap(102, 102, 102)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldISBN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldAutor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(98, 98, 98))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jLabelSubtema)
+                        .addComponent(jLabelFechaIngreso)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldFechaIngresoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldSubtema, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelAutor)
-                            .addComponent(jLabelIsbn))
-                        .addGap(102, 102, 102)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldISBN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldAutor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(98, 98, 98))
+                        .addComponent(jDateChooserFechaACambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,8 +196,10 @@ public class ModificarLibro extends javax.swing.JFrame {
                     .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelFechaIngreso)
-                    .addComponent(jDateChooserFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelFechaIngreso)
+                        .addComponent(jTextFieldFechaIngresoActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooserFechaACambiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,17 +235,21 @@ public class ModificarLibro extends javax.swing.JFrame {
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         String isbn = jTextFieldISBN.getText();
         String tema = jTextFieldTema.getText();
-        String subtema = jTextFieldSubtema.getSelectedText();
+        String subtema = jTextFieldSubtema.getText();
         String titulo = jTextFieldTitulo.getText();
-        String id = jTextFieldAutor.getText();
-        String dia = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(jDateChooserFechaIngreso.getCalendar().get(Calendar.YEAR));
-        String fecha = (dia+"-"+mes+"-"+año);
-        Autor autor = biblioteca.buscaAutorPorId(id);
-        Catalogo catalogoModificado = new Libro(isbn, tema, subtema, titulo, fecha, autor);
-
-        biblioteca.modificarCatalogo(catalogoViejo, catalogoModificado);
+        String nombreUnico = jTextFieldAutor.getText();
+        String dia = Integer.toString(jDateChooserFechaACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jDateChooserFechaACambiar.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(jDateChooserFechaACambiar.getCalendar().get(Calendar.YEAR));
+        String fechaIngreso = (dia+"-"+mes+"-"+año);
+        Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
+        System.out.println(autor.toString());
+        Catalogo catalogoModificado = new Libro(isbn, tema, subtema, titulo, fechaIngreso, autor);
+        System.out.println(catalogoModificado.toString());
+        biblioteca.modificarCatalogo(libroViejo, catalogoModificado);
+        dispose();
+        Cátalogo catalogo = new Cátalogo();
+        catalogo.setVisible(true);
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     /**
@@ -272,7 +293,7 @@ public class ModificarLibro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonModificar;
-    private com.toedter.calendar.JDateChooser jDateChooserFechaIngreso;
+    private com.toedter.calendar.JDateChooser jDateChooserFechaACambiar;
     private javax.swing.JLabel jLabelAgregarLibro;
     private javax.swing.JLabel jLabelAutor;
     private javax.swing.JLabel jLabelFechaIngreso;
@@ -281,6 +302,7 @@ public class ModificarLibro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTema;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JTextField jTextFieldAutor;
+    private javax.swing.JTextField jTextFieldFechaIngresoActual;
     private javax.swing.JTextField jTextFieldISBN;
     private javax.swing.JTextField jTextFieldSubtema;
     private javax.swing.JTextField jTextFieldTema;

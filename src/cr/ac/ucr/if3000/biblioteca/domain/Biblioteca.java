@@ -97,6 +97,18 @@ public class Biblioteca {
         }
         return null;
     }
+    
+     public void modificarCatalogo(Catalogo catalogo, Catalogo catalogoModificado){
+        for (int i = 0; i < catalogos.size(); i++) {
+            Catalogo temp = catalogos.get(i);
+            System.out.println("temp "+temp.getCodigoCatalogo()+ " , modif " + catalogoModificado.getCodigoCatalogo());
+            if(temp.getCodigoCatalogo() == catalogo.getCodigoCatalogo()){
+                catalogos.set(i, catalogoModificado);
+                System.out.println("true");
+            }
+            System.out.println(catalogos.get(i).toString());
+        }
+    }
 
     public Persona buscarPersona(Object persona) {
         Persona persona1 = new Persona() {
