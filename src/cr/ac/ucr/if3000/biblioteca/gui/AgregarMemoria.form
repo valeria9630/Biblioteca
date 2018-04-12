@@ -36,13 +36,12 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jTextFieldNombreConferencia" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
                   <Component id="jTextFieldTitulo" pref="155" max="32767" attributes="0"/>
-                  <Component id="jTextFieldTituloNombreDeConferencia" pref="155" max="32767" attributes="0"/>
-                  <Component id="jTextFieldTituloAbstract" pref="155" max="32767" attributes="0"/>
-                  <Component id="jTextFieldTituloResumen" pref="155" max="32767" attributes="0"/>
+                  <Component id="jTextFieldNombreDeConferencia" pref="155" max="32767" attributes="0"/>
+                  <Component id="jTextFieldAbstract" pref="155" max="32767" attributes="0"/>
+                  <Component id="jTextFieldResumen" pref="155" max="32767" attributes="0"/>
                   <Component id="jTextFieldAutor" pref="155" max="32767" attributes="0"/>
-                  <Component id="jDateChooserFechaIngreso" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jDateChooserFechaIngreso" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
           </Group>
@@ -82,10 +81,7 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jDateChooserFechaIngreso" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldNombreConferencia" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jDateChooserFechaIngreso" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jTextFieldAutor" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -96,16 +92,16 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jTextFieldTituloResumen" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldResumen" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabelAbstract" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldTituloAbstract" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldAbstract" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabelNombreConferencia" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldTituloNombreDeConferencia" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldNombreDeConferencia" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Component id="jLabelResumen" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
@@ -219,8 +215,6 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldNombreConferencia">
-    </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldTitulo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -249,7 +243,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldTituloResumen">
+    <Component class="javax.swing.JTextField" name="jTextFieldResumen">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Yu Gothic" size="12" style="0"/>
@@ -263,7 +257,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldTituloAbstract">
+    <Component class="javax.swing.JTextField" name="jTextFieldAbstract">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Yu Gothic" size="12" style="0"/>
@@ -277,7 +271,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldTituloNombreDeConferencia">
+    <Component class="javax.swing.JTextField" name="jTextFieldNombreDeConferencia">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Yu Gothic" size="12" style="0"/>

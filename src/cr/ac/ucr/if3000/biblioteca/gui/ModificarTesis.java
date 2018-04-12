@@ -31,7 +31,7 @@ public class ModificarTesis extends javax.swing.JFrame {
         setResizable(false);
         jTextFieldTitulo.setText(this.tesisVieja.getTitulo());
         jTextFieldFechaIngresoActual.setText(this.tesisVieja.getFechaIngreso());
-        jTextFieldAutor.setText(this.tesisVieja.getAutor().getNombreCompleto());
+        jTextFieldAutor.setText(this.tesisVieja.getAutor().getNombreUnico());
         jTextFieldResumen.setText(this.tesisVieja.getResumen());
         jTextFieldAbstract.setText(this.tesisVieja.getAbstracion());
     }
@@ -212,16 +212,17 @@ public class ModificarTesis extends javax.swing.JFrame {
          Catalogo catalogoModificado = null;
         String titulo = jTextFieldTitulo.getText();
         String nombreUnico = jTextFieldAutor.getText();
-        String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
-        String fechaIngreso = (dia+"-"+mes+"-"+año);
+        
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
         String resumen = jTextFieldResumen.getText();
         String abstracto = jTextFieldAbstract.getText();
         if(jDateChooserFechaIngresoACambiar.getDate()==null){
         catalogoModificado = new Tesis(resumen, abstracto, titulo, jTextFieldFechaIngresoActual.getText(), autor, tesisVieja.getCodigoCatalogo());
         }else if(jDateChooserFechaIngresoACambiar.getDate()!=null){
+            String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
+        String fechaIngreso = (dia+"-"+mes+"-"+año);
             catalogoModificado = new Tesis(resumen, abstracto, titulo, fechaIngreso, autor, tesisVieja.getCodigoCatalogo());
         }
         biblioteca.modificarCatalogo(tesisVieja,catalogoModificado);

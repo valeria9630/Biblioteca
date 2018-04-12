@@ -5,7 +5,9 @@
  */
 package cr.ac.ucr.if3000.biblioteca.domain;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import org.apache.commons.codec.digest.DigestUtils;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,6 +19,7 @@ public class Biblioteca {
 
     private static ArrayList<Persona> personas = new ArrayList<Persona>();
     private static ArrayList<Catalogo> catalogos = new ArrayList<Catalogo>();
+    private static String identificacion;
 
     public Biblioteca() {
 
@@ -25,6 +28,15 @@ public class Biblioteca {
     public Biblioteca(ArrayList<Persona> personas, ArrayList<Catalogo> catalogos) {
         this.personas = personas;
         this.catalogos = catalogos;
+
+    }
+
+    public static String getIdentificacion() {
+        return identificacion;
+    }
+
+    public static void setIdentificacion(String identificacion) {
+        Biblioteca.identificacion = identificacion;
     }
 
     public ArrayList<Persona> getPersonas() {
@@ -59,6 +71,34 @@ public class Biblioteca {
     public void borrarPersona(Persona persona) {
 
         personas.remove(persona);
+
+    }
+
+    public boolean validarContraseña(String contraseña) {
+        boolean validarContraseña = false;
+         String contraseñaTemp= contraseña;
+     
+         String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
+         System.out.println(contraseñaEncriptada);
+        for (int i = 0; i < personas.size(); i++) {
+            if (personas.get(i).getContraseña().equalsIgnoreCase(DigestUtils.md5Hex(contraseña))) {
+                validarContraseña = true;
+            }
+//          
+        }
+        return validarContraseña;
+
+    }
+
+    public boolean validarNombreUnico(String nombreUnico) {
+        boolean validarNombreUnico = false;
+        for (int i = 0; i < personas.size(); i++) {
+            if (personas.get(i).getNombreUnico().equalsIgnoreCase(nombreUnico)) {
+                validarNombreUnico = true;
+            }
+
+        }
+        return validarNombreUnico;
 
     }
 
@@ -184,6 +224,19 @@ public class Biblioteca {
         return personaEncontrada;
     }
 
+    public Persona buscarPersonaPorNombreUnico(String nombreUnico) {
+        Persona personaEncontrada = new Persona() {
+        };
+        for (int i = 0; i < personas.size(); i++) {
+            Persona persona = (Persona) personas.get(i);
+            if (persona.getNombreUnico().equalsIgnoreCase(nombreUnico)) {
+                personaEncontrada = persona;
+            }
+
+        }
+        return personaEncontrada;
+    }
+
     public void registrarPrestamo(Catalogo catalogo, Prestamo prestamo) {
 
         catalogo.setPrestamo(prestamo);
@@ -210,11 +263,58 @@ public class Biblioteca {
         return ultimoCodigo;
     }
 
+
     public int getUltimoCodigoCatalogo() {
         int ultimoCodigo = 1;
         ultimoCodigo = catalogos.size() + 1;
 
         return ultimoCodigo;
+    }
+
+
+    public void devolverCatalogo(Catalogo catalogo) {
+        Prestamo prestamo = null;
+
+        catalogo.setPrestamo(prestamo);
+
+    }
+
+    public ArrayList listadeUsuariosMorosos() {
+        ArrayList listaUsuariosMorosos = new ArrayList();
+
+        int fechaInicialDía;
+        int fechaFinalDía;
+        int fechaInicialMes;
+        int fechaFinalMes;
+        int fechaInicialAño;
+        int fechaFinalAño;
+        System.out.println("pasa");
+        for (int i = 0; i < catalogos.size(); i++) {
+            fechaInicialDía = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(0, 1));
+            fechaFinalDía = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaDevoluciónInicial().substring(0, 1));
+            fechaInicialMes = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(3, 4));
+            fechaFinalMes = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaDevoluciónInicial().substring(3, 4));
+            fechaInicialAño = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaInicioPrestamo().substring(5, 6));
+            fechaFinalAño = Integer.parseInt(catalogos.get(i).getPrestamo().getFechaDevoluciónInicial().substring(5, 6));
+
+            System.out.println(fechaFinalDía);
+            System.out.println(fechaFinalMes);
+            System.out.println(fechaFinalMes);
+
+        }
+        return listaUsuariosMorosos;
+
+    }
+
+    public static Date ParseFecha(String fecha) {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date fechaDate = null;
+        try {
+            fechaDate = formato.parse(fecha);
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        return fechaDate;
     }
 
 }

@@ -40,13 +40,13 @@
                           <Component id="jLabelResumen" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelAbtract" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jTextFieldTitulo" min="-2" pref="155" max="-2" attributes="0"/>
                           <Component id="jTextFieldAutor" min="-2" pref="155" max="-2" attributes="0"/>
                           <Component id="jTextFieldResumen" min="-2" pref="155" max="-2" attributes="0"/>
                           <Component id="jTextFieldAbstract" min="-2" pref="155" max="-2" attributes="0"/>
-                          <Component id="jDateChooserFechaIngreso" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
+                          <Component id="jDateChooserFechaIngreso" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">

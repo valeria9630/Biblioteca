@@ -31,11 +31,11 @@ public class ModificarPeriodico extends javax.swing.JFrame {
         setResizable(false);
         jTextFieldTitulo.setText(this.periodicoViejo.getTitulo());
         jTextFieldFechaIngresoActual.setText(this.periodicoViejo.getFechaIngreso());
-        jTextFieldAutor.setText(this.periodicoViejo.getAutor().getNombreCompleto());
+        jTextFieldAutor.setText(this.periodicoViejo.getAutor().getNombreUnico());
         jTextFieldTituloISSN.setText(this.periodicoViejo.getIssb());
         jTextFieldEdicion.setText(this.periodicoViejo.getEdicion());
         jTextFieldFecha2Actual.setText(this.periodicoViejo.getFecha());
-        
+
     }
 
     /**
@@ -243,25 +243,35 @@ public class ModificarPeriodico extends javax.swing.JFrame {
         Catalogo catalogoModificado = null;
         String titulo = jTextFieldTitulo.getText();
         String nombreUnico = jTextFieldAutor.getText();
-        String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
-        String fechaIngreso = (dia+"-"+mes+"-"+año);
+
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
         String issn = jTextFieldTituloISSN.getText();
         String edicion = jTextFieldEdicion.getText();
-        String dia2 = Integer.toString(jDateChooserFecha2ACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes2 = Integer.toString(jDateChooserFecha2ACambiar.getCalendar().get(Calendar.MONTH) + 1);
-        String año2 = Integer.toString(jDateChooserFecha2ACambiar.getCalendar().get(Calendar.YEAR));
-        String fecha = (dia+"-"+mes+"-"+año);
-        if(jDateChooserFechaIngresoACambiar.getDate()==null&&jDateChooserFecha2ACambiar.getDate()==null){
-        catalogoModificado = new Periodico(issn, edicion, jTextFieldFecha2Actual.getText(), titulo, jTextFieldFechaIngresoActual.getText(), autor,periodicoViejo.getCodigoCatalogo());
-        }else if(jDateChooserFechaIngresoACambiar.getDate()!=null&&jDateChooserFecha2ACambiar.getDate()!=null){
-        catalogoModificado = new Periodico(issn, edicion, fecha, titulo, fechaIngreso, autor, periodicoViejo.getCodigoCatalogo());
-        }else if(jDateChooserFechaIngresoACambiar.getDate()==null&&jDateChooserFecha2ACambiar.getDate()!=null){
-           catalogoModificado = new Periodico(issn, edicion, fecha, titulo, jTextFieldFechaIngresoActual.getText(), autor, periodicoViejo.getCodigoCatalogo());
-        }else if(jDateChooserFechaIngresoACambiar.getDate()!=null&&jDateChooserFecha2ACambiar.getDate()==null){
-         catalogoModificado = new Periodico(issn, edicion, jTextFieldFecha2Actual.getText(), titulo, fechaIngreso, autor, periodicoViejo.getCodigoCatalogo());
+
+        if (jDateChooserFechaIngresoACambiar.getDate() == null && jDateChooserFecha2ACambiar.getDate() == null) {
+            catalogoModificado = new Periodico(issn, edicion, jTextFieldFecha2Actual.getText(), titulo, jTextFieldFechaIngresoActual.getText(), autor, periodicoViejo.getCodigoCatalogo());
+        } else if (jDateChooserFechaIngresoACambiar.getDate() != null && jDateChooserFecha2ACambiar.getDate() != null) {
+            String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
+            String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
+            String fechaIngreso = (dia + "-" + mes + "-" + año);
+            String dia2 = Integer.toString(jDateChooserFecha2ACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes2 = Integer.toString(jDateChooserFecha2ACambiar.getCalendar().get(Calendar.MONTH) + 1);
+            String año2 = Integer.toString(jDateChooserFecha2ACambiar.getCalendar().get(Calendar.YEAR));
+            String fecha = (dia2 + "-" + mes2 + "-" + año2);
+            catalogoModificado = new Periodico(issn, edicion, fecha, titulo, fechaIngreso, autor, periodicoViejo.getCodigoCatalogo());
+        } else if (jDateChooserFechaIngresoACambiar.getDate() == null && jDateChooserFecha2ACambiar.getDate() != null) {
+            String dia2 = Integer.toString(jDateChooserFecha2ACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes2 = Integer.toString(jDateChooserFecha2ACambiar.getCalendar().get(Calendar.MONTH) + 1);
+            String año2 = Integer.toString(jDateChooserFecha2ACambiar.getCalendar().get(Calendar.YEAR));
+            String fecha = (dia2 + "-" + mes2 + "-" + año2);
+            catalogoModificado = new Periodico(issn, edicion, fecha, titulo, jTextFieldFechaIngresoActual.getText(), autor, periodicoViejo.getCodigoCatalogo());
+        } else if (jDateChooserFechaIngresoACambiar.getDate() != null && jDateChooserFecha2ACambiar.getDate() == null) {
+            String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
+            String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
+            String fechaIngreso = (dia + "-" + mes + "-" + año);
+            catalogoModificado = new Periodico(issn, edicion, jTextFieldFecha2Actual.getText(), titulo, fechaIngreso, autor, periodicoViejo.getCodigoCatalogo());
         }
         biblioteca.modificarCatalogo(periodicoViejo, catalogoModificado);
         dispose();

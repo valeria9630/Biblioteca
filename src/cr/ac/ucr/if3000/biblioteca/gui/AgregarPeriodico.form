@@ -29,16 +29,6 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabelTitulo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextFieldTitulo" min="-2" pref="155" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabelFechaIngreso" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="66" max="32767" attributes="0"/>
-                              <Component id="jDateChooserFechaDeIngreso" min="-2" pref="156" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabelEdición" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -47,7 +37,7 @@
                               <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jTextFieldEdicion" max="32767" attributes="0"/>
-                                  <Component id="jDateChooserFecha" max="32767" attributes="0"/>
+                                  <Component id="jDateChooserFecha" pref="154" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           </Group>
@@ -60,6 +50,17 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jTextFieldISSN" max="32767" attributes="0"/>
                                   <Component id="jTextFieldAutor" pref="155" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelTitulo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelFechaIngreso" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="67" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jDateChooserFechaDeIngreso" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldTitulo" pref="155" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>

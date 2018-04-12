@@ -31,7 +31,7 @@ public class ModificarMemoria extends javax.swing.JFrame {
         setResizable(false);
         jTextFieldTitulo.setText(this.memoriaVieja.getTitulo());
         jTextFieldFechaIngesoActual.setText(memoriaVieja.getFechaIngreso());
-        jTextFieldAutor.setText(this.memoriaVieja.getAutor().getNombreCompleto());
+        jTextFieldAutor.setText(this.memoriaVieja.getAutor().getNombreUnico());
         jTextFieldResumen.setText(this.memoriaVieja.getResumen());
         jTextFieldAbstract.setText(this.memoriaVieja.getAbstracto());
         jTextFieldNombreDeConferencia.setText(this.memoriaVieja.getNombreConferencia());
@@ -230,20 +230,21 @@ public class ModificarMemoria extends javax.swing.JFrame {
         Catalogo catalogoModificado = null;
         String titulo = jTextFieldTitulo.getText();
         String nombreUnico = jTextFieldAutor.getText();
-        String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
-        String fechaIngreso = (dia + "-" + mes + "-" + año);
+
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreUnico);
         String remunen = jTextFieldResumen.getText();
         String abstracto = jTextFieldAbstract.getText();
         String nombreConferencia = jTextFieldNombreDeConferencia.getText();
-        if(jDateChooserFechaIngresoACambiar.getDate()==null){
-        catalogoModificado = new Memoria(remunen, abstracto, nombreConferencia, titulo, jTextFieldFechaIngesoActual.getText(), autor, memoriaVieja.getCodigoCatalogo());
-        }else if(jDateChooserFechaIngresoACambiar.getDate()!=null){
-            catalogoModificado = new Memoria(remunen, abstracto, nombreConferencia, titulo, fechaIngreso, autor,memoriaVieja.getCodigoCatalogo());
+        if (jDateChooserFechaIngresoACambiar.getDate() == null) {
+            catalogoModificado = new Memoria(remunen, abstracto, nombreConferencia, titulo, jTextFieldFechaIngesoActual.getText(), autor, memoriaVieja.getCodigoCatalogo());
+        } else if (jDateChooserFechaIngresoACambiar.getDate() != null) {
+            String dia = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.MONTH) + 1);
+            String año = Integer.toString(jDateChooserFechaIngresoACambiar.getCalendar().get(Calendar.YEAR));
+            String fechaIngreso = (dia + "-" + mes + "-" + año);
+            catalogoModificado = new Memoria(remunen, abstracto, nombreConferencia, titulo, fechaIngreso, autor, memoriaVieja.getCodigoCatalogo());
         }
-         biblioteca.modificarCatalogo(memoriaVieja, catalogoModificado);
+        biblioteca.modificarCatalogo(memoriaVieja, catalogoModificado);
         dispose();
         OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);
