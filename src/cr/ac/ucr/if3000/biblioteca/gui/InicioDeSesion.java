@@ -11,6 +11,7 @@ import cr.ac.ucr.if3000.biblioteca.domain.Bibliotecario;
 import cr.ac.ucr.if3000.biblioteca.domain.Persona;
 import cr.ac.ucr.if3000.biblioteca.domain.Usuario;
 import javax.swing.JOptionPane;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -19,6 +20,7 @@ import javax.swing.JOptionPane;
 public class InicioDeSesion extends javax.swing.JFrame {
 
     Biblioteca biblioteca;
+    Bibliotecario bibliotecario;
 
     /**
      * Creates new form DatosParaIngresar
@@ -28,6 +30,8 @@ public class InicioDeSesion extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         biblioteca = new Biblioteca();
+        bibliotecario = new Bibliotecario("Lupe", DigestUtils.md5Hex("Lupe"), "Guadalupe Goméz Gonzalez", "Extrangera", "M-123");
+        biblioteca.agregarPersona(bibliotecario);
     }
 
     /**
@@ -128,9 +132,9 @@ public class InicioDeSesion extends javax.swing.JFrame {
                 System.out.println("perimite2");
                 Persona persona = biblioteca.buscarPersonaPorNombreUnico(usuarioUnico);
                 System.out.println(persona.toString());
-                
+
                 if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico) instanceof Autor) {
-                    biblioteca.setIdentificacion(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
+                    biblioteca.setIdentificacionPersonaActiva(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
                     System.out.println("Autor");
                     MenuAutor menuAutor = new MenuAutor();
                     menuAutor.setVisible(true);
@@ -138,7 +142,7 @@ public class InicioDeSesion extends javax.swing.JFrame {
 
                 }
                 if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico) instanceof Usuario) {
-                    biblioteca.setIdentificacion(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
+                    biblioteca.setIdentificacionPersonaActiva(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
                     System.out.println("Usuario");
                     MenuUsuario menuUsuario = new MenuUsuario();
                     menuUsuario.setVisible(true);
@@ -146,7 +150,7 @@ public class InicioDeSesion extends javax.swing.JFrame {
 
                 }
                 if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico) instanceof Bibliotecario) {
-                    biblioteca.setIdentificacion(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
+                    biblioteca.setIdentificacionPersonaActiva(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
                     System.out.println("Bibliotecologo");
                     MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
                     menuBibliotecologo.setVisible(true);

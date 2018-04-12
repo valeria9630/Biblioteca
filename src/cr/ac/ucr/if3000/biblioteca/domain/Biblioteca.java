@@ -19,7 +19,7 @@ public class Biblioteca {
 
     private static ArrayList<Persona> personas = new ArrayList<Persona>();
     private static ArrayList<Catalogo> catalogos = new ArrayList<Catalogo>();
-    private static String identificacion;
+    private static String identificacionPersonaActiva;
 
     public Biblioteca() {
 
@@ -31,12 +31,12 @@ public class Biblioteca {
 
     }
 
-    public static String getIdentificacion() {
-        return identificacion;
+    public static String getIdentificacionPersonaActiva() {
+        return identificacionPersonaActiva;
     }
 
-    public static void setIdentificacion(String identificacion) {
-        Biblioteca.identificacion = identificacion;
+    public static void setIdentificacionPersonaActiva(String identificacionPersonaActiva) {
+        Biblioteca.identificacionPersonaActiva = identificacionPersonaActiva;
     }
 
     public ArrayList<Persona> getPersonas() {
@@ -76,10 +76,10 @@ public class Biblioteca {
 
     public boolean validarContraseña(String contraseña) {
         boolean validarContraseña = false;
-         String contraseñaTemp= contraseña;
-     
-         String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
-         System.out.println(contraseñaEncriptada);
+        String contraseñaTemp = contraseña;
+
+        String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
+        System.out.println(contraseñaEncriptada);
         for (int i = 0; i < personas.size(); i++) {
             if (personas.get(i).getContraseña().equalsIgnoreCase(DigestUtils.md5Hex(contraseña))) {
                 validarContraseña = true;
@@ -260,14 +260,15 @@ public class Biblioteca {
 
     }
 
-    public static Date ParseFecha(String fecha) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date fechaDate = null;
-        try {
-            fechaDate = formato.parse(fecha);
-        } catch (ParseException ex) {
-            System.out.println(ex);
+    public ArrayList listaObrasEscritas(Autor persona) {
+        ArrayList listaObrasEscritas = new ArrayList();
+        for (int i = 0; i < catalogos.size(); i++) {
+            if (catalogos.get(i).getAutor().getIdentificacion().equalsIgnoreCase(persona.getIdentificacion())) {
+                listaObrasEscritas.add(catalogos.get(i));
+
+            }
+
         }
-        return fechaDate;
+        return listaObrasEscritas;
     }
 }

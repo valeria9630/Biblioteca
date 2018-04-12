@@ -24,7 +24,8 @@ public class BuscarObra extends javax.swing.JFrame {
     Biblioteca biblioteca;
     DefaultTableModel modelo;
     TableRowSorter trs;
-    Persona persona;
+    Persona personaAutor;
+
     String tipoInterfaz;
 
     /**
@@ -55,41 +56,48 @@ public class BuscarObra extends javax.swing.JFrame {
      *
      * @param persona
      */
-    public BuscarObra(Persona persona) {
+    public BuscarObra(Persona persona, String tipo) {
         modelo = new DefaultTableModel();
         biblioteca = new Biblioteca();
-
-        persona = persona;
+        tipoInterfaz = tipo;
+        personaAutor = persona;
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        jButtonRealizarPrestamo.setVisible(false);
+        jButtonDevolucionDeObra.setVisible(false);
 
         modelo.addColumn("codigo");
         modelo.addColumn("Titulo");
         modelo.addColumn("Fecha de Ingreso");
         modelo.addColumn("Autor");
-
+        System.out.println(personaAutor.toString());
         for (int i = 0; i < biblioteca.getCatalogos().size(); i++) {
-            Catalogo catalogo = biblioteca.getCatalogos().get(i);
 
-            if (catalogo.getAutor().getIdentificacion().equalsIgnoreCase(persona.getIdentificacion())) {
-                modelo.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
+            Catalogo catalogo = biblioteca.getCatalogos().get(i);
+            System.out.println(catalogo.toString());
+            if (catalogo.getAutor() != null) {
+                if (catalogo.getAutor().getIdentificacion().equalsIgnoreCase(personaAutor.getIdentificacion())) {
+                    modelo.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
+                }
+
             }
             this.jTableListaObras.setModel(modelo);
 
         }
+
     }
 
     public BuscarObra(String tipo) {
         modelo = new DefaultTableModel();
         biblioteca = new Biblioteca();
 
-        persona = persona;
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         jButtonDevolucionDeObra.setVisible(false);
         jButtonRealizarPrestamo.setVisible(false);
+        tipoInterfaz = tipo;
 
         modelo.addColumn("codigo");
         modelo.addColumn("Titulo");
@@ -105,33 +113,6 @@ public class BuscarObra extends javax.swing.JFrame {
 
         }
 
-    }
-
-    public BuscarObra(Persona personas, String tipo) {
-        modelo = new DefaultTableModel();
-        biblioteca = new Biblioteca();
-
-        persona = persona;
-        initComponents();
-        setLocationRelativeTo(null);
-        setResizable(false);
-        jButtonDevolucionDeObra.setVisible(false);
-        jButtonRealizarPrestamo.setVisible(false);
-
-        modelo.addColumn("codigo");
-        modelo.addColumn("Titulo");
-        modelo.addColumn("Fecha de Ingreso");
-        modelo.addColumn("Autor");
-
-        for (int i = 0; i < biblioteca.getCatalogos().size(); i++) {
-            Catalogo catalogo = biblioteca.getCatalogos().get(i);
-
-            if (catalogo.getAutor().getIdentificacion().equalsIgnoreCase(persona.getIdentificacion())) {
-                modelo.addRow(new Object[]{catalogo.getCodigoCatalogo(), catalogo.getTitulo(), catalogo.getFechaIngreso(), catalogo.getAutor()});
-            }
-            this.jTableListaObras.setModel(modelo);
-
-        }
     }
 
     /**
@@ -152,6 +133,7 @@ public class BuscarObra extends javax.swing.JFrame {
         jTextFieldBuscarPorAutor = new javax.swing.JTextField();
         jButtonRealizarPrestamo = new javax.swing.JButton();
         jButtonDevolucionDeObra = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Buscar Obra");
@@ -208,38 +190,51 @@ public class BuscarObra extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/ucr/if3000/biblioteca/Imagenes/sign-out.png"))); // NOI18N
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(83, 83, 83)
-                                .addComponent(jLabelBuscarPorAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonDevolucionDeObra)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonRealizarPrestamo))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(78, 78, 78)
-                                .addComponent(jLabelBuscarPorTitulo)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabelBuscarObra)
+                        .addGap(333, 333, 333))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldBuscarPorAutor)
-                            .addComponent(jTextFieldBuscarPorTitulo))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelBuscarObra)
-                .addGap(333, 333, 333))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(83, 83, 83)
+                                        .addComponent(jLabelBuscarPorAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonDevolucionDeObra)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButtonRealizarPrestamo))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(78, 78, 78)
+                                        .addComponent(jLabelBuscarPorTitulo)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldBuscarPorAutor)
+                                    .addComponent(jTextFieldBuscarPorTitulo))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +253,9 @@ public class BuscarObra extends javax.swing.JFrame {
                     .addComponent(jButtonDevolucionDeObra))
                 .addGap(57, 57, 57))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addComponent(jLabelBuscarObra)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,6 +301,28 @@ public class BuscarObra extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonDevolucionDeObraActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if (tipoInterfaz.equalsIgnoreCase("MenuUsuario")) {
+            MenuUsuario menuUsuario = new MenuUsuario();
+            menuUsuario.setVisible(true);
+            dispose();
+
+        }
+        if (tipoInterfaz.equalsIgnoreCase("MantenimientoAutores")) {
+            MantenimentoAutores mantenimentoAutores = new MantenimentoAutores();
+            mantenimentoAutores.setVisible(true);
+            dispose();
+
+        }
+        if (tipoInterfaz.equalsIgnoreCase("MenuAutor")) {
+            MenuAutor menuAutor = new MenuAutor();
+            menuAutor.setVisible(true);
+            dispose();
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -348,6 +367,7 @@ public class BuscarObra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonDevolucionDeObra;
     private javax.swing.JButton jButtonRealizarPrestamo;
     private javax.swing.JLabel jLabelBuscarObra;

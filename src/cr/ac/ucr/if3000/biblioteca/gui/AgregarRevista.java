@@ -15,7 +15,9 @@ import java.util.Calendar;
  * @author daniela
  */
 public class AgregarRevista extends javax.swing.JFrame {
+
     Biblioteca biblioteca;
+
     /**
      * Creates new form AgregarRevista
      */
@@ -188,21 +190,22 @@ public class AgregarRevista extends javax.swing.JFrame {
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
         Autor autor1 = new Autor("andres Calamaro", "opp", "ppo", "njsvn", "hsbdvj");
         Autor autor2 = new Autor("rocio", "jdbv", "bvj", "djkb", "jk");
-        String titulo =jTextFieldTitulo.getText();
+        String titulo = jTextFieldTitulo.getText();
         String dia = Integer.toString(jDateChooserFechaDeIngreso.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jDateChooserFechaDeIngreso.getCalendar().get(Calendar.MONTH) + 1);
         String año = Integer.toString(jDateChooserFechaDeIngreso.getCalendar().get(Calendar.YEAR));
-        String fecha = (dia+"-"+mes+"-"+año);
+        String fecha = (dia + "-" + mes + "-" + año);
         String nombreAutor = jTextFieldAutor.getText();
         String issn = jTextFieldISSN.getText();
         String edicion = jTextFieldEdicion.getText();
         Autor autor = biblioteca.buscaAutorPorNombreUnico(nombreAutor);
-        
-        Revista revista= new Revista(issn, edicion, titulo, fecha, autor);
+
+        Revista revista = new Revista(issn, edicion, titulo, fecha, autor);
         biblioteca.agregarCatalogo(revista);
         dispose();
         OpcionesCatalogo catalogo = new OpcionesCatalogo();
         catalogo.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     /**

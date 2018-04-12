@@ -36,9 +36,7 @@ public class MenuAutor extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButtonBuscarObra = new javax.swing.JButton();
-        jButtonBuscarObra1 = new javax.swing.JButton();
-        jButtonBuscarObra2 = new javax.swing.JButton();
+        jButtonVerObraEscrita = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Autor");
@@ -47,33 +45,13 @@ public class MenuAutor extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setText("Bliblioteca Las Lupitas");
 
-        jButtonBuscarObra.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jButtonBuscarObra.setForeground(new java.awt.Color(0, 51, 255));
-        jButtonBuscarObra.setText("Ver Obras Escritas");
-        jButtonBuscarObra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
-        jButtonBuscarObra.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVerObraEscrita.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jButtonVerObraEscrita.setForeground(new java.awt.Color(0, 51, 255));
+        jButtonVerObraEscrita.setText("Ver Obras Escritas");
+        jButtonVerObraEscrita.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        jButtonVerObraEscrita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarObraActionPerformed(evt);
-            }
-        });
-
-        jButtonBuscarObra1.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jButtonBuscarObra1.setForeground(new java.awt.Color(0, 51, 255));
-        jButtonBuscarObra1.setText("Libros Prestados");
-        jButtonBuscarObra1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
-        jButtonBuscarObra1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarObra1ActionPerformed(evt);
-            }
-        });
-
-        jButtonBuscarObra2.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jButtonBuscarObra2.setForeground(new java.awt.Color(0, 51, 255));
-        jButtonBuscarObra2.setText("Buscar Obra");
-        jButtonBuscarObra2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
-        jButtonBuscarObra2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarObra2ActionPerformed(evt);
+                jButtonVerObraEscritaActionPerformed(evt);
             }
         });
 
@@ -82,19 +60,14 @@ public class MenuAutor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(61, 61, 61))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonBuscarObra2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButtonBuscarObra, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                                .addComponent(jButtonBuscarObra1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonVerObraEscrita, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(61, 61, 61))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,39 +75,21 @@ public class MenuAutor extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonBuscarObra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonBuscarObra1)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonBuscarObra2)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(jButtonVerObraEscrita)
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonBuscarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarObraActionPerformed
+    private void jButtonVerObraEscritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerObraEscritaActionPerformed
         Persona autor = null;
-        autor = biblioteca.buscarPersonaPorIdentificacion("n");
-
-        BuscarObra buscarObra = new BuscarObra(autor, "menuAutor");
+        autor = biblioteca.buscarPersonaPorIdentificacion(biblioteca.getIdentificacionPersonaActiva());
+    
+        System.out.println("***" + autor.toString());
+        BuscarObra buscarObra = new BuscarObra(autor, "MenuAutor");
         buscarObra.setVisible(true);
-    }//GEN-LAST:event_jButtonBuscarObraActionPerformed
-
-    private void jButtonBuscarObra1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarObra1ActionPerformed
-        Persona personaLibrosPrestados = null;
-        personaLibrosPrestados = biblioteca.buscarPersonaPorIdentificacion("");
-
-        LibrosPrestados librosPrestados = new LibrosPrestados(personaLibrosPrestados);
-
-        librosPrestados.setVisible(true);
-    }//GEN-LAST:event_jButtonBuscarObra1ActionPerformed
-
-    private void jButtonBuscarObra2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarObra2ActionPerformed
-        BuscarObra buscarObra = new BuscarObra("MenuAutor");
-        buscarObra.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButtonBuscarObra2ActionPerformed
+    }//GEN-LAST:event_jButtonVerObraEscritaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,9 +127,7 @@ public class MenuAutor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonBuscarObra;
-    private javax.swing.JButton jButtonBuscarObra1;
-    private javax.swing.JButton jButtonBuscarObra2;
+    private javax.swing.JButton jButtonVerObraEscrita;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
