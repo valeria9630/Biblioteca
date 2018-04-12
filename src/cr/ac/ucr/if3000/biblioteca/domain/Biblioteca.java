@@ -20,18 +20,8 @@ public class Biblioteca {
 
     private static ArrayList<Persona> personas = new ArrayList<Persona>();
     private static ArrayList<Catalogo> catalogos = new ArrayList<Catalogo>();
-<<<<<<< HEAD
 
     private static String identificacionPersonaActiva;
-=======
-
-
-    private static String identificacionPersonaActiva;
-
-    private static String identificacion;
- 
-
->>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
 
     public Biblioteca() {
 
@@ -41,22 +31,8 @@ public class Biblioteca {
         this.personas = personas;
         this.catalogos = catalogos;
 
-
     }
 
-<<<<<<< HEAD
-=======
-    public static String getIdentificacion() {
-        return identificacion;
-    }
-
-    public static void setIdentificacion(String identificacion) {
-        Biblioteca.identificacion = identificacion;
-
-
-    }
-
->>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
     public static String getIdentificacionPersonaActiva() {
         return identificacionPersonaActiva;
     }
@@ -101,9 +77,6 @@ public class Biblioteca {
 
     }
 
-<<<<<<< HEAD
-=======
-
 //    public boolean validarContraseña(String contraseña) {
 //        boolean validarContraseña = false;
 //         String contraseñaTemp= contraseña;
@@ -111,15 +84,12 @@ public class Biblioteca {
 //         String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
 //         System.out.println(contraseñaEncriptada);
 //    }
-
 //    public boolean validarContraseña(String contraseña) {
 //        boolean validarContraseña = false;
 //         String contraseñaTemp= contraseña;
 //     
 //         String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
 //         System.out.println(contraseñaEncriptada);
-
->>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
     public boolean validarContraseña(String contraseña) {
         boolean validarContraseña = false;
         String contraseñaTemp = contraseña;
@@ -149,10 +119,6 @@ public class Biblioteca {
 
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
     public void agregarCatalogo(Catalogo catalogo) {
         if (!existeCatalogo(catalogo)) {
             catalogos.add(catalogo);
@@ -321,11 +287,6 @@ public class Biblioteca {
         return ultimoCodigo;
     }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
     public void devolverCatalogo(Catalogo catalogo) {
         Prestamo prestamo = null;
 
@@ -362,17 +323,6 @@ public class Biblioteca {
 
     }
 
-//    public static Date ParseFecha(String fecha) {
-//        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-//        Date fechaDate = null;
-//        try {
-//            fechaDate = formato.parse(fecha);
-//        } catch (ParseException ex) {
-//            System.out.println(ex);
-//        }
-//        return fechaDate;
-//    }
-
     public ArrayList listaObrasEscritas(Autor persona) {
         ArrayList listaObrasEscritas = new ArrayList();
         for (int i = 0; i < catalogos.size(); i++) {
@@ -384,22 +334,5 @@ public class Biblioteca {
         }
         return listaObrasEscritas;
     }
-<<<<<<< HEAD
-=======
-
-
-//    public Persona buscarPersonaPorNombreUnico(String nombreUnico) {
-//        Persona personaEncontrada = new Persona() {};
-//        for (int i = 0; i < personas.size(); i++) {
-//            Persona persona = (Persona) personas.get(i);
-//            if (persona.getNombreUnico().equalsIgnoreCase(nombreUnico)) {
-//                personaEncontrada = persona;
-//            }
-//
-//        }
-//        return personaEncontrada;
-//    }
-
->>>>>>> b206812de0692eb03ef6001b2359dd2d9d2a3e08
 
 }
