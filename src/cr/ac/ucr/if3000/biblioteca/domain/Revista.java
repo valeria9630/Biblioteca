@@ -30,19 +30,12 @@ public class Revista extends Catalogo {
         this.edicion = edicion;
     }
 
-<<<<<<< HEAD
-=======
     public Revista(String issn, String edicion, String titulo, String fechaIngreso, Autor autor, int codigoCatalogo) {
         super(titulo, fechaIngreso, autor, codigoCatalogo);
         this.issn = issn;
         this.edicion = edicion;
     }
-    
-    
 
-   
-
->>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
     public String getIssn() {
         return issn;
     }
@@ -59,18 +52,14 @@ public class Revista extends Catalogo {
         this.edicion = edicion;
     }
 
-<<<<<<< HEAD
-=======
     @Override
     public String toString() {
         return "Revista{" + "issn=" + issn + ", edicion=" + edicion + '}';
     }
-    
-    
+
     public String mostrar2() {
-        return "Titulon:"+getTitulo()+"\n"+"FechaIngreso:"+getFechaIngreso()+"\n"+"Autor:"+getAutor().getNombreUnico()+"\n"+
-                "ISSN:"+getIssn()+"\n"+"Edicion:"+getEdicion();
+        return "Titulon:" + getTitulo() + "\n" + "FechaIngreso:" + getFechaIngreso() + "\n" + "Autor:" + getAutor().getNombreUnico() + "\n"
+                + "ISSN:" + getIssn() + "\n" + "Edicion:" + getEdicion();
     }
-    
->>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
+
 }

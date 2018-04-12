@@ -126,14 +126,13 @@ public class InicioDeSesion extends javax.swing.JFrame {
         String contraseña = jTextFieldContraseña.getText();
 
         if (biblioteca.validarNombreUnico(usuarioUnico)) {
-            System.out.println("perimite1");
+
             if (biblioteca.validarContraseña(contraseña)) {
 
-                System.out.println("perimite2");
-                Persona persona = biblioteca.buscarPersonaPorNombreUnico(usuarioUnico);
-                System.out.println(persona.toString());
+                Persona persona = biblioteca.buscarPersonaPorIdentificacion(usuarioUnico);
+              
 
-                if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico) instanceof Autor) {
+                if (biblioteca.buscarPersonaPorIdentificacion(usuarioUnico) instanceof Autor) {
                     biblioteca.setIdentificacionPersonaActiva(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
                     System.out.println("Autor");
                     MenuAutor menuAutor = new MenuAutor();
@@ -161,35 +160,7 @@ public class InicioDeSesion extends javax.swing.JFrame {
 
         }
 
-//        if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).equals(usuarioUnico)) {
-//            System.out.println("nombre unico");
-//            if (biblioteca.validarContraseña(contraseña) == true) {
-//                System.out.println("Nombre contraseña");
-//                if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico) instanceof Autor) {
-//                    biblioteca.setIdentificacion(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
-//                    System.out.println("Autor");
-//                    MenuAutor menuAutor = new MenuAutor();
-//                    menuAutor.setVisible(true);
-//
-//                }
-//                if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico) instanceof Usuario) {
-//                    biblioteca.setIdentificacion(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
-//                    MenuUsuario menuUsuario = new MenuUsuario();
-//                    menuUsuario.setVisible(true);
-//
-//                }
-//                if (biblioteca.buscarPersonaPorNombreUnico(usuarioUnico) instanceof Bibliotecario) {
-//                    biblioteca.setIdentificacion(biblioteca.buscarPersonaPorNombreUnico(usuarioUnico).getIdentificacion());
-//                    MenuBibliotecologo menuBibliotecologo = new MenuBibliotecologo();
-//                    menuBibliotecologo.setVisible(true);
-//
-//                }
-//
-//            }
-//            dispose();
-//        } else {
-//            JOptionPane.showMessageDialog(null, "No sirve");
-//        }
+//       
 
     }//GEN-LAST:event_jButtonIniciarActionPerformed
 

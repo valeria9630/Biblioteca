@@ -8,6 +8,7 @@ package cr.ac.ucr.if3000.biblioteca.domain;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -17,10 +18,8 @@ public class Biblioteca {
 
     private static ArrayList<Persona> personas = new ArrayList<Persona>();
     private static ArrayList<Catalogo> catalogos = new ArrayList<Catalogo>();
-<<<<<<< HEAD
+
     private static String identificacionPersonaActiva;
-=======
->>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
 
     public Biblioteca() {
 
@@ -29,7 +28,6 @@ public class Biblioteca {
     public Biblioteca(ArrayList<Persona> personas, ArrayList<Catalogo> catalogos) {
         this.personas = personas;
         this.catalogos = catalogos;
-<<<<<<< HEAD
 
     }
 
@@ -39,8 +37,7 @@ public class Biblioteca {
 
     public static void setIdentificacionPersonaActiva(String identificacionPersonaActiva) {
         Biblioteca.identificacionPersonaActiva = identificacionPersonaActiva;
-=======
->>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
+
     }
 
     public ArrayList<Persona> getPersonas() {
@@ -78,7 +75,6 @@ public class Biblioteca {
 
     }
 
-<<<<<<< HEAD
     public boolean validarContraseña(String contraseña) {
         boolean validarContraseña = false;
         String contraseñaTemp = contraseña;
@@ -107,8 +103,6 @@ public class Biblioteca {
 
     }
 
-=======
->>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
     public void agregarCatalogo(Catalogo catalogo) {
         if (!existeCatalogo(catalogo)) {
             catalogos.add(catalogo);
@@ -264,7 +258,6 @@ public class Biblioteca {
         return ultimoCodigo;
     }
 
-<<<<<<< HEAD
     public ArrayList listaObrasEscritas(Autor persona) {
         ArrayList listaObrasEscritas = new ArrayList();
         for (int i = 0; i < catalogos.size(); i++) {
@@ -276,6 +269,18 @@ public class Biblioteca {
         }
         return listaObrasEscritas;
     }
-=======
->>>>>>> a402110397bf3ed0a1c9ad42500ce11198e564d1
+
+    public Persona buscarPersonaPorNombreUnico(String nombreUnico) {
+        Persona personaEncontrada = new Persona() {
+        };
+        for (int i = 0; i < personas.size(); i++) {
+            Persona persona = (Persona) personas.get(i);
+            if (persona.getNombreUnico().equalsIgnoreCase(nombreUnico)) {
+                personaEncontrada = persona;
+            }
+
+        }
+        return personaEncontrada;
+    }
+
 }
