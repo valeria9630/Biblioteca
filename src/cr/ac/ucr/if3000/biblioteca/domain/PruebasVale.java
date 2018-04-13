@@ -19,15 +19,56 @@ import org.apache.commons.codec.digest.DigestUtils;
  * @author ValeriaLeivaQuirós
  */
 public class PruebasVale {
-
+    
     public static void main(String[] args) throws ParseException {
+        try {
+            Biblioteca biblioteca = new Biblioteca();
+            String contraseña="l";
+            String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
+            Autor autor = new Autor("l", contraseñaEncriptada, "l", "l", "l");
+            Autor autor1 = new Autor("a", "b", "b", "a", "a");
+            
+            biblioteca.agregarPersona(autor);
+            biblioteca.agregarPersona(autor1);
+            
+            for (int i = 0; i < biblioteca.getPersonas().size(); i++) {
+                System.out.println(biblioteca.getPersonas().get(i).toString());
+                
+            }
+            System.out.println(biblioteca.buscarPersona(autor1));
+            
+            Catalogo libro = new Libro("ss", "s", "sss");
+            biblioteca.agregarCatalogo(libro);
+            
+            Catalogo libro1 = new Libro("a", "a", "ad");
+            
+            biblioteca.agregarCatalogo(libro1);
+            
+            System.out.println("Libro" + biblioteca.getCatalogos().get(0));
+            
+            System.out.println("Libro1" + biblioteca.getCatalogos().get(1));
+            String date = "2-3";
+            
+            Prestamo prestamo = new Prestamo(0, autor1, date, date);
+            Prestamo prestamo1 = new Prestamo(0, autor1, date, date);
+            
+            biblioteca.registrarPrestamo(libro, prestamo);
+            biblioteca.registrarPrestamo(libro1, prestamo1);
+            
+            System.out.println("Prestamo" + biblioteca.getCatalogos().get(0).getPrestamo());
+            
+            System.out.println("Prestamo1" + biblioteca.getCatalogos().get(1).getPrestamo());
+            
+            System.out.println("Estado libro1" + biblioteca.getCatalogos().get(1).getPrestamo());
+//
+System.out.println("Libros prestados" + biblioteca.catalogoPrestado().get(0));
+System.out.println("Libros prestados" + biblioteca.catalogoPrestado().get(1));
 
-        Biblioteca biblioteca = new Biblioteca();
-        String contraseña = "l";
-        String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
-        Autor autor = new Autor("l", contraseñaEncriptada, "l", "l", "l");
-        Autor autor1 = new Autor("a", "b", "b", "a", "a");
+System.out.println("Ultimo Codigo prestamo" + biblioteca.getCodigoPrestamo());
 
+System.out.println(biblioteca.buscarLibroPorCodigo(0));
+
+<<<<<<< HEAD
         biblioteca.agregarPersona(autor);
         biblioteca.agregarPersona(autor1);
 
@@ -36,9 +77,18 @@ public class PruebasVale {
 
             System.out.println("Libros prestados" + biblioteca.catalogoPrestado().get(0));
             System.out.println(autor.getContraseña());
+=======
+
+System.out.println("Libros prestados" + biblioteca.catalogoPrestado().get(0));
+System.out.println(autor.getContraseña());
+>>>>>>> 27e1d51637d74cc2bb2e3fea45f4859b81a3d134
 //System.out.println(biblioteca.validarContraseña("l"));
 
+//        System.out.println(biblioteca.listadeUsuariosMorosos().get(0));
+        } catch (Exception ex) {
+            Logger.getLogger(PruebasVale.class.getName()).log(Level.SEVERE, null, ex);
         }
+<<<<<<< HEAD
         System.out.println(biblioteca.buscarPersona(autor1));
 
         Catalogo libro = new Libro("ss", "s", "sss");
@@ -58,6 +108,8 @@ public class PruebasVale {
         System.out.println("Libros prestados" + biblioteca.catalogoPrestado().get(0));
 
         System.out.println(biblioteca.listadeUsuariosMorosos().get(0));
+=======
+>>>>>>> 27e1d51637d74cc2bb2e3fea45f4859b81a3d134
     }
-
+    
 }
